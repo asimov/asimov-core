@@ -1,0 +1,27 @@
+{
+  "name": "asimov-core",
+  "version": "0.0.0",
+  "description": "asimov-core ===========",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/asimov/asimov-core.git"
+  },
+  "author": "xzyfer",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "999d30c5afd644c73d7b6a71e30aefa7b63cc2fd",
+  "devDependencies": {
+    "matchdep": "~0.3.0",
+    "time-grunt": "~0.2.1",
+    "grunt-contrib-sass": "~0.5.0",
+    "diff": "~1.0.7",
+    "grunt-cssjoin": "~0.2.0"
+  }
+}

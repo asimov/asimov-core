@@ -1,0 +1,9 @@
+{
+    "browser": true,
+    "predef": [
+        "define",
+        "module",
+        "exports"
+    ],
+    "es3": true
+}

@@ -1,0 +1,149 @@
+// ==========================================================================
+// List functions
+// ==========================================================================
+
+$__a__map-cache: () !default;
+
+
+// Return the first dimension of a multi dimensional $map with aliases resolved
+// -----------------------------------------------------------------------------
+// @param $map [Map] : map
+// -----------------------------------------------------------------------------
+// @return [Map]
+@function get-map($map) {
+    $ret: ();
+    $base: null;
+    @each $name, $value in $map {
+        // ignore "base" as a value
+        @if type-of($value) != map and $name != "base" {
+            $ret: map-merge($ret, ($name: $value));
+        } @else if $name == "base" {
+            // preserver the "base" value for later
+            $base: $value;
+        }
+    }
+
+    // inject the "base" value for alias lookups only
+    @return resolve-aliases($ret, ("base": $base));
+}
+
+
+// Turns multidimensional $map into a one-level map with aliases resolved.
+// Map keys are composed by prefixing it's parent's key separated by a /
+// -----------------------------------------------------------------------------
+// @param $map [Map] : map
+// @param $ret [Map] : the parent map to flatten $map into
+// @param $prefix [String] : the prefix to append to $map's keys
+// -----------------------------------------------------------------------------
+// @return [Map]
+@function flatten-map($map, $ret:(), $prefix:null) {
+    @each $name, $value in $map {
+        // TODO 3.3: this can be simplified with `if()`
+        @if $prefix {
+            $name: $prefix + if($name, "/#{$name}", "");
+        }
+
+        @if type-of($value) == map {
+            // Append to the end of the root map because alias need to be after
+            // the value they're aliasing to resolve correctly "#{$name}-base"
+            $ls: append($value, null "#{$name}/base");
+            $ret: flatten-map($ls, $ret, $name);
+        } @else {
+            $ret: map-merge($ret, ($name: $value));
+        }
+    }
+
+    @return $ret;
+}
+
+
+// Takes a one dimensional $map and returns a new map with aliases resolved
+// -----------------------------------------------------------------------------
+// @param $map [Map] : map
+// @param $extras [Map] : an external map to resolve aliases against
+// -----------------------------------------------------------------------------
+// @return [Map]
+@function resolve-aliases($map, $extras:()) {
+    $ret: ();
+    @each $name, $value in $map {
+        // Looks like an alias, try to resolve it, default to $value
+        @if type-of($value) == string {
+            $value: lookup($ret, $value, lookup($extras, $value, $value));
+            $ret: map-merge($ret, ($name: $value));
+        } @else {
+            $ret: map-merge($ret, ($name: $value));
+        }
+    }
+
+    @return $ret;
+}
+
+
+// Takes a one dimensional $map and returns a new map with aliases resolved
+// -----------------------------------------------------------------------------
+// @param $map [Map] : map
+// @param $key [String] : key to lookup in map
+// @param $default [Value] : the default value to return if key is not found
+// @param $is-key [Bool] : if true $default is treated as a key in $map
+// -----------------------------------------------------------------------------
+// @return [Literal]
+@function lookup($map, $key, $default:null, $is-key:false) {
+    @if length($map) == 0 {
+        @return $default;
+    }
+
+    @if map-has-key($map, $key) {
+        @return map-get($map, $key);
+    }
+
+    @return if($is-key, lookup($map, $default), $default);
+}
+
+
+// Main proxy for accessing settings maps. Returned maps can either be just
+// root level keys, or the entire map flattened with / used to flatten keys.
+// Fetches are cached using $name and $flatten as seeds for the cache key.
+// -----------------------------------------------------------------------------
+// @param $name [String] : used a cache key
+// @param $map [Map] : the map you want to retrieve
+// @param $flatten [Bool] : whethen to flatten the map or just return root keys
+// -----------------------------------------------------------------------------
+// @return [Literal]
+@function get-component-map($name, $map, $flatten:false) {
+    @if $flatten {
+        $name: "#{$name}--flat";
+        $ret: lookup($__a__map-cache, $name);
+        @if $ret == null {
+            $ret: resolve-aliases(flatten-map($map));
+            $__a__map-cache: map-merge($__a__map-cache, ($name: $ret));
+        }
+        @return $ret;
+    } @else {
+        $ret: lookup($__a__map-cache, $name);
+        @if $ret == null {
+            $ret: get-map($map);
+            $__a__map-cache: map-merge($__a__map-cache, ($name: $ret));
+        }
+        @return $ret;
+    }
+}
+
+
+// Joins all elements of single dimensional $list with $glue
+// -------------------------------------------------------------------------------
+// @param $list [List] : list
+// @param $glue [String] : value to use as a join string
+// -------------------------------------------------------------------------------
+// @return [String]
+@function implode($list, $glue:",") {
+    @if length($list) == 1 {
+        @return $list;
+    }
+
+    $ret: unquote("");
+    @for $i from 1 through length($list) {
+        $ret: if($ret == "", $ret, $ret + $glue) + nth($list, $i);
+    }
+
+    @return $ret;
+}

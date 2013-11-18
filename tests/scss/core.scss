@@ -1,0 +1,59 @@
+@import "asimov/functions/core";
+
+$map: (
+    "base": "red",
+    "foo": "bar",
+    "bar": "baz",
+
+    "one": (
+        "base": "eno",
+        "bar": "baz",
+        "bar-bell": "bazzab",
+
+        "baz": (
+            "base": "blue",
+            "boo": "bam",
+            "boo-who": "bammab"
+        )
+    ),
+
+    "one-time": (
+        "base": "eno",
+        "bar": "baz",
+        "bar-bell": "bazzab",
+
+        "baz": (
+            "base": "blue",
+            "boo": "bam",
+            "boo-who": "bammab"
+        )
+    )
+);
+
+
+basic {
+    $data: get-component-map("map", $map, false);
+
+    base: lookup($data, "base");
+    foo: lookup($data, "foo");
+    bar: lookup($data, "bar");
+
+}
+
+basic--flat {
+    $data: get-component-map("map", $map, true);
+
+    base: lookup($data, "base");
+    foo: lookup($data, "foo");
+    bar: lookup($data, "bar");
+    one: lookup($data, "one");
+
+    one\/base: lookup($data, "one/base");
+    one\/bar: lookup($data, "one/bar");
+    one\/bar-bell: lookup($data, "one/bar-bell");
+
+    one\/baz: lookup($data, "one/baz");
+    one\/baz\/base: lookup($data, "one/baz/base");
+    one\/baz\/boo: lookup($data, "one/baz/boo");
+    one\/baz\/boo-who: lookup($data, "one/baz/boo-who");
+}

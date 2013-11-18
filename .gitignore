@@ -1,0 +1,34 @@
+# sass' cache
+.sass-cache
+*.scssc
+
+# npm packages
+node_modules
+
+# osx junk files
+.DS_Store
+
+# r.js build log
+dist/js/build.txt
+
+# ide settings
+*.sublime-*
+*.config
+*.idea
+*.project
+
+# js test coverage reports
+coverage
+
+# bower
+bower_components
+
+# 3rd party deps
+vendor/
+
+# ruby env settings
+*.rbenv-version
+*.ruby-version
+
+# generated files
+tmp
