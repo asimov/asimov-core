@@ -71,7 +71,7 @@ module.exports = function(grunt) {
         files.forEach(function(file) {
             var diff = jsDiff.diffLines(
                 grunt.file.read(path.join('tests/css', file)),
-                grunt.file.read(path.join('tmp/sasstest', file))
+                grunt.file.read(path.join('.build/sasstest', file))
             );
 
             diff.forEach(function(d) {

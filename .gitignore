@@ -1,15 +1,15 @@
 # sass' cache
-.sass-cache
+/.sass-cache
 *.scssc
 
 # npm packages
-node_modules
+/node_modules
 
 # osx junk files
 .DS_Store
 
 # r.js build log
-dist/js/build.txt
+/dist/js/build.txt
 
 # ide settings
 *.sublime-*
@@ -18,10 +18,10 @@ dist/js/build.txt
 *.project
 
 # js test coverage reports
-coverage
+/coverage
 
 # bower
-bower_components
+/bower_components
 
 # 3rd party deps
 vendor/
@@ -31,4 +31,4 @@ vendor/
 *.ruby-version
 
 # generated files
-tmp
+/.build
