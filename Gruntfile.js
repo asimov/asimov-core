@@ -7,7 +7,6 @@ module.exports = function(grunt) {
 
     var matchdep = require('matchdep'),
         path = require('path'),
-        bower = require('bower'),
         meta = grunt.file.readJSON('./bower.json')
     ;
 
@@ -31,6 +30,9 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('bower.json'),
+
+        // Sass compilation
+
         sass: {
             options: {
                 style: 'expanded',
@@ -57,15 +59,27 @@ module.exports = function(grunt) {
                 }]
             }
         },
+
+        // Run our sass tests
+
         sasstest: {
             test: {}
         },
 
         // Creating new releases
 
-        release: {
+        bump: {
             options: {
-                file: 'bower.json'
+                files: ['bower.json'],
+                updateConfigs: ['pkg'],
+                commit: true,
+                commitMessage: 'chore(relase): release v%VERSION%',
+                commitFiles: ['bower.json', '<%= changelog.options.dest %>'],
+                createTag: true,
+                tagName: '%VERSION%',
+                tagMessage: 'tagging version %VERSION%',
+                push: true,
+                pushTo: 'origin'
             }
         },
 
@@ -78,26 +92,38 @@ module.exports = function(grunt) {
                 github: 'asimov/asimov-core',
                 version: grunt.file.readJSON('./bower.json').version,
                 editor: 'subl -w'
-            },
-            dist: {}
+            }
+        },
+
+        // Creating new releases
+
+        release: {
+            dryRun: false
         }
     });
 
     // Load tasks defined in asimov-core's package.json
+
     matchdep.filterAll('grunt-!(cli)', path.join(asimoveCorePath, 'package.json'))
         .forEach(grunt.loadNpmTasks);
 
-    // Rename the grunt-release task so we can use `release` as a task name
-    grunt.renameTask('release', 'grunt-release');
-
     // Load our custom tasks
+
     grunt.loadTasks(path.join(asimoveCorePath, 'build', 'tasks'));
 
-    // grunt.registerTask('release', ['test', 'compile', 'changelog', 'release']);
+    // Public tasks
 
-    grunt.registerTask('test', ['sass:test', 'sasstest:test']);
+    grunt.registerTask('test', [
+        'sass:test',
+        'sasstest:test'
+    ]);
 
-    grunt.registerTask('compile', ['sass:dist']);
+    grunt.registerTask('compile', [
+        'sass:dist'
+    ]);
 
-    grunt.registerTask('default', ['test', 'compile']);
+    grunt.registerTask('default', [
+        'test',
+        'compile'
+    ]);
 };
