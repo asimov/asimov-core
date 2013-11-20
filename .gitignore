@@ -32,3 +32,6 @@ vendor/
 
 # generated files
 /.build
+
+# distribution files
+/dist/
