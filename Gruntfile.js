@@ -59,6 +59,25 @@ module.exports = function(grunt) {
         },
         sasstest: {
             test: {}
+        },
+
+        // Creating new releases
+
+        release: {
+            options: {
+                bump: true,
+                file: 'bower.json',
+                add: false,
+                commit: true,
+                tag: true,
+                push: true,
+                pushTags: true,
+                npm: false,
+                npmtag: false,
+                tagName: '<%= version %>',
+                commitMessage: 'release <%= version %>',
+                tagMessage: 'tagging version <%= version %>'
+            }
         }
     });
 
