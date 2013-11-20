@@ -1,3 +1,13 @@
+<a name="v0.0.2"></a>
+### v0.0.2 (2013-11-20)
+
+
+#### Bug Fixes
+
+* **tests:**
+  * grunt should fail if sass tests fail ([f8c49ea9](http://github.com/asimov/asimov-core/commit/f8c49ea95f375078173d96ee22452c015b033f37))
+  * sass tests not compiling ([17037d2b](http://github.com/asimov/asimov-core/commit/17037d2bf560f07480d16657ed8029038e0e48d7))
+
 <a name="v0.0.1"></a>
 ### v0.0.1 (2013-11-20)
 
