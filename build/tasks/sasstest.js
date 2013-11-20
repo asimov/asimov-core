@@ -65,7 +65,7 @@ module.exports = function(grunt) {
     grunt.registerMultiTask('sasstest', 'Tests sass output is correct', function() {
         var tmpDir = 'tmp/sasstest',
             files = grunt.file.expand({ cwd: 'tests/css'}, '**/*.css'),
-            diffs = []
+            failed = false
         ;
 
         files.forEach(function(file) {
@@ -75,6 +75,8 @@ module.exports = function(grunt) {
             );
 
             diff.forEach(function(d) {
+                failed = failed || d.added || d.removed;
+
                 if (d.added) {
                     grunt.log.writeln(colorLines('diff added', d.value));
                 }
@@ -82,7 +84,12 @@ module.exports = function(grunt) {
                 if (d.removed) {
                     grunt.log.writeln(colorLines('diff removed', d.value));
                 }
+
             });
         });
+
+        if (failed) {
+            grunt.fail.fatal('Unexpected output found');
+        }
     });
 };
