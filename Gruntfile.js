@@ -10,9 +10,9 @@ module.exports = function(grunt) {
         meta = grunt.file.readJSON('./bower.json')
     ;
 
-    var asimoveCorePath = meta.name === 'asimov-core' ?
+    var asimoveCorePath = path.resolve(meta.name === 'asimov-core' ?
         '.' :
-        'bower_components/asimov-core';
+        './bower_components/asimov-core');
 
     // Create an array of asimov deps
     //
@@ -104,8 +104,14 @@ module.exports = function(grunt) {
 
     // Load tasks defined in asimov-core's package.json
 
+    var base = process.cwd();
     matchdep.filterAll('grunt-!(cli)', path.join(asimoveCorePath, 'package.json'))
-        .forEach(grunt.loadNpmTasks);
+        .forEach(function(task) {
+            // need to temporarily change base for grunt.loadNpmTasks to work
+            grunt.file.setBase(asimoveCorePath);
+            grunt.loadNpmTasks(task);
+            grunt.file.setBase(base);
+        });
 
     // Load our custom tasks
 
