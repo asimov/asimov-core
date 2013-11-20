@@ -65,18 +65,7 @@ module.exports = function(grunt) {
 
         release: {
             options: {
-                bump: true,
-                file: 'bower.json',
-                add: false,
-                commit: true,
-                tag: true,
-                push: true,
-                pushTags: true,
-                npm: false,
-                npmtag: false,
-                tagName: '<%= version %>',
-                commitMessage: 'release <%= version %>',
-                tagMessage: 'tagging version <%= version %>'
+                file: 'bower.json'
             }
         },
 
@@ -88,17 +77,27 @@ module.exports = function(grunt) {
                 prepend: true,
                 github: 'asimov/asimov-core',
                 version: grunt.file.readJSON('./bower.json').version,
-                editor: 'sublime -w'
+                editor: 'subl -w'
             },
             dist: {}
         }
     });
 
-    // load task
-    matchdep.filterAll('grunt-!(cli)').forEach(grunt.loadNpmTasks);
+    // Load tasks defined in asimov-core's package.json
+    matchdep.filterAll('grunt-!(cli)', path.join(asimoveCorePath, 'package.json'))
+        .forEach(grunt.loadNpmTasks);
 
-    // grunt.loadTasks(path.join(asimoveCorePath, 'build', 'tasks'));
+    // Rename the grunt-release task so we can use `release` as a task name
+    grunt.renameTask('release', 'grunt-release');
+
+    // Load our custom tasks
+    grunt.loadTasks(path.join(asimoveCorePath, 'build', 'tasks'));
+
+    // grunt.registerTask('release', ['test', 'compile', 'changelog', 'release']);
 
     grunt.registerTask('test', ['sass:test', 'sasstest:test']);
-    grunt.registerTask('default', ['test', 'sass:dist']);
+
+    grunt.registerTask('compile', ['sass:dist']);
+
+    grunt.registerTask('default', ['test', 'compile']);
 };
