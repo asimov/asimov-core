@@ -78,6 +78,19 @@ module.exports = function(grunt) {
                 commitMessage: 'release <%= version %>',
                 tagMessage: 'tagging version <%= version %>'
             }
+        },
+
+        // Automatic changelogs
+
+        changelog: {
+            options: {
+                dest: 'CHANGELOG.md',
+                prepend: true,
+                github: 'asimov/asimov-core',
+                version: grunt.file.readJSON('./bower.json').version,
+                editor: 'sublime -w'
+            },
+            dist: {}
         }
     });
 
