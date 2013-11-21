@@ -4,6 +4,14 @@
 
 $__a__map-cache: () !default;
 
+// Returns $key's value from the core $settings map
+// -----------------------------------------------------------------------------
+// @param $key [String] : flattened key to lookup
+// -----------------------------------------------------------------------------
+// @return [Literal]
+@function get($key) {
+    @return lookup(get-component-map("settings", $settings, true), $key);
+}
 
 // Return the first dimension of a multi dimensional $map with aliases resolved
 // -----------------------------------------------------------------------------
