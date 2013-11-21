@@ -1,4 +1,5 @@
 
+$__a__cache-enabled: true !default;
 $__a__map-cache: () !default;
 
 // ==========================================================================
@@ -15,36 +16,45 @@ $__a__map-cache: () !default;
 }
 
 // Sets $key's to $value in the core $settings map if it currently has now value
-// Returning the value of $key after it's been updated
+// If $key was a string it's new value is returned
+// If $key was a map the core $settings map is returned
 // -----------------------------------------------------------------------------
-// @param $key [String] : flattened key to lookup
-// @param $value [Literal] : flattened key to lookup
+// @param $key [String|Map] : key to lookup or map to merge with $settings
+// @param $value [Literal] : value to set $key to it was a string
 // -----------------------------------------------------------------------------
 // @return [Literal]
-@function set-default($key, $value) {
-    @if not get($key) {
-        // Clear the settings caches!
-        $__a__map-cache: map-merge($__a__map-cache, (
-            "settings": null,
-            "settings--flat": null,
-        ));
+@function set-default($key, $value:null) {
+    // Clear the settings caches!
+    $__a__map-cache: map-merge($__a__map-cache, (
+        "settings": null,
+        "settings--flat": null,
+    ));
 
-        $value: set($key, $value);
+    $__a__cache-enabled: false !global;
+
+    @if type-of($key) == map {
+        // Reverse the merge order so we don't over write anything
+        $settings: _set($settings, $value, $key) !global;
+        @return $settings;
+    } @else if not get($key) {
+        $settings: _set($key, $value, $settings) !global;
+        // This rebuilds the settings cache if it was busted
+        @return get($key);
     }
 
-    // This rebuilds the settings cache if it was busted
-    @return get($key);
+    // $key exists in $settings, do nothing!
+    @return $value;
 }
 
 // Sets $key's to $value in the core $settings map
-// Returning the value of $key after it's been updated
+// If $key was a string it's new value is returned
+// If $key was a map the core $settings map is returned
 // -----------------------------------------------------------------------------
-// @param $key [String] : flattened key to lookup
-// @param $value [Literal] : flattened key to lookup
-// @param $_root [Map] : for internal use only
+// @param $key [String|Map] : key to lookup or map to merge with $settings
+// @param $value [Literal] : value to set $key to it was a string
 // -----------------------------------------------------------------------------
 // @return [Literal]
-@function set($key, $value) {
+@function set($key, $value:null) {
     // Clear the settings caches!
     $__a__map-cache: map-merge($__a__map-cache, (
         "settings": null,
@@ -52,22 +62,28 @@ $__a__map-cache: () !default;
     ));
 
     $settings: _set($key, $value, $settings) !global;
-
     // This rebuilds the settings cache if it was busted
     @return get($key);
 }
 
 // Sets $key's to $value in the core $settings map
-// Returning the value of $key after it's been updated
+// Returning the value of $key after it's been updated. If $key was a map the
+// root node is returned
 // -----------------------------------------------------------------------------
-// @param $key [String] : flattened key to lookup
-// @param $value [Literal] : flattened key to lookup
+// @param $key [String|Map] : key to lookup or map to merge with $settings
+// @param $value [Literal] : value to set $key to it was a string
 // @param $_root [Map] : for internal use only
 // -----------------------------------------------------------------------------
 // @return [Literal]
-@function _set($key, $value, $_root) {
+@function _set($key, $value:null, $_root:null) {
+    // $_root won't exist in recursive calls if $key is a new branch
     @if $_root == null {
         $_root: ($key: ());
+    }
+
+    // If $key is a map just merge it and move on
+    @if type-of($key) == map {
+        @return map-merge-recursive($_root, $key);
     }
 
     @if str-index($key, "/") > 0 {
@@ -192,22 +208,18 @@ $__a__map-cache: () !default;
 // -----------------------------------------------------------------------------
 // @return [Literal]
 @function get-component-map($name, $map, $flatten:false) {
-    @if $flatten {
-        $name: "#{$name}--flat";
-        $ret: lookup($__a__map-cache, $name);
-        @if $ret == null {
-            $ret: resolve-aliases(flatten-map($map));
-            $__a__map-cache: map-merge($__a__map-cache, ($name: $ret));
-        }
-        @return $ret;
-    } @else {
-        $ret: lookup($__a__map-cache, $name);
-        @if $ret == null {
-            $ret: get-map($map);
-            $__a__map-cache: map-merge($__a__map-cache, ($name: $ret));
-        }
-        @return $ret;
+    $name: $name + if($flatten, "--flat", "");
+
+    $ret: lookup($__a__map-cache, $name);
+    @if $ret == null {
+        $ret: if($flatten, resolve-aliases(flatten-map($map)), get-map($map));
     }
+
+    @if $__a__cache-enabled {
+        $__a__map-cache: map-merge($__a__map-cache, ($name: $ret));
+    }
+
+    @return $ret;
 }
 
 
@@ -225,6 +237,27 @@ $__a__map-cache: () !default;
     $ret: unquote("");
     @for $i from 1 through length($list) {
         $ret: if($ret == "", $ret, $ret + $glue) + nth($list, $i);
+    }
+
+    @return $ret;
+}
+
+
+// Joins all elements of single dimensional $list with $glue
+// -------------------------------------------------------------------------------
+// @param $list [List] : list
+// @param $glue [String] : value to use as a join string
+// -------------------------------------------------------------------------------
+// @return [String]
+@function map-merge-recursive($map1, $map2) {
+    $ret: $map1;
+
+    @each $key, $value in $map2 {
+        @if map-get($ret, $key) != null and type-of($value) == map {
+            $value: map-merge-recursive(map-get($ret, $key), $value);
+        }
+
+        $ret: map-merge($ret, ($key: $value));
     }
 
     @return $ret;

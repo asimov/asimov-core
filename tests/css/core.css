@@ -29,9 +29,17 @@ settings-set {
   create-root: true;
 }
 
+settings-set-map {
+  set-map: true;
+}
+
 settings-set-default {
   set-new: true;
   cant-update: true;
   cant-remove: true;
   not-clobbered: true;
+}
+
+settings-set-default-map {
+  set-map: true;
 }
