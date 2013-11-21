@@ -16,3 +16,21 @@ basic--flat {
   one\/baz\/boo: "bam";
   one\/baz\/boo-who: "bammab";
 }
+
+settings-get {
+  set-new: true;
+}
+
+settings-set {
+  set-new: true;
+  update: true;
+  remove: true;
+  not-clobbered: true;
+}
+
+settings-set-default {
+  set-new: true;
+  cant-update: true;
+  cant-remove: true;
+  not-clobbered: true;
+}

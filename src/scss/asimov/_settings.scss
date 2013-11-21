@@ -1,3 +1,15 @@
 @import "asimov/core";
 
-$settings: () !default;
+$settings: (
+
+    "font": (
+        "size": (
+            "root": 1em,
+        )
+    ),
+
+    "line-height": (
+        "root": 1.4,
+    ),
+
+);

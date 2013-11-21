@@ -1,8 +1,9 @@
-// ==========================================================================
-// List functions
-// ==========================================================================
 
 $__a__map-cache: () !default;
+
+// ==========================================================================
+// Settings API
+// ==========================================================================
 
 // Returns $key's value from the core $settings map
 // -----------------------------------------------------------------------------
@@ -12,6 +13,75 @@ $__a__map-cache: () !default;
 @function get($key) {
     @return lookup(get-component-map("settings", $settings, true), $key);
 }
+
+// Sets $key's to $value in the core $settings map if it currently has now value
+// Returning the value of $key after it's been updated
+// -----------------------------------------------------------------------------
+// @param $key [String] : flattened key to lookup
+// @param $value [Literal] : flattened key to lookup
+// -----------------------------------------------------------------------------
+// @return [Literal]
+@function set-default($key, $value) {
+    @if not get($key) {
+        // Clear the settings caches!
+        $__a__map-cache: map-merge($__a__map-cache, (
+            "settings": null,
+            "settings--flat": null,
+        ));
+
+        $value: set($key, $value);
+    }
+
+    // This rebuilds the settings cache if it was busted
+    @return get($key);
+}
+
+// Sets $key's to $value in the core $settings map
+// Returning the value of $key after it's been updated
+// -----------------------------------------------------------------------------
+// @param $key [String] : flattened key to lookup
+// @param $value [Literal] : flattened key to lookup
+// @param $_root [Map] : for internal use only
+// -----------------------------------------------------------------------------
+// @return [Literal]
+@function set($key, $value) {
+    // Clear the settings caches!
+    $__a__map-cache: map-merge($__a__map-cache, (
+        "settings": null,
+        "settings--flat": null,
+    ));
+
+    $settings: _set($key, $value, $settings) !global;
+
+    // This rebuilds the settings cache if it was busted
+    @return get($key);
+}
+
+// Sets $key's to $value in the core $settings map
+// Returning the value of $key after it's been updated
+// -----------------------------------------------------------------------------
+// @param $key [String] : flattened key to lookup
+// @param $value [Literal] : flattened key to lookup
+// @param $_root [Map] : for internal use only
+// -----------------------------------------------------------------------------
+// @return [Literal]
+@function _set($key, $value, $root) {
+    @if str-index($key, "/") > 0 {
+        // Determin the $new key for the recursion
+        $child-key: str-slice($key, str-index($key, "/") + 1);
+
+        // Override the original $key and $value we can have one @return
+        $key: str-slice($key, 1, str-index($key, "/") - 1);
+        $value: _set($child-key, $value, map-get($root, $key))
+    }
+
+    @return map-merge($root, ($key: $value));
+}
+
+
+// ==========================================================================
+// List functions
+// ==========================================================================
 
 // Return the first dimension of a multi dimensional $map with aliases resolved
 // -----------------------------------------------------------------------------

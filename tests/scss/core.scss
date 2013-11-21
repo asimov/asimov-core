@@ -1,5 +1,22 @@
 @import "asimov/core";
 
+$default: (
+    foo: (
+        bar: (
+            baz: "boo",
+        ),
+    ),
+);
+
+@function assert($condition) {
+    @return if($condition, true, false);
+}
+
+
+// ==========================================================================
+// Internal API
+// ==========================================================================
+
 $map: (
     "base": "red",
     "foo": "bar",
@@ -56,4 +73,45 @@ basic--flat {
     one\/baz\/base: lookup($data, "one/baz/base");
     one\/baz\/boo: lookup($data, "one/baz/boo");
     one\/baz\/boo-who: lookup($data, "one/baz/boo-who");
+}
+
+
+// ==========================================================================
+// Settings API
+// ==========================================================================
+
+settings-get {
+    $settings: $default !global;
+
+    set-new: assert(get("foo/bar/baz") == "boo");
+}
+
+settings-set {
+    $settings: $default !global;
+
+    $set: set("foo/bar/bam", "test");
+    set-new: assert(get("foo/bar/bam") == "test");
+
+    $set: set("foo/bar/baz", "test");
+    update: assert(get("foo/bar/baz") == "test");
+
+    $set: set("foo/bar/bam", null);
+    remove: assert(get("foo/bar/bam") == null);
+
+    not-clobbered: assert(get("foo/bar/baz") == "test" && get("foo/bar/bam") == null);
+}
+
+settings-set-default {
+    $settings: $default !global;
+
+    $set: set-default("foo/bar/bam", "test");
+    set-new: assert(get("foo/bar/bam") == "test");
+
+    $set: set-default("foo/bar/baz", "test");
+    cant-update: assert(get("foo/bar/baz") == "boo");
+
+    $set: set-default("foo/bar/bam", null);
+    cant-remove: assert(get("foo/bar/bam") == "test");
+
+    not-clobbered: assert(get("foo/bar/baz") == "boo" && get("foo/bar/bam") == "test");
 }
