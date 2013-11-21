@@ -1,3 +1,18 @@
+<a name="v0.0.5"></a>
+### v0.0.5 (2013-11-22)
+
+
+#### Bug Fixes
+
+* **settings:** error when creating a new branch of settings ([ae9ee659](http://github.com/asimov/asimov-core/commit/ae9ee6592c65b5627b06c0ef51df4f62d0a1e3df))
+
+
+#### Features
+
+* **settings:**
+  * set() and set-default() can now take a map of settings ([6cea7800](http://github.com/asimov/asimov-core/commit/6cea780093f19740f4d645d065be9d5f42103bbd))
+  * add get(), set(), set-defaul() to the settings api ([0bb3eec5](http://github.com/asimov/asimov-core/commit/0bb3eec51d346fc185d07f98005f8b5bc4b3b0f1))
+
 <a name="v0.0.4"></a>
 ### v0.0.4 (2013-11-21)
 
