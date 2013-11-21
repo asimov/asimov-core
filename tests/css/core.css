@@ -26,6 +26,7 @@ settings-set {
   update: true;
   remove: true;
   not-clobbered: true;
+  create-root: true;
 }
 
 settings-set-default {

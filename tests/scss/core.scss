@@ -99,6 +99,9 @@ settings-set {
     remove: assert(get("foo/bar/bam") == null);
 
     not-clobbered: assert(get("foo/bar/baz") == "test" && get("foo/bar/bam") == null);
+
+    $set: set("does/not/exists", "woot");
+    create-root: assert(get("does/not/exists") == "woot");
 }
 
 settings-set-default {

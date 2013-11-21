@@ -65,17 +65,21 @@ $__a__map-cache: () !default;
 // @param $_root [Map] : for internal use only
 // -----------------------------------------------------------------------------
 // @return [Literal]
-@function _set($key, $value, $root) {
+@function _set($key, $value, $_root) {
+    @if $_root == null {
+        $_root: ($key: ());
+    }
+
     @if str-index($key, "/") > 0 {
         // Determin the $new key for the recursion
         $child-key: str-slice($key, str-index($key, "/") + 1);
 
         // Override the original $key and $value we can have one @return
         $key: str-slice($key, 1, str-index($key, "/") - 1);
-        $value: _set($child-key, $value, map-get($root, $key))
+        $value: _set($child-key, $value, map-get($_root, $key))
     }
 
-    @return map-merge($root, ($key: $value));
+    @return map-merge($_root, ($key: $value));
 }
 
 
