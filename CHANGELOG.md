@@ -1,3 +1,11 @@
+<a name="v0.0.3"></a>
+### v0.0.3 (2013-11-21)
+
+
+#### Bug Fixes
+
+* **build:** path munging so grunt will load npm modules ([10c14476](http://github.com/asimov/asimov-core/commit/10c144766697012d445f86fdfdb0f9a20f86164e))
+
 <a name="v0.0.2"></a>
 ### v0.0.2 (2013-11-20)
 
