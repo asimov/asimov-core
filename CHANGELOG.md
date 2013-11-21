@@ -1,3 +1,11 @@
+<a name="v0.0.4"></a>
+### v0.0.4 (2013-11-21)
+
+
+#### Features
+
+* **settings:** create the get() entry point ([0aab7cb0](http://github.com/asimov/asimov-core/commit/0aab7cb081ddd318ad400b47f50dc0874cab032b))
+
 <a name="v0.0.3"></a>
 ### v0.0.3 (2013-11-21)
 
