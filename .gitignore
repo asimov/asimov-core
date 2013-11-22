@@ -35,3 +35,6 @@ vendor/
 
 # distribution files
 /dist/
+
+# generated docs
+/docs/

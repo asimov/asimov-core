@@ -1,0 +1,37 @@
+
+#nav {
+    width: 20%;
+    background-color: #eee;
+    padding: 20px;
+    box-shadow: inset -15px 0px 15px -15px rgba(45, 45, 45, 0.25);
+}
+
+#main {
+    padding-left: 2.5%;
+    width: 77.5%;
+}
+
+
+@media screen and (max-width: 900px) {
+    #wrapper > * {
+        display: block;
+    }
+
+    #main {
+        width: 90%;
+        margin: 0 auto;
+        padding-left: 0;
+    }
+
+    #nav {
+        width: auto;
+        margin: 0;
+        background: 0;
+        box-shadow: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #nav nav > ul > li {
+        padding-right: 1.5em;
+    }
+}

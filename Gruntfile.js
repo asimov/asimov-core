@@ -85,6 +85,15 @@ module.exports = function(grunt) {
                     ext: '.css'
                 }]
             },
+            docs: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/docs/assets/scss',
+                    src: ['*.scss', '!_*.scss'],
+                    dest: 'docs/assets/css',
+                    ext: '.css'
+                }]
+            },
             dist: {
                 files: [{
                     expand: true,
@@ -94,6 +103,35 @@ module.exports = function(grunt) {
                     ext: '.css'
                 }]
             }
+        },
+
+        // Generate the docs
+
+        sync: {
+            docs: {
+                files: [{
+                    cwd: 'src/docs/assets',
+                    src: ['**', '!scss/**'],
+                    dest: 'docs/assets'
+                }]
+            }
+        },
+
+        exec: {
+            docs: {
+                cmd: 'node_modules/.bin/distancss dist/css docs --template src/docs --public /assets'
+            }
+        },
+
+        // Docs server
+
+        connect: {
+            options: {
+                base: 'docs',
+                keepalive: true,
+                port: 9001
+            },
+            dev: {}
         },
 
         // Run our sass tests
@@ -153,6 +191,14 @@ module.exports = function(grunt) {
     grunt.loadTasks(path.join(asimoveCorePath, 'build', 'tasks'));
 
     // Public tasks
+
+    grunt.registerTask('docs', [
+        'compile',
+        'sass:docs',
+        'sync:docs',
+        'exec:docs',
+        'connect:dev'
+    ]);
 
     grunt.registerTask('test', [
         'sass:test',
