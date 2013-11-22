@@ -31,6 +31,42 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('bower.json'),
 
+        // RequireJS
+
+        requirejs: {
+            options: {
+                logLevel: 3,
+                optimize: 'none',
+                paths: {
+                    jquery: 'empty:'
+                }
+            },
+            core: {
+                options: {
+                    baseUrl: 'src/js',
+                    name: 'asimov/core',
+                    out: 'dist/js/asimov/core.js'
+                }
+            // },
+            // modules: {
+            //     options: {
+            //         appDir: 'src',
+            //         baseUrl: 'js',
+            //         dir: 'dist',
+            //         wrap: {
+            //             startFile: 'build/js/intro.js',
+            //             endFile: 'build/js/outro.js'
+            //         },
+            //         paths: {
+            //             jquery: 'empty:'
+            //         },
+            //         modules: [
+            //             { name: 'asimov/core'}
+            //         ]
+            //     }
+            }
+        },
+
         // Sass compilation
 
         sass: {
@@ -124,6 +160,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('compile', [
+        'requirejs:core',
         'sass:dist'
     ]);
 
