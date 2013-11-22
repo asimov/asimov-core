@@ -1,3 +1,11 @@
+<a name="v0.0.10"></a>
+### v0.0.10 (2013-11-22)
+
+
+#### Features
+
+* **js:** add core.js for handle module config ([30065b7f](http://github.com/0.0.9/commit/30065b7fb0c4e0f2a728597ac0ac5e372acf0447))
+
 <a name="v0.0.9"></a>
 ### v0.0.9 (2013-11-22)
 
