@@ -1,3 +1,11 @@
+<a name="v0.0.8"></a>
+### v0.0.8 (2013-11-22)
+
+
+#### Bug Fixes
+
+* **release:** fix typo in release commit message ([8a6cb43e](http://github.com/0.0.7/commit/8a6cb43e4a3bd09818ea1d534f7d4e64d6e506e1))
+
 <a name="v0.0.7"></a>
 ### v0.0.7 (2013-11-22)
 
