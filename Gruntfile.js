@@ -73,7 +73,7 @@ module.exports = function(grunt) {
                 files: ['bower.json'],
                 updateConfigs: ['pkg'],
                 commit: true,
-                commitMessage: 'chore(relase): release v%VERSION%',
+                commitMessage: 'chore(release): release v%VERSION%',
                 commitFiles: ['bower.json', '<%= changelog.options.dest %>'],
                 createTag: true,
                 tagName: '%VERSION%',
