@@ -1,3 +1,16 @@
+<a name="v0.0.7"></a>
+### v0.0.7 (2013-11-22)
+
+
+#### Bug Fixes
+
+* **release:** fix changelog using the wrong version string ([9190f06f](http://github.com/0.0.6/commit/9190f06fd73f713af87f4d2bbdb7c3de2136d8a0))
+
+
+#### Features
+
+* **settings:** implement a basic internal cache api ([cedb1539](http://github.com/0.0.6/commit/cedb1539483f156a56b920ba37ab1f470d48e9e9))
+
 <a name="v0.0.6"></a>
 ### v0.0.6 (2013-11-22)
 
