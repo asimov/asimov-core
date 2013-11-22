@@ -89,8 +89,7 @@ module.exports = function(grunt) {
             options: {
                 dest: 'CHANGELOG.md',
                 prepend: true,
-                github: 'asimov/asimov-core',
-                version: grunt.file.readJSON('./bower.json').version,
+                github: grunt.file.readJSON('./bower.json').version,
                 editor: 'subl -w'
             }
         },
