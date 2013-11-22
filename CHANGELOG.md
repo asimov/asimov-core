@@ -1,5 +1,5 @@
-<a name="v0.0.5"></a>
-### v0.0.5 (2013-11-22)
+<a name="v0.0.6"></a>
+### v0.0.6 (2013-11-22)
 
 
 #### Bug Fixes
@@ -13,24 +13,24 @@
   * set() and set-default() can now take a map of settings ([6cea7800](http://github.com/asimov/asimov-core/commit/6cea780093f19740f4d645d065be9d5f42103bbd))
   * add get(), set(), set-defaul() to the settings api ([0bb3eec5](http://github.com/asimov/asimov-core/commit/0bb3eec51d346fc185d07f98005f8b5bc4b3b0f1))
 
-<a name="v0.0.4"></a>
-### v0.0.4 (2013-11-21)
+<a name="v0.0.5"></a>
+### v0.0.5 (2013-11-21)
 
 
 #### Features
 
 * **settings:** create the get() entry point ([0aab7cb0](http://github.com/asimov/asimov-core/commit/0aab7cb081ddd318ad400b47f50dc0874cab032b))
 
-<a name="v0.0.3"></a>
-### v0.0.3 (2013-11-21)
+<a name="v0.0.4"></a>
+### v0.0.4 (2013-11-21)
 
 
 #### Bug Fixes
 
 * **build:** path munging so grunt will load npm modules ([10c14476](http://github.com/asimov/asimov-core/commit/10c144766697012d445f86fdfdb0f9a20f86164e))
 
-<a name="v0.0.2"></a>
-### v0.0.2 (2013-11-20)
+<a name="v0.0.3"></a>
+### v0.0.3 (2013-11-20)
 
 
 #### Bug Fixes
@@ -39,8 +39,8 @@
   * grunt should fail if sass tests fail ([f8c49ea9](http://github.com/asimov/asimov-core/commit/f8c49ea95f375078173d96ee22452c015b033f37))
   * sass tests not compiling ([17037d2b](http://github.com/asimov/asimov-core/commit/17037d2bf560f07480d16657ed8029038e0e48d7))
 
-<a name="v0.0.1"></a>
-### v0.0.1 (2013-11-20)
+<a name="v0.0.2"></a>
+### v0.0.2 (2013-11-20)
 
 
 #### Bug Fixes
