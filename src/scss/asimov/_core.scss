@@ -15,6 +15,7 @@ $__a__map-cache: () !default;
     @return lookup(get-component-map("settings", $settings, true), $key);
 }
 
+
 // Sets $key's to $value in the core $settings map if it currently has now value
 // If $key was a string it's new value is returned
 // If $key was a map the core $settings map is returned
@@ -25,12 +26,9 @@ $__a__map-cache: () !default;
 // @return [Literal]
 @function set-default($key, $value:null) {
     // Clear the settings caches!
-    $__a__map-cache: map-merge($__a__map-cache, (
-        "settings": null,
-        "settings--flat": null,
-    ));
-
-    $__a__cache-enabled: false !global;
+    $foo: cache-clean("settings");
+    $foo: cache-clean("settings--flat");
+    $foo: cache-disable();
 
     @if type-of($key) == map {
         // Reverse the merge order so we don't over write anything
@@ -46,6 +44,7 @@ $__a__map-cache: () !default;
     @return $value;
 }
 
+
 // Sets $key's to $value in the core $settings map
 // If $key was a string it's new value is returned
 // If $key was a map the core $settings map is returned
@@ -56,15 +55,13 @@ $__a__map-cache: () !default;
 // @return [Literal]
 @function set($key, $value:null) {
     // Clear the settings caches!
-    $__a__map-cache: map-merge($__a__map-cache, (
-        "settings": null,
-        "settings--flat": null,
-    ));
+    $foo: cache-clean("settings") && cache-clean("settings--flat");
 
     $settings: _set($key, $value, $settings) !global;
     // This rebuilds the settings cache if it was busted
     @return get($key);
 }
+
 
 // Sets $key's to $value in the core $settings map
 // Returning the value of $key after it's been updated. If $key was a map the
@@ -96,6 +93,53 @@ $__a__map-cache: () !default;
     }
 
     @return map-merge($_root, ($key: $value));
+}
+
+
+// ==========================================================================
+// Internal caching API
+// ==========================================================================
+
+// Clears the internal cache. If $key is supplied only that key is cleared
+// Returned the new state of the cache
+// -----------------------------------------------------------------------------
+// @param $key [String] : an optional key to clear
+// -----------------------------------------------------------------------------
+// @return [Map]
+@function cache-clean($key:null) {
+    @if $key {
+        $__a__map-cache: map-merge($__a__map-cache, ($key: null)) !global;
+    } @else {
+        $__a__map-cache: () !global;
+    }
+
+    @return $__a__map-cache;
+}
+
+
+// Returns whether the internal cache is enabled or not
+// -----------------------------------------------------------------------------
+// @return [Bool] true if the cache is enabled, otherwise false
+@function cache-status() {
+    @return $__a__cache-enabled;
+}
+
+
+// Disables the internal cache
+// -----------------------------------------------------------------------------
+// @return [Bool] true if the cache is enabled, otherwise false
+@function cache-disable() {
+    $__a__cache-enabled: false !global;
+    @return cache-status();
+}
+
+
+// Disables the internal cache
+// -----------------------------------------------------------------------------
+// @return [Bool] true if the cache is enabled, otherwise false
+@function cache-enable() {
+    $__a__cache-enabled: true !global;
+    @return cache-status();
 }
 
 
