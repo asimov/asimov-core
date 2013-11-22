@@ -1,3 +1,11 @@
+<a name="v0.0.9"></a>
+### v0.0.9 (2013-11-22)
+
+
+#### Features
+
+* **settings:** remove defaults ([002ff14d](http://github.com/0.0.8/commit/002ff14d3590bc86bb2f377e3b7b02db269e5b24))
+
 <a name="v0.0.8"></a>
 ### v0.0.8 (2013-11-22)
 
