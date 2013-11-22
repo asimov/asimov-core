@@ -79,7 +79,11 @@ $__a__map-cache: () !default;
     }
 
     // If $key is a map just merge it and move on
-    @if type-of($key) == map {
+    //
+    // 1: this allows use to use () as the default $settings value
+    @if type-of($key) == map or
+        type-of($key) == list // 1
+    {
         @return map-merge-recursive($_root, $key);
     }
 
