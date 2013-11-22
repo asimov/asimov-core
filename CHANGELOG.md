@@ -1,3 +1,16 @@
+<a name="v0.0.11"></a>
+### v0.0.11 (2013-11-22)
+
+
+#### Bug Fixes
+
+* **sass:** dist files being generated in the wrong folder ([6149f006](http://github.com/0.0.10/commit/6149f006cda2c5d37bf412507be6be4cd4672fc3))
+
+
+#### Features
+
+* **styleguides:** basic support for styleguides ([ce872cf3](http://github.com/0.0.10/commit/ce872cf383606a0a6318f148ce1f27d5a61990f3))
+
 <a name="v0.0.10"></a>
 ### v0.0.10 (2013-11-22)
 
