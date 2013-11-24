@@ -28,44 +28,54 @@ module.exports = function(grunt) {
         return path.join(depPath, 'src', 'scss');
     }));
 
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('bower.json'),
 
-        // RequireJS
-
-        requirejs: {
-            options: {
-                logLevel: 3,
-                optimize: 'none',
-                paths: {
-                    jquery: 'empty:'
-                }
-            },
+    var rjsOptions = {};
+    if(meta.name === 'asimov-core') {
+        rjsOptions = {
             core: {
                 options: {
                     baseUrl: 'src/js',
                     name: 'asimov/core',
                     out: 'dist/js/asimov/core.js'
                 }
-            // },
-            // modules: {
-            //     options: {
-            //         appDir: 'src',
-            //         baseUrl: 'js',
-            //         dir: 'dist',
-            //         wrap: {
-            //             startFile: 'build/js/intro.js',
-            //             endFile: 'build/js/outro.js'
-            //         },
-            //         paths: {
-            //             jquery: 'empty:'
-            //         },
-            //         modules: [
-            //             { name: 'asimov/core'}
-            //         ]
-            //     }
             }
-        },
+        };
+    } else {
+        rjsOptions = {
+            modules: {
+                options: {
+                    appDir: 'src',
+                    baseUrl: 'js',
+                    dir: 'dist',
+                    // wrap: {
+                    //     startFile: path.join(asimoveCorePath, 'build/js/intro.js'),
+                    //     endFile: path.join(asimoveCorePath, 'build/js/outro.js')
+                    // },
+                    modules: grunt.file.expand({ cwd: 'src/js' }, '**/*.js').map(function(file) {
+                        return { name: file.replace(/\.js$/, '') };
+                    })
+                }
+            }
+        };
+    }
+
+    // return;
+
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('bower.json'),
+
+        // RequireJS
+
+        requirejs: grunt.util._.extend({
+            options: {
+                logLevel: 3,
+                optimize: 'none',
+                paths: {
+                    jquery: 'empty:',
+                    asimov: path.join(asimoveCorePath, 'src', 'js', 'asimov')
+                }
+            }
+        }, rjsOptions),
 
         // Sass compilation
 
@@ -88,7 +98,7 @@ module.exports = function(grunt) {
             docs: {
                 files: [{
                     expand: true,
-                    cwd: 'src/docs/assets/scss',
+                    cwd: path.join(asimoveCorePath, 'src/docs/assets/scss'),
                     src: ['*.scss', '!_*.scss'],
                     dest: 'docs/assets/css',
                     ext: '.css'
@@ -110,7 +120,7 @@ module.exports = function(grunt) {
         sync: {
             docs: {
                 files: [{
-                    cwd: 'src/docs/assets',
+                    cwd: path.join(asimoveCorePath, 'src/docs/assets'),
                     src: ['**', '!scss/**'],
                     dest: 'docs/assets'
                 }]
@@ -119,7 +129,15 @@ module.exports = function(grunt) {
 
         exec: {
             docs: {
-                cmd: 'node_modules/.bin/distancss dist/css docs --template src/docs --public /assets'
+                cmd: [
+                    path.join(asimoveCorePath, 'node_modules/.bin/distancss'),
+                    'dist/css',
+                    'docs',
+                    '--template',
+                    path.join(asimoveCorePath, 'src/docs'),
+                    '--public',
+                    '/assets'
+                ].join(' ')
             }
         },
 
@@ -206,7 +224,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('compile', [
-        'requirejs:core',
+        'requirejs',
         'sass:dist'
     ]);
 
