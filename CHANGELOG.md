@@ -1,3 +1,11 @@
+<a name="v0.0.12"></a>
+### v0.0.12 (2013-11-25)
+
+
+#### Features
+
+* **js:** components can compile their js without local grunt tasks ([271b4bbc](http://github.com/0.0.11/commit/271b4bbcd1a64e806f55c8e29e709b25f0b1ce05))
+
 <a name="v0.0.11"></a>
 ### v0.0.11 (2013-11-22)
 
