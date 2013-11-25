@@ -1,3 +1,11 @@
+<a name="v0.0.13"></a>
+### v0.0.13 (2013-11-25)
+
+
+#### Bug Fixes
+
+* **js:** requirejs task should only copy js file to dist dir ([f02813ea](http://github.com/0.0.12/commit/f02813ea87ac89142dd6f31a25d4395bcffea486))
+
 <a name="v0.0.12"></a>
 ### v0.0.12 (2013-11-25)
 
