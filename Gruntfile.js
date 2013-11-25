@@ -44,14 +44,13 @@ module.exports = function(grunt) {
         rjsOptions = {
             modules: {
                 options: {
-                    appDir: 'src/js',
-                    baseUrl: '.',
+                    baseUrl: 'src/js',
                     dir: 'dist/js',
                     // wrap: {
                     //     startFile: path.join(asimoveCorePath, 'build/js/intro.js'),
                     //     endFile: path.join(asimoveCorePath, 'build/js/outro.js')
                     // },
-                    modules: grunt.file.expand({ cwd: 'src/js' }, '**/*.js').map(function(file) {
+                    modules: grunt.file.expand({ cwd: 'src/js' }, '*/*.js').map(function(file) {
                         return { name: file.replace(/\.js$/, '') };
                     })
                 }
@@ -69,6 +68,9 @@ module.exports = function(grunt) {
             options: {
                 logLevel: 3,
                 optimize: 'none',
+                keepBuildDir: false,
+                skipModuleInsertion: true,
+                removeCombined: true,
                 paths: {
                     jquery: 'empty:',
                     asimov: path.join(asimoveCorePath, 'src', 'js', 'asimov')
