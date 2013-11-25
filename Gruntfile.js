@@ -145,7 +145,7 @@ module.exports = function(grunt) {
                     data: function() {
                         return {
                             styles: grunt.file.expand({ cwd: 'docs/assets' }, 'asimov-!(core)/css/**/*.css'),
-                            scripts: grunt.file.expand({ cwd: 'docs/assets' }, 'asimov-!(core)/js/**/*.js')
+                            scripts: grunt.file.expand({ cwd: 'docs/assets' }, 'asimov-!(core)/js/{*,/}*.js')
                         };
                     }
                 },
