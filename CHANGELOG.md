@@ -1,3 +1,18 @@
+<a name="v0.0.14"></a>
+### v0.0.14 (2013-11-25)
+
+
+#### Bug Fixes
+
+* **dist:** ignore requirejs' build.txt ([9877e89c](http://github.com/0.0.13/commit/9877e89c3e1c8e7e17345f6ef0a1ebc5dcbf9cd1))
+* **docs:** add missing docs assets ([742721d4](http://github.com/0.0.13/commit/742721d465f00b3b2fc8924799e917730aae020c))
+
+
+#### Features
+
+* **build:** implement autoprefixer ([109d39f2](http://github.com/0.0.13/commit/109d39f2ca17dd9855b5e5680c8aefd9b79e91e7))
+* **docs:** asset autoloading for component docs ([8698e3fe](http://github.com/0.0.13/commit/8698e3fe86691660a7828cf915942c03c297eef1))
+
 <a name="v0.0.13"></a>
 ### v0.0.13 (2013-11-25)
 
