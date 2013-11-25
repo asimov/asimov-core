@@ -59,7 +59,6 @@ module.exports = function(grunt) {
         };
     }
 
-    // return;
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('bower.json'),
@@ -112,6 +111,15 @@ module.exports = function(grunt) {
                     dest: 'dist/css',
                     ext: '.css'
                 }]
+            }
+        },
+
+        autoprefixer: {
+            options: {
+                browsers: ['last 2 version', 'ie 8', 'ie 9']
+            },
+            dist: {
+                src: 'dist/css/*.css'
             }
         },
 
@@ -225,7 +233,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('compile', [
         'requirejs',
-        'sass:dist'
+        'sass:dist',
+        'autoprefixer:dist'
     ]);
 
     grunt.registerTask('default', [
