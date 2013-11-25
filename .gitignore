@@ -23,9 +23,6 @@ build.txt
 # bower
 /bower_components
 
-# 3rd party deps
-vendor/
-
 # ruby env settings
 *.rbenv-version
 *.ruby-version

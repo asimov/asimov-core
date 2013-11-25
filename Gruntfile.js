@@ -125,6 +125,22 @@ module.exports = function(grunt) {
 
         // Generate the docs
 
+        symlink: grunt.util._.extend({
+            asimov: {
+                src: path.join(asimoveCorePath, 'dist'),
+                dest: 'docs/assets/asimov'
+            }
+        }, (meta.name === 'asimov-core' ? {} : {
+            components: {
+                files: [{
+                    expand: true,
+                    cwd: 'dist',
+                    src: ['**/*', '!build.txt'],
+                    dest: 'docs/assets'
+                }]
+            }
+        })),
+
         sync: {
             docs: {
                 files: [{
@@ -221,6 +237,7 @@ module.exports = function(grunt) {
     grunt.registerTask('docs', [
         'compile',
         'sass:docs',
+        'symlink',
         'sync:docs',
         'exec:docs',
         'connect:dev'
