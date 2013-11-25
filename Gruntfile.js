@@ -44,9 +44,9 @@ module.exports = function(grunt) {
         rjsOptions = {
             modules: {
                 options: {
-                    appDir: 'src',
-                    baseUrl: 'js',
-                    dir: 'dist',
+                    appDir: 'src/js',
+                    baseUrl: '.',
+                    dir: 'dist/js',
                     // wrap: {
                     //     startFile: path.join(asimoveCorePath, 'build/js/intro.js'),
                     //     endFile: path.join(asimoveCorePath, 'build/js/outro.js')
