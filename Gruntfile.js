@@ -128,18 +128,31 @@ module.exports = function(grunt) {
         symlink: grunt.util._.extend({
             asimov: {
                 src: path.join(asimoveCorePath, 'dist'),
-                dest: 'docs/assets/asimov'
+                dest: 'docs/assets/asimov-core'
             }
         }, (meta.name === 'asimov-core' ? {} : {
             components: {
-                files: [{
-                    expand: true,
-                    cwd: 'dist',
-                    src: ['**/*', '!build.txt'],
-                    dest: 'docs/assets'
-                }]
+                src: 'dist',
+                dest: 'docs/assets/<%= pkg.name %>'
             }
         })),
+
+        template: {
+            docs: {
+                options: {
+                    data: function() {
+                        return {
+                            styles: grunt.file.expand({ cwd: 'docs/assets' }, 'asimov-!(core)/css/**/*.css'),
+                            scripts: grunt.file.expand({ cwd: 'docs/assets' }, 'asimov-!(core)/js/**/*.js')
+                        };
+                    }
+                },
+                files: {
+                    '.build/docs/index.html': [path.join(asimoveCorePath, 'src/docs/index.html')],
+                    '.build/docs/styleguide.md': [path.join(asimoveCorePath, 'src/docs/styleguide.md')]
+                }
+            }
+        },
 
         sync: {
             docs: {
@@ -158,7 +171,7 @@ module.exports = function(grunt) {
                     'dist/css',
                     'docs',
                     '--template',
-                    path.join(asimoveCorePath, 'src/docs'),
+                    '.build/docs',
                     '--public',
                     '/assets'
                 ].join(' ')
@@ -239,6 +252,7 @@ module.exports = function(grunt) {
         'sass:docs',
         'symlink',
         'sync:docs',
+        'template:docs',
         'exec:docs',
         'connect:dev'
     ]);

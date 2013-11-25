@@ -30,7 +30,8 @@
     "grunt-exec": "~0.4.2",
     "grunt-sync": "0.0.4",
     "grunt-autoprefixer": "~0.4.1",
-    "grunt-contrib-symlink": "~0.2.0"
+    "grunt-contrib-symlink": "~0.2.0",
+    "grunt-template": "~0.2.1"
   },
   "dependencies": {}
 }

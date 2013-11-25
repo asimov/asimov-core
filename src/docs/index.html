@@ -7,8 +7,8 @@
     <title>Distancss: Living Styleguide</title>
     <meta name="generator" content="distancss" />
 
-    <!-- Asimov CSS -->
-    <link href="/assets/asimov/css/asimov.css" rel="stylesheet">
+    <!-- Asimov component CSS -->
+    <link href="/assets/asimov-core/css/asimov.css" rel="stylesheet">
 
     <!-- Docs CSS -->
     <link href="/assets/css/docs.css" rel="stylesheet">
@@ -17,6 +17,17 @@
 
     <!-- Layout JS -->
     <script src="/assets/js/vendor/jquery.js"></script>
+
+    <!-- Asimov component CSS -->
+    <% _.forEach(styles, function(style) { %>
+    <link href="/assets/<%= style %>" rel="stylesheet">
+    <% }); %>
+
+    <!-- Asimov JS -->
+    <% _.forEach(scripts, function(script) { %>
+    <script src="/assets/<%= script %>"></script>
+    <% }); %>
+
 </head>
 <body>
     <div class="list--vertical l-row" data-list-expand-to="horizontal-list" data-list-expand-at="desktop">
