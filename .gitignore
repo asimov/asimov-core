@@ -9,7 +9,7 @@
 .DS_Store
 
 # r.js build log
-/dist/js/build.txt
+build.txt
 
 # ide settings
 *.sublime-*
