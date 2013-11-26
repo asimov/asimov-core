@@ -1,3 +1,16 @@
+<a name="v0.0.16"></a>
+### v0.0.16 (2013-11-26)
+
+
+#### Bug Fixes
+
+* **settings:** cache disabled by set-default but never re-enabled ([261e4565](http://github.com/0.0.15/commit/261e45658c717a363de8306bf4d9a7fe73edf52c))
+
+
+#### Features
+
+* **sass:** add some core sass APIs ([b4aa9469](http://github.com/0.0.15/commit/b4aa94697c5da3b4ec846eb007af62764b92a44f))
+
 <a name="v0.0.15"></a>
 ### v0.0.15 (2013-11-25)
 
