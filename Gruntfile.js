@@ -125,7 +125,19 @@ module.exports = function(grunt) {
                 browsers: ['last 2 version', 'ie 8', 'ie 9']
             },
             dist: {
-                src: 'dist/css/*.css'
+                src: 'dist/css/*!(.min).css'
+            }
+        },
+
+        // Create minified versions of the dist files
+
+        cssmin: {
+            dist: {
+                expand: true,
+                cwd: 'dist/css',
+                src: ['**/*.css', '!*.min.css'],
+                dest: 'dist/css',
+                ext: '.min.css'
             }
         },
 
@@ -271,7 +283,8 @@ module.exports = function(grunt) {
     grunt.registerTask('compile', [
         'requirejs',
         'sass:dist',
-        'autoprefixer:dist'
+        'autoprefixer:dist',
+        'cssmin:dist'
     ]);
 
     grunt.registerTask('default', [
