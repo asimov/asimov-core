@@ -1,0 +1,32 @@
+
+// =============================================================================
+// Colors
+// =============================================================================
+
+// Set the color $value associated to $name. If $name already exists it will
+// be over written. Returns the new value of $name.
+// -----------------------------------------------------------------------------
+// @param $key [String] : $name
+// @param $value [Color] : $value
+// -----------------------------------------------------------------------------
+// @return [Color]
+@function set-color($name, $value) {
+    @return set("colors/#{$name}", $value, "colors");
+}
+
+
+// Get the color value associated with $name. If $name is a color then it is
+// returned. This means all color lookups can be done via this function.
+// -----------------------------------------------------------------------------
+// @param $key [String|Color] : $name
+// -----------------------------------------------------------------------------
+// @return [Color|Null]
+@function get-color($name) {
+    @if type-of($name) == color {
+        @return $name;
+    }
+
+    $map: get-component-map("colors", lookup($settings, "colors"));
+
+    @return lookup($map, $name);
+}

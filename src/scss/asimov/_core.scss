@@ -70,12 +70,16 @@ $__a__map-cache: () !default;
 // @return [Literal|Null]
 @function set($key, $value:null, $cache-key:null) {
     // Clear the settings caches!
-    @if(
-        cache-clean("settings") and
+    @if cache-clean("settings") and
         cache-clean("settings--flat") and
         cache-clean($cache-key)
-    ) {
+    {
         $settings: _set($key, $value, $settings) !global;
+
+        @if type-of($key) == map {
+            @return $settings;
+        }
+
         // This rebuilds the settings cache if it was busted
         @return get($key);
     }

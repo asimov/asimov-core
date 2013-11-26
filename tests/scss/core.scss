@@ -1,13 +1,7 @@
-@import "asimov/core";
+@import "asimov/asimov";
 
-$default: (
-    foo: (
-        bar: (
-            bat: "boom",
-            baz: "boo",
-        ),
-    ),
-);
+$default: ();
+$settings: ();
 
 @function assert($condition) {
     @return if($condition, true, false);
@@ -18,7 +12,7 @@ $default: (
 // Internal API
 // ==========================================================================
 
-$map: (
+$default: (
     "base": "red",
     "foo": "bar",
     "bar": "baz",
@@ -31,8 +25,8 @@ $map: (
         "baz": (
             "base": "blue",
             "boo": "bam",
-            "boo-who": "bammab"
-        )
+            "boo-who": "bammab",
+        ),
     ),
 
     "one-time": (
@@ -43,14 +37,15 @@ $map: (
         "baz": (
             "base": "blue",
             "boo": "bam",
-            "boo-who": "bammab"
-        )
-    )
-);
+            "boo-who": "bammab",
+        ),
+    ),
+) !global;
 
 
 basic {
-    $data: get-component-map("map", $map, false);
+    $settings: set($default) !global;
+    $data: get-component-map("map", $settings, false);
 
     base: lookup($data, "base");
     foo: lookup($data, "foo");
@@ -59,7 +54,8 @@ basic {
 }
 
 basic--flat {
-    $data: get-component-map("map", $map, true);
+    $settings: set($default) !global;
+    $data: get-component-map("map", $settings, true);
 
     base: lookup($data, "base");
     foo: lookup($data, "foo");
@@ -81,14 +77,25 @@ basic--flat {
 // Settings API
 // ==========================================================================
 
+$default: (
+    foo: (
+        bar: (
+            bat: "boom",
+            baz: "boo",
+        ),
+    ),
+) !global;
+
 settings-get {
-    $settings: $default !global;
+    $settings: () !global;
+    $settings: set($default) !global;
 
     set-new: assert(get("foo/bar/baz") == "boo");
 }
 
 settings-set {
-    $settings: $default !global;
+    $settings: () !global;
+    $settings: set($default) !global;
 
     $set: set("foo/bar/bam", "test");
     set-new: assert(get("foo/bar/bam") == "test");
@@ -110,9 +117,10 @@ settings-set {
 }
 
 settings-set-map {
-    $settings: $default !global;
+    $settings: () !global;
+    $settings: set($default) !global;
 
-    $tmp: set((
+    $settings: set((
         foo: (
             bar: (
                 bat: "woop",
@@ -143,7 +151,8 @@ settings-set-map {
 }
 
 settings-set-default {
-    $settings: $default !global;
+    $settings: () !global;
+    $settings: set($default) !global;
 
     $set: set-default("foo/bar/bam", "test");
     set-new: assert(get("foo/bar/bam") == "test");
@@ -162,9 +171,10 @@ settings-set-default {
 }
 
 settings-set-default-map {
-    $settings: $default !global;
+    $settings: () !global;
+    $settings: set($default) !global;
 
-    $tmp: set-default((
+    $settings: set-default((
         foo: (
             bar: (
                 bat: "woop",
@@ -192,4 +202,136 @@ settings-set-default-map {
         get("this/is/new") == "you!" and
         get("this/is/who") == "me?"
     );
+}
+
+
+// ==========================================================================
+// Colors API
+// ==========================================================================
+
+$default: (
+    colors: (
+        primary: red,
+        secondary: #0f0,
+    ),
+) !global;
+
+colors-get {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    get-primary: assert(get("colors/primary") == red);
+    get-color-primary: assert(get-color("primary") == red);
+    get-secondary: assert(get("colors/secondary") == #0f0);
+    get-color-secondary: assert(get-color("secondary") == #0f0);
+}
+
+colors-set {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    get-tertiary: assert(get("colors/tertiary") == null);
+    get-color-tertiary: assert(get-color("tertiary") == null);
+
+    set-color-tertiary: assert(set-color("tertiary", #00f) == #00f);
+
+    get-tertiary-after-set: assert(get("colors/tertiary") == #00f);
+    get-color-tertiary-after-set: assert(get-color("tertiary") == #00f);
+}
+
+
+// ==========================================================================
+// Spacing API
+// ==========================================================================
+
+$default: (
+    spacings: (
+        primary: 10px,
+        secondary: 2em,
+    ),
+) !global;
+
+spacings-get {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    get-primary: assert(get("spacings/primary") == 10px);
+    get-spacing-primary: assert(get-spacing("primary") == 10px);
+    get-secondary: assert(get("spacings/secondary") == 2em);
+    get-spacing-secondary: assert(get-spacing("secondary") == 2em);
+}
+
+spacings-set {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    get-tertiary: assert(get("spacings/tertiary") == null);
+    get-spacing-tertiary: assert(get-spacing("tertiary") == null);
+
+    set-spacing-tertiary: assert(set-spacing("tertiary", 3%) == 3%);
+
+    get-tertiary-after-set: assert(get("spacings/tertiary") == 3%);
+    get-spacing-tertiary-after-set: assert(get-spacing("tertiary") == 3%);
+}
+
+
+// ==========================================================================
+// Font API
+// ==========================================================================
+
+$default: (
+    font-sizes: (
+        primary: 10px,
+        secondary: 2em,
+    ),
+    font-families: (
+        primary: ("Times New Roman", Times, serif),
+        secondary: "Arial Black",
+    ),
+) !global;
+
+font-sizes-get {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    get-primary: assert(get("font-sizes/primary") == 10px);
+    get-font-size-primary: assert(get-font-size("primary") == 10px);
+    get-secondary: assert(get("font-sizes/secondary") == 2em);
+    get-font-size-secondary: assert(get-font-size("secondary") == 2em);
+}
+
+font-sizes-set {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    get-tertiary: assert(get("font-sizes/tertiary") == null);
+    get-font-size-tertiary: assert(get-font-size("tertiary") == null);
+
+    set-font-size-tertiary: assert(set-font-size("tertiary", 3%) == 3%);
+
+    get-tertiary-after-set: assert(get("font-sizes/tertiary") == 3%);
+    get-font-size-tertiary-after-set: assert(get-font-size("tertiary") == 3%);
+}
+
+font-families-get {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    get-primary: assert(get("font-families/primary") == ("Times New Roman", Times, serif));
+    get-font-family-primary: assert(get-font-family("primary") == ("Times New Roman", Times, serif));
+    get-secondary: assert(get("font-families/secondary") == ("Arial Black"));
+    get-font-family-secondary: assert(get-font-family("secondary") == ("Arial Black"));
+}
+
+font-families-set {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    get-tertiary: assert(get("font-families/tertiary") == null);
+    get-font-family-tertiary: assert(get-font-family("tertiary") == null);
+
+    set-font-family-tertiary: assert(set-font-family("tertiary", (Arial, Helvetica, sans-serif)) == (Arial, Helvetica, sans-serif));
+
+    get-tertiary-after-set: assert(get("font-families/tertiary") == (Arial, Helvetica, sans-serif));
+    get-font-family-tertiary-after-set: assert(get-font-family("tertiary") == (Arial, Helvetica, sans-serif));
 }

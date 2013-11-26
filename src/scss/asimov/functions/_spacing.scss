@@ -1,0 +1,32 @@
+
+// =============================================================================
+// Spacings
+// =============================================================================
+
+// Set the spacing $value associated to $name. If $name already exists it will
+// be over written. Returns the new value of $name.
+// -----------------------------------------------------------------------------
+// @param $key [String] : $name
+// @param $value [Number] : $value
+// -----------------------------------------------------------------------------
+// @return [Number]
+@function set-spacing($name, $value) {
+    @return set("spacings/#{$name}", $value, "spacings");
+}
+
+
+// Get the spacing value associated with $name. If $name is a number then it is
+// returned. This means all spacing lookups can be done via this function.
+// -----------------------------------------------------------------------------
+// @param $key [String|Number] : $name
+// -----------------------------------------------------------------------------
+// @return [Number|Null]
+@function get-spacing($name) {
+    @if type-of($name) == number {
+        @return $name;
+    }
+
+    $map: get-component-map("spacings", lookup($settings, "spacings"));
+
+    @return lookup($map, $name);
+}

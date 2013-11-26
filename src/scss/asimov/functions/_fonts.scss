@@ -1,0 +1,69 @@
+
+// =============================================================================
+// Fonts Families
+// =============================================================================
+
+// Set the font family $value associated to $name. If $name already exists it
+// will be over written. Returns the new value of $name.
+// -----------------------------------------------------------------------------
+// @param $key [String] : $name
+// @param $value [String|List] : $value
+// -----------------------------------------------------------------------------
+// @return [List]
+@function set-font-family($name, $value) {
+    $value: if(type-of($value) == list, $value, ($value));
+
+    @return set("font-families/#{$name}", $value, "font-families");
+}
+
+
+// Get the font family value associated with $name. If $name is a list then it
+// is returned. This means all font family lookups can be done via this
+// function.
+// -----------------------------------------------------------------------------
+// @param $key [String|List] : $name
+// -----------------------------------------------------------------------------
+// @return [List|Null]
+@function get-font-family($name) {
+    @if type-of($name) == list {
+        @return $name;
+    }
+
+    $map: get-component-map("font-families", lookup($settings, "font-families"));
+
+    @return lookup($map, $name);
+}
+
+
+// =============================================================================
+// Fonts Sizes
+// =============================================================================
+
+// Set the font size $value associated to $name. If $name already exists it
+// will be over written. Returns the new value of $name.
+// -----------------------------------------------------------------------------
+// @param $key [String] : $name
+// @param $value [Number] : $value
+// -----------------------------------------------------------------------------
+// @return [Number]
+@function set-font-size($name, $value) {
+    @return set("font-sizes/#{$name}", $value, "font-sizes");
+}
+
+
+// Get the font size value associated with $name. If $name is a number then it
+// is returned. This means all font size lookups can be done via this
+// function.
+// -----------------------------------------------------------------------------
+// @param $key [String] : $name
+// -----------------------------------------------------------------------------
+// @return [Number|Null]
+@function get-font-size($name) {
+    @if type-of($name) == number {
+        @return $name;
+    }
+
+    $map: get-component-map("font-sizes", lookup($settings, "font-sizes"));
+
+    @return lookup($map, $name);
+}

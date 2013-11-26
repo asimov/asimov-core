@@ -43,3 +43,63 @@ settings-set-default {
 settings-set-default-map {
   set-map: true;
 }
+
+colors-get {
+  get-primary: true;
+  get-color-primary: true;
+  get-secondary: true;
+  get-color-secondary: true;
+}
+
+colors-set {
+  get-tertiary: true;
+  get-color-tertiary: true;
+  set-color-tertiary: true;
+  get-tertiary-after-set: true;
+  get-color-tertiary-after-set: true;
+}
+
+spacings-get {
+  get-primary: true;
+  get-spacing-primary: true;
+  get-secondary: true;
+  get-spacing-secondary: true;
+}
+
+spacings-set {
+  get-tertiary: true;
+  get-spacing-tertiary: true;
+  set-spacing-tertiary: true;
+  get-tertiary-after-set: true;
+  get-spacing-tertiary-after-set: true;
+}
+
+font-sizes-get {
+  get-primary: true;
+  get-font-size-primary: true;
+  get-secondary: true;
+  get-font-size-secondary: true;
+}
+
+font-sizes-set {
+  get-tertiary: true;
+  get-font-size-tertiary: true;
+  set-font-size-tertiary: true;
+  get-tertiary-after-set: true;
+  get-font-size-tertiary-after-set: true;
+}
+
+font-families-get {
+  get-primary: true;
+  get-font-family-primary: true;
+  get-secondary: true;
+  get-font-family-secondary: true;
+}
+
+font-families-set {
+  get-tertiary: true;
+  get-font-family-tertiary: true;
+  set-font-family-tertiary: true;
+  get-tertiary-after-set: true;
+  get-font-family-tertiary-after-set: true;
+}
