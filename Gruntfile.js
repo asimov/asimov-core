@@ -28,7 +28,11 @@ module.exports = function(grunt) {
         return path.join(depPath, 'src', 'scss');
     }));
 
-
+    // RequireJS task settings
+    //
+    // If we're compiling asimov-core then we only need to compile the one file
+    // If we're compiling themes or components we need to walk directories to
+    // find what modules we need to build
     var rjsOptions = {};
     if(meta.name === 'asimov-core') {
         rjsOptions = {
