@@ -141,6 +141,16 @@ module.exports = function(grunt) {
             }
         },
 
+        uglify: {
+            dist: {
+                expand: true,
+                cwd: 'dist/js',
+                src: ['**/*.js', '!*.min.js'],
+                dest: 'dist/js',
+                ext: '.min.js'
+            }
+        },
+
         // Generate the docs
 
         symlink: grunt.util._.extend({
@@ -282,6 +292,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('compile', [
         'requirejs',
+        'uglify:dist',
         'sass:dist',
         'autoprefixer:dist',
         'cssmin:dist'
