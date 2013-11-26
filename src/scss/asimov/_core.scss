@@ -30,22 +30,33 @@ $__a__map-cache: () !default;
 // @return [Literal]
 @function set-default($key, $value:null) {
     // Clear the settings caches!
-    $foo: cache-clean("settings");
-    $foo: cache-clean("settings--flat");
-    $foo: cache-disable();
+    @if(
+        cache-clean("settings") and
+        cache-clean("settings--flat") and
+        cache-disable()
+    ) {
+        @warn("Something went wrong!");
+        @return null;
+    }
 
     @if type-of($key) == map {
         // Reverse the merge order so we don't over write anything
         $settings: _set($settings, $value, $key) !global;
-        @return $settings;
+        $value: $settings;
     } @else if not get($key) {
         $settings: _set($key, $value, $settings) !global;
         // This rebuilds the settings cache if it was busted
-        @return get($key);
+        $value: get($key);
+    } @else {
+        // $key exists in $settings, do nothing!
     }
 
-    // $key exists in $settings, do nothing!
-    @return $value;
+    @if(cache-enable()) {
+        @return $value;
+    }
+
+    @warn("Something went wrong!");
+    @return null;
 }
 
 
@@ -56,14 +67,21 @@ $__a__map-cache: () !default;
 // @param $key [String|Map] : key to lookup or map to merge with $settings
 // @param $value [Literal] : value to set $key to it was a string
 // -----------------------------------------------------------------------------
-// @return [Literal]
-@function set($key, $value:null) {
+// @return [Literal|Null]
+@function set($key, $value:null, $cache-key:null) {
     // Clear the settings caches!
-    $foo: cache-clean("settings") && cache-clean("settings--flat");
+    @if(
+        cache-clean("settings") and
+        cache-clean("settings--flat") and
+        cache-clean($cache-key)
+    ) {
+        $settings: _set($key, $value, $settings) !global;
+        // This rebuilds the settings cache if it was busted
+        @return get($key);
+    }
 
-    $settings: _set($key, $value, $settings) !global;
-    // This rebuilds the settings cache if it was busted
-    @return get($key);
+    @warn("Something went wrong!");
+    @return null;
 }
 
 
