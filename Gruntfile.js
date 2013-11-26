@@ -66,6 +66,14 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('bower.json'),
 
+        // Remove generated files
+
+        clean: {
+            dist: ['dist/*'],
+            docs: ['docs/*'],
+            build: ['.build/*']
+        },
+
         // RequireJS
 
         requirejs: grunt.util._.extend({
@@ -299,6 +307,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('default', [
+        'clean',
         'test',
         'compile'
     ]);
