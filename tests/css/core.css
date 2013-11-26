@@ -1,20 +1,21 @@
 basic {
-  foo: "bar";
-  bar: "baz";
+  fetch-base: true;
+  fetch-foo: true;
+  fetch-bar: true;
 }
 
 basic--flat {
-  base: "red";
-  foo: "bar";
-  bar: "baz";
-  one: "eno";
-  one\/base: "eno";
-  one\/bar: "baz";
-  one\/bar-bell: "bazzab";
-  one\/baz: "blue";
-  one\/baz\/base: "blue";
-  one\/baz\/boo: "bam";
-  one\/baz\/boo-who: "bammab";
+  fetch-base: true;
+  fetch-foo: true;
+  fetch-bar: true;
+  fetch-one: true;
+  fetch-one\/base: true;
+  fetch-one\/bar: true;
+  fetch-one\/bar-bell: true;
+  fetch-one\/baz: true;
+  fetch-one\/baz\/base: true;
+  fetch-one\/baz\/boo: true;
+  fetch-one\/baz\/boo-who: true;
 }
 
 settings-get {

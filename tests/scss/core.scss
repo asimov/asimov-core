@@ -44,32 +44,35 @@ $default: (
 
 
 basic {
+    $settings: () !global;
     $settings: set($default) !global;
+
     $data: get-component-map("map", $settings, false);
 
-    base: lookup($data, "base");
-    foo: lookup($data, "foo");
-    bar: lookup($data, "bar");
-
+    fetch-base: assert(lookup($data, base) == null);
+    fetch-foo: assert(lookup($data, foo) == "bar");
+    fetch-bar: assert(lookup($data, bar) == "baz");
 }
 
 basic--flat {
+    $settings: () !global;
     $settings: set($default) !global;
+
     $data: get-component-map("map", $settings, true);
 
-    base: lookup($data, "base");
-    foo: lookup($data, "foo");
-    bar: lookup($data, "bar");
-    one: lookup($data, "one");
+    fetch-base: assert(lookup($data, "base") == "red");
+    fetch-foo: assert(lookup($data, "foo") == "bar");
+    fetch-bar: assert(lookup($data, "bar") == "baz");
+    fetch-one: assert(lookup($data, "one") == "eno");
 
-    one\/base: lookup($data, "one/base");
-    one\/bar: lookup($data, "one/bar");
-    one\/bar-bell: lookup($data, "one/bar-bell");
+    fetch-one\/base: assert(lookup($data, "one/base") == "eno");
+    fetch-one\/bar: assert(lookup($data, "one/bar") == "baz");
+    fetch-one\/bar-bell: assert(lookup($data, "one/bar-bell") == "bazzab");
 
-    one\/baz: lookup($data, "one/baz");
-    one\/baz\/base: lookup($data, "one/baz/base");
-    one\/baz\/boo: lookup($data, "one/baz/boo");
-    one\/baz\/boo-who: lookup($data, "one/baz/boo-who");
+    fetch-one\/baz: assert(lookup($data, "one/baz") == "blue");
+    fetch-one\/baz\/base: assert(lookup($data, "one/baz/base") == "blue");
+    fetch-one\/baz\/boo: assert(lookup($data, "one/baz/boo") == "bam");
+    fetch-one\/baz\/boo-who: assert(lookup($data, "one/baz/boo-who") == "bammab");
 }
 
 
