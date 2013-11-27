@@ -1,3 +1,26 @@
+<a name="v0.0.18"></a>
+### v0.0.18 (2013-11-27)
+
+
+#### Bug Fixes
+
+* **build:**
+  * symlink error when compile docs for core ([3ebaf38a](http://github.com/0.0.17/commit/3ebaf38aa2182f5af27da09104f46d918ab1fa8f))
+  * don't load minified dist assets in docs ([0efe5818](http://github.com/0.0.17/commit/0efe58189417f262a2be29dbd500b6b789b00b11))
+  * always generate docs ([c2d7957a](http://github.com/0.0.17/commit/c2d7957a9f2b20dad9066bdc5bcc147ac877adce))
+
+
+#### Features
+
+* **build:**
+  * concurrently run dev watcher and styleguide server ([9c3050a4](http://github.com/0.0.17/commit/9c3050a4d3782786a2d8c626d0ae32776c95c353))
+  * add sane jshint defaults ([4a31831a](http://github.com/0.0.17/commit/4a31831a61cf913ce7a0788beebe9cc19191a680))
+  * add jshint task ([00dcafec](http://github.com/0.0.17/commit/00dcafec0d6f5730129e99497db8076d802e2242))
+  * add jsvalidate for basic js qa ([1f047faf](http://github.com/0.0.17/commit/1f047faf50387ccd377c614961e7c0f20c6ade8c))
+  * remove generated files on fresh build ([9f3af24b](http://github.com/0.0.17/commit/9f3af24b7a5f307c15dfc738bc73e681276e4de9))
+  * add js minification task ([68c2867e](http://github.com/0.0.17/commit/68c2867e3c3564e9a39cb632b46803195477acbf))
+  * add css minification task ([5f545ffe](http://github.com/0.0.17/commit/5f545ffe9b69d6aef297010e42fd2b790725c814))
+
 <a name="v0.0.17"></a>
 ### v0.0.17 (2013-11-26)
 
