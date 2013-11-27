@@ -371,11 +371,6 @@ module.exports = function (grunt) {
     //     'concurrent'
     // ]);
 
-    grunt.registerTask('docs', [
-        'default',
-        'build-docs:prod'
-    ]);
-
     grunt.registerTask('dev', [
         'clean',
         'build-scripts:dev',
@@ -387,6 +382,7 @@ module.exports = function (grunt) {
     grunt.registerTask('default', [
         'clean',
         'build-scripts:prod',
-        'build-styles:prod'
+        'build-styles:prod',
+        'build-docs:prod'
     ]);
 };
