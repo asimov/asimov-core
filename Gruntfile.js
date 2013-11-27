@@ -243,6 +243,11 @@ module.exports = function(grunt) {
             ]
         },
 
+        jshint: {
+            dist: ['<%= jsvalidate.dist %>'],
+            docs: ['<%= jsvalidate.docs %>']
+        },
+
         // Creating new releases
 
         bump: {
@@ -312,6 +317,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('validate', [
         'jsvalidate',
+        'jshint',
         'test'
     ]);
 
