@@ -172,12 +172,12 @@ module.exports = function (grunt) {
         // Generate the docs
 
         symlink: grunt.util._.extend({
-            asimov: {
+            core: {
                 src: path.join(asimoveCorePath, 'dist'),
                 dest: 'docs/assets/asimov-core'
             }
         }, (meta.name === 'asimov-core' ? {} : {
-            components: {
+            docs: {
                 src: 'dist',
                 dest: 'docs/assets/<%= pkg.name %>'
             }
@@ -253,6 +253,14 @@ module.exports = function (grunt) {
         // 2: allow for debug code when in dev
 
         jsvalidate: {
+            dev: {
+                files: [{
+                    src: [
+                        '<%= jsvalidate.dist %>',
+                        '<%= jsvalidate.docs %>'
+                    ]
+                }]
+            },
             dist: ['src/js/**/*.js'],
             docs: [
                 'src/docs/assets/js/**/*.js',
@@ -287,11 +295,11 @@ module.exports = function (grunt) {
             },
             sass: {
                 files: ['src/scss/**/*.scss', '!src/docs/assets/scss/**'],
-                tasks: ['compilesass']
+                tasks: ['build-styles:dev', 'build-docs:dev']
             },
             js: {
                 files: ['src/js/**/*.js', '!src/docs/assets/js/**'],
-                tasks: ['compilejs']
+                tasks: ['build-scripts:dev', 'build-docs:dev']
             }
         },
 
@@ -356,57 +364,29 @@ module.exports = function (grunt) {
 
     // Public tasks
 
+    // grunt.registerTask('dev', [
+    //     'clean',
+    //     'validate',
+    //     meta.name === 'asimov-core' ? 'compile':  'docs',
+    //     'concurrent'
+    // ]);
+
     grunt.registerTask('docs', [
-        'compile',
-        'sass:docs',
-        'symlink',
-        'sync:docs',
-        'template:docs',
-        'exec:docs',
-        'connect:dev'
-    ]);
-
-    grunt.registerTask('test', [
-        'sass:test',
-        'sasstest:test'
-    ]);
-
-    grunt.registerTask('validate', [
-        'jsvalidate',
-        'jshint:docs',
-        'jshint:dist',
-        'test'
-    ]);
-
-    grunt.registerTask('compilejs', [
-        'jsvalidate',
-        'jshint:dev',
-        'requirejs'
-    ]);
-
-    grunt.registerTask('compilescss', [
-        'sass',
-        'autoprefixer',
-        'sasstest'
-    ]);
-
-    grunt.registerTask('compile', [
-        'requirejs',
-        'uglify:dist',
-        'sass:dist',
-        'autoprefixer:dist',
-        'cssmin:dist'
+        'default',
+        'build-docs:prod'
     ]);
 
     grunt.registerTask('dev', [
-        'default',
+        'clean',
+        'build-scripts:dev',
+        'build-styles:dev',
+        'build-docs:dev',
         'concurrent'
     ]);
 
     grunt.registerTask('default', [
         'clean',
-        'test',
-        'validate',
-        'compile'
+        'build-scripts:prod',
+        'build-styles:prod'
     ]);
 };

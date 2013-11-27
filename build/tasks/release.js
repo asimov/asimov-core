@@ -1,8 +1,8 @@
 
-module.exports = function(grunt) {
-    "use strict";
+module.exports = function (grunt) {
+    'use strict';
 
-    grunt.registerTask('release', 'Releases a new version of asimov', function(type) {
+    grunt.registerTask('release', 'Releases a new version', function (type) {
         var options = this.options({
             dryRun: grunt.option.flags().indexOf('--dry-run') !== -1
         });
