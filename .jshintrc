@@ -1,9 +1,29 @@
 {
-    "browser": true,
     "predef": [
+        "require",
         "define",
         "module",
         "exports"
     ],
-    "es3": true
+    "browser": true,
+    "bitwise": true,
+    "camelcase": true,
+    "curly": true,
+    "eqeqeq": true,
+    "es3": true,
+    "immed": true,
+    "latedef": true,
+    "newcap": true,
+    "noarg": true,
+    "quotmark": "single",
+    "regexp": true,
+    "undef": true,
+    "unused": true,
+    "strict": true,
+    "trailing": true,
+    "maxcomplexity": 4,
+    "maxlen": 80,
+    "smarttabs": true,
+    "jquery": true,
+    "onevar": true
 }

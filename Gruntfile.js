@@ -1,6 +1,7 @@
-
-module.exports = function(grunt) {
-    "use strict";
+/* global require, process */
+/* jshint onevar:false, maxlen:100 */
+module.exports = function (grunt) {
+    'use strict';
 
     // require it at the top and pass in the grunt instance
     require('time-grunt')(grunt);
@@ -24,7 +25,7 @@ module.exports = function(grunt) {
     //
     // This allows us to use @import bowered in components' sass files as if
     // they were part of your local component/theme.
-    var sassLoadPaths = ['src/scss'].concat(bowerDeps.map(function(depPath) {
+    var sassLoadPaths = ['src/scss'].concat(bowerDeps.map(function (depPath) {
         return path.join(depPath, 'src', 'scss');
     }));
 
@@ -34,7 +35,7 @@ module.exports = function(grunt) {
     // If we're compiling themes or components we need to walk directories to
     // find what modules we need to build
     var rjsOptions = {};
-    if(meta.name === 'asimov-core') {
+    if (meta.name === 'asimov-core') {
         rjsOptions = {
             core: {
                 options: {
@@ -51,12 +52,13 @@ module.exports = function(grunt) {
                     baseUrl: 'src/js',
                     dir: 'dist/js',
                     // wrap: {
-                    //     startFile: path.join(asimoveCorePath, 'build/js/intro.js'),
-                    //     endFile: path.join(asimoveCorePath, 'build/js/outro.js')
+                    //     startFile: '<%= asimov.core %>/build/js/intro.js',
+                    //     endFile: '<%= asimov.core %>/build/js/outro.js'
                     // },
-                    modules: grunt.file.expand({ cwd: 'src/js' }, '*/*.js').map(function(file) {
-                        return { name: file.replace(/\.js$/, '') };
-                    })
+                    modules: grunt.file.expand({ cwd: 'src/js' }, '*.js')
+                        .map(function (file) {
+                            return { name: file.replace(/\.js$/, '') };
+                        })
                 }
             }
         };
@@ -65,6 +67,14 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('bower.json'),
+        jshintrc: grunt.file.readJSON(asimoveCorePath + '/.jshintrc'),
+
+        // Project settings
+
+        asimov: {
+            core: asimoveCorePath,
+            src: '<%= asimov.core %>/src'
+        },
 
         // Remove generated files
 
@@ -85,7 +95,7 @@ module.exports = function(grunt) {
                 removeCombined: true,
                 paths: {
                     jquery: 'empty:',
-                    asimov: path.join(asimoveCorePath, 'src', 'js', 'asimov')
+                    asimov: '<%= asimov.src %>/js/asimov'
                 }
             }
         }, rjsOptions),
@@ -111,7 +121,7 @@ module.exports = function(grunt) {
             docs: {
                 files: [{
                     expand: true,
-                    cwd: path.join(asimoveCorePath, 'src/docs/assets/scss'),
+                    cwd: '<%= asimov.src %>/docs/assets/scss',
                     src: ['*.scss', '!_*.scss'],
                     dest: 'docs/assets/css',
                     ext: '.css'
@@ -176,16 +186,22 @@ module.exports = function(grunt) {
         template: {
             docs: {
                 options: {
-                    data: function() {
+                    data: function () {
                         return {
-                            styles: grunt.file.expand({ cwd: 'docs/assets' }, 'asimov-!(core)/css/**/*.css'),
-                            scripts: grunt.file.expand({ cwd: 'docs/assets' }, 'asimov-!(core)/js/{*,/}*.js')
+                            styles: grunt.file.expand(
+                                { cwd: 'docs/assets' },
+                                'asimov-!(core)/css/**/*.css'
+                            ),
+                            scripts: grunt.file.expand(
+                                { cwd: 'docs/assets' },
+                                'asimov-!(core)/js/{*,/}*.js'
+                            )
                         };
                     }
                 },
                 files: {
-                    '.build/docs/index.html': [path.join(asimoveCorePath, 'src/docs/index.html')],
-                    '.build/docs/styleguide.md': [path.join(asimoveCorePath, 'src/docs/styleguide.md')]
+                    '.build/docs/index.html': ['<%= asimov.src %>/docs/index.html'],
+                    '.build/docs/styleguide.md': ['<%= asimov.src %>/docs/styleguide.md']
                 }
             }
         },
@@ -193,7 +209,7 @@ module.exports = function(grunt) {
         sync: {
             docs: {
                 files: [{
-                    cwd: path.join(asimoveCorePath, 'src/docs/assets'),
+                    cwd: '<%= asimov.src %>/docs/assets',
                     src: ['**', '!scss/**'],
                     dest: 'docs/assets'
                 }]
@@ -203,7 +219,7 @@ module.exports = function(grunt) {
         exec: {
             docs: {
                 cmd: [
-                    path.join(asimoveCorePath, 'node_modules/.bin/distancss'),
+                    '<%= asimov.core %>/node_modules/.bin/distancss',
                     'dist/css',
                     'docs',
                     '--template',
@@ -234,6 +250,7 @@ module.exports = function(grunt) {
         // Javscript QA
         //
         // 1: wash our hands of 3rd party assets
+        // 2: allow for debug code when in dev
 
         jsvalidate: {
             dist: ['src/js/**/*.js'],
@@ -244,6 +261,19 @@ module.exports = function(grunt) {
         },
 
         jshint: {
+            options: '<%= jshintrc %>',
+            dev: {                              // 2
+                options: {
+                    debug: true,
+                    devel: true
+                },
+                files: [{
+                    src: [
+                        '<%= jsvalidate.dist %>',
+                        '<%= jsvalidate.docs %>'
+                    ]
+                }]
+            },
             dist: ['<%= jsvalidate.dist %>'],
             docs: ['<%= jsvalidate.docs %>']
         },
@@ -286,8 +316,8 @@ module.exports = function(grunt) {
     // Load tasks defined in asimov-core's package.json
 
     var base = process.cwd();
-    matchdep.filterAll('grunt-!(cli)', path.join(asimoveCorePath, 'package.json'))
-        .forEach(function(task) {
+    matchdep.filterAll('grunt-!(cli)', asimoveCorePath + '/package.json')
+        .forEach(function (task) {
             // need to temporarily change base for grunt.loadNpmTasks to work
             grunt.file.setBase(asimoveCorePath);
             grunt.loadNpmTasks(task);
@@ -296,7 +326,7 @@ module.exports = function(grunt) {
 
     // Load our custom tasks
 
-    grunt.loadTasks(path.join(asimoveCorePath, 'build', 'tasks'));
+    grunt.loadTasks(asimoveCorePath + '/build/tasks');
 
     // Public tasks
 
@@ -317,7 +347,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('validate', [
         'jsvalidate',
-        'jshint',
+        'jshint:docs',
+        'jshint:dist',
         'test'
     ]);
 
