@@ -231,6 +231,18 @@ module.exports = function(grunt) {
             test: {}
         },
 
+        // Javscript QA
+        //
+        // 1: wash our hands of 3rd party assets
+
+        jsvalidate: {
+            dist: ['src/js/**/*.js'],
+            docs: [
+                'src/docs/assets/js/**/*.js',
+                '!**/vendor/**'                 // 1
+            ]
+        },
+
         // Creating new releases
 
         bump: {
@@ -298,6 +310,11 @@ module.exports = function(grunt) {
         'sasstest:test'
     ]);
 
+    grunt.registerTask('validate', [
+        'jsvalidate',
+        'test'
+    ]);
+
     grunt.registerTask('compile', [
         'requirejs',
         'uglify:dist',
@@ -309,6 +326,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'clean',
         'test',
+        'validate',
         'compile'
     ]);
 };
