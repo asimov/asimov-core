@@ -278,6 +278,32 @@ module.exports = function (grunt) {
             docs: ['<%= jsvalidate.docs %>']
         },
 
+        // Developement watch task
+
+        watch: {
+            options: {
+                debounceDelay: 100,
+                spawn: false
+            },
+            sass: {
+                files: ['src/scss/**/*.scss', '!src/docs/assets/scss/**'],
+                tasks: ['compilesass']
+            },
+            js: {
+                files: ['src/js/**/*.js', '!src/docs/assets/js/**'],
+                tasks: ['compilejs']
+            }
+        },
+
+        concurrent: {
+            target: {
+                tasks: ['connect:dev', 'watch'],
+                options: {
+                    logConcurrentOutput: true
+                }
+            }
+        },
+
         // Creating new releases
 
         bump: {
@@ -352,12 +378,29 @@ module.exports = function (grunt) {
         'test'
     ]);
 
+    grunt.registerTask('compilejs', [
+        'jsvalidate',
+        'jshint:dev',
+        'requirejs'
+    ]);
+
+    grunt.registerTask('compilescss', [
+        'sass',
+        'autoprefixer',
+        'sasstest'
+    ]);
+
     grunt.registerTask('compile', [
         'requirejs',
         'uglify:dist',
         'sass:dist',
         'autoprefixer:dist',
         'cssmin:dist'
+    ]);
+
+    grunt.registerTask('dev', [
+        'default',
+        'concurrent'
     ]);
 
     grunt.registerTask('default', [
