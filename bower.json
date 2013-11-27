@@ -5,6 +5,7 @@
   "authors": [
     "xzyfer <xzyfer@gmail.com>"
   ],
+  "description": "Asimov's core framework",
   "license": "MIT",
   "private": true,
   "ignore": [

@@ -1,7 +1,7 @@
 {
   "name": "asimov-core",
   "version": "0.0.0",
-  "description": "asimov-core ===========",
+  "description": "Asimov's core framework",
   "main": "index.js",
   "directories": {
     "test": "tests"
