@@ -5,8 +5,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'validate-styles',
         'Validates styles',
-        function (env) {
-            env = env || 'prod';
+        function () {
         }
     );
 };

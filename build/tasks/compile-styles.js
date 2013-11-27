@@ -5,15 +5,10 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'compile-styles',
         'Compiles styles',
-        function (env) {
-            env = env || 'prod';
-
+        function () {
             grunt.task.run('sass:dist');
             grunt.task.run('autoprefixer:dist');
-
-            if (env === 'prod') {
-                grunt.task.run('cssmin:dist');
-            }
+            grunt.task.run('cssmin:dist');
         }
     );
 };

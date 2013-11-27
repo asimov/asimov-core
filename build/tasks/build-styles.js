@@ -5,12 +5,10 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build-styles',
         'Style building entry point',
-        function (env) {
-            env = env || 'prod';
-
-            grunt.task.run('validate-styles:' + env);
-            grunt.task.run('test-styles:test');
-            grunt.task.run('compile-styles:' + env);
+        function () {
+            grunt.task.run('validate-styles');
+            grunt.task.run('test-styles');
+            grunt.task.run('compile-styles');
         }
     );
 };

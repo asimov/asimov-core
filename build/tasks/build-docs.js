@@ -5,9 +5,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build-docs',
         'Doc building entry point',
-        function (env) {
-            env = env || 'prod';
-
+        function () {
             grunt.task.run('sass:docs');
             grunt.task.run('symlink:core');
 

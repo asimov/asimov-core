@@ -253,14 +253,6 @@ module.exports = function (grunt) {
         // 2: allow for debug code when in dev
 
         jsvalidate: {
-            dev: {
-                files: [{
-                    src: [
-                        '<%= jsvalidate.dist %>',
-                        '<%= jsvalidate.docs %>'
-                    ]
-                }]
-            },
             dist: ['src/js/**/*.js'],
             docs: [
                 'src/docs/assets/js/**/*.js',
@@ -270,18 +262,6 @@ module.exports = function (grunt) {
 
         jshint: {
             options: '<%= jshintrc %>',
-            dev: {                              // 2
-                options: {
-                    debug: true,
-                    devel: true
-                },
-                files: [{
-                    src: [
-                        '<%= jsvalidate.dist %>',
-                        '<%= jsvalidate.docs %>'
-                    ]
-                }]
-            },
             dist: ['<%= jsvalidate.dist %>'],
             docs: ['<%= jsvalidate.docs %>']
         },

@@ -5,8 +5,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'test-scripts',
         'Tests scripts',
-        function (env) {
-            env = env || 'prod';
+        function () {
         }
     );
 };

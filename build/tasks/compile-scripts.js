@@ -5,14 +5,9 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'compile-scripts',
         'Compiles scripts',
-        function (env) {
-            env = env || 'prod';
-
+        function () {
             grunt.task.run('requirejs');
-
-            if (env === 'prod') {
-                grunt.task.run('uglify:dist');
-            }
+            grunt.task.run('uglify');
         }
     );
 };

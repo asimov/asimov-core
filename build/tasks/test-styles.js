@@ -5,11 +5,9 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'test-styles',
         'Tests styles',
-        function (env) {
-            env = env || 'prod';
-
-            grunt.task.run('sass:' + env);
-            grunt.task.run('sasstest:' + env);
+        function () {
+            grunt.task.run('sass:test');
+            grunt.task.run('sasstest');
         }
     );
 };

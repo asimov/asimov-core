@@ -9,8 +9,8 @@ module.exports = function (grunt) {
             env = env || 'prod';
 
             grunt.task.run('validate-scripts:' + env);
-            grunt.task.run('test-scripts:test');
-            grunt.task.run('compile-scripts:' + env);
+            grunt.task.run('test-scripts');
+            grunt.task.run('compile-scripts');
         }
     );
 };
