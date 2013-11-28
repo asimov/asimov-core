@@ -67,7 +67,9 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('bower.json'),
-        jshintrc: grunt.file.readJSON(asimoveCorePath + '/.jshintrc'),
+        jshintrc: grunt.file.exists('.jshintrc') ?
+            grunt.file.readJSON('.jshintrc') :
+            grunt.file.readJSON(asimoveCorePath + '/.jshintrc'),
 
         // Project settings
 
