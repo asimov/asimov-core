@@ -1,3 +1,12 @@
+<a name="v0.0.21"></a>
+### v0.0.21 (2013-11-28)
+
+
+#### Bug Fixes
+
+* **changlog:** update broken changelog links ([b191702f](https://github.com/asimov/asimov-core/commit/b191702f7f242332929710b632d4d94bfbc01ec9))
+* **release:** use package.json to find the github infor got changelog links ([f7b42992](https://github.com/asimov/asimov-core/commit/f7b42992644c34af056d928d27a20dcaf06976c0))
+
 <a name="v0.0.20"></a>
 ### v0.0.20 (2013-11-28)
 
