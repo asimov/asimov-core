@@ -21,6 +21,7 @@ module.exports = function (grunt) {
 
             grunt.task.run('jsvalidate');
             grunt.task.run('jshint');
+            grunt.task.run('gjslint');
 
             if (env === 'dev') {
                 grunt.config.set('jshint.options', oldConfig);

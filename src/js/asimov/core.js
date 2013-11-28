@@ -1,12 +1,12 @@
 
-(function (root, factory) {
+;(function(root, factory) {
     'use strict';
 
     root.asimov = root.asimov || {};
 
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['jquery'], function (jQuery) {
+        define(['jquery'], function(jQuery) {
             root.asimov.core = factory(jQuery);
             return root.asimov.core;
         });
@@ -14,11 +14,11 @@
         // Browser globals
         root.asimov.core = factory(root.jQuery);
     }
-}(this, function ($, undefined) {
+}(this, function($, undefined) {
     'use strict';
 
     return {
-        getElementData: function ($elem, prefix) {
+        getElementData: function($elem, prefix) {
             var data = {},
 
                 // does it start with our prefix?
@@ -26,11 +26,11 @@
 
                 // $.data() turns data-prefix-foo-bar into
                 // prefixFooBar, we want it to be prefix-foo-bar
-                upperToHyphenLower = function (match) {
+                upperToHyphenLower = function(match) {
                     return '-' + match.toLowerCase();
                 };
 
-            $.each($elem.data(), function (key, value) {
+            $.each($elem.data(), function(key, value) {
                 if (re.test(key)) {
                     data[key.replace(/[A-Z]/g, upperToHyphenLower)] = value;
                 }
@@ -39,7 +39,7 @@
             return data;
         },
 
-        mergeElementData: function ($elem, prefix, defaults) {
+        mergeElementData: function($elem, prefix, defaults) {
             // Get an object of dom data attributes that we care about
             var domData = this.getElementData($elem, prefix),
                 data = $.extend(true, {}, defaults);
@@ -69,7 +69,7 @@
                 return root;
             }
 
-            $.each(domData, function (key, value) {
+            $.each(domData, function(key, value) {
                 data = $.extend(
                     true, {}, data,
                     recur(data, key.split(/-/), value)

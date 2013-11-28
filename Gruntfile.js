@@ -266,6 +266,19 @@ module.exports = function (grunt) {
             docs: ['<%= jsvalidate.docs %>']
         },
 
+        gjslint: {
+            options: {
+                flags: [
+                    '--disable 110,13'
+                ],
+                reporter: {
+                    name: 'console'
+                }
+            },
+            dist: ['<%= jsvalidate.dist %>'],
+            docs: ['<%= jsvalidate.docs %>']
+        },
+
         // Developement watch task
 
         watch: {
