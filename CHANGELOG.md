@@ -1,3 +1,16 @@
+<a name="v0.0.20"></a>
+### v0.0.20 (2013-11-28)
+
+
+#### Bug Fixes
+
+* **bower:** don't ignore .jshintrc ([91a3e5ca](http://github.com/0.0.19/commit/91a3e5ca5a90c6d4e703b3a83a726e93b7f662c9))
+
+
+#### Features
+
+* **build:** use a component's .jshintrc if it exists ([f306c31b](http://github.com/0.0.19/commit/f306c31b1385b491bc92f0a5839749c916cc7386))
+
 <a name="v0.0.19"></a>
 ### v0.0.19 (2013-11-28)
 
