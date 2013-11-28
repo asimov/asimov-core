@@ -31,7 +31,7 @@ build.txt
 /.build
 
 # distribution files
-/dist/
+/dist/css/
 
 # generated docs
 /docs/
