@@ -16,5 +16,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "sass-import-once": "~0.1.0"
+  }
 }

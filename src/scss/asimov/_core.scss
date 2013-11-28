@@ -1,4 +1,6 @@
 
+@import "sass-import-once/sass-import-once";
+
 // TODO(xzyfer): split this up into small files.
 // This is currently blocked performance issues with sass' @import
 // https://github.com/nex3/sass/issues/1019#issuecomment-29128022

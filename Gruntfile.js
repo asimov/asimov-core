@@ -25,7 +25,10 @@ module.exports = function (grunt) {
     //
     // This allows us to use @import bowered in components' sass files as if
     // they were part of your local component/theme.
-    var sassLoadPaths = ['src/scss'].concat(bowerDeps.map(function (depPath) {
+    var sassLoadPaths = [
+        'src/scss',
+        asimoveCorePath + '/bower_components'
+    ].concat(bowerDeps.map(function (depPath) {
         return path.join(depPath, 'src', 'scss');
     }));
 
