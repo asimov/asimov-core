@@ -1,3 +1,3 @@
 source "https://rubygems.org"
 
-gem "sass", :git => "git://github.com/nex3/sass.git", :branch => "master"
+gem "sass", "~> 3.3.0.alpha.2"

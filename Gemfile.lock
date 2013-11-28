@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/nex3/sass.git
-  revision: b84b12aca8b71cfc65185f5c1a0cd8f30a875639
-  branch: master
-  specs:
-    sass (3.3.0.rc.1)
-      listen (~> 1.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -19,9 +11,11 @@ GEM
       ffi (>= 0.5.0)
     rb-kqueue (0.2.0)
       ffi (>= 0.5.0)
+    sass (3.3.0.rc.2)
+      listen (~> 1.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  sass!
+  sass (~> 3.3.0.alpha.2)
