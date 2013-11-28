@@ -4,12 +4,12 @@
 
 #### Bug Fixes
 
-* **bower:** don't ignore .jshintrc ([91a3e5ca](http://github.com/0.0.19/commit/91a3e5ca5a90c6d4e703b3a83a726e93b7f662c9))
+* **bower:** don't ignore .jshintrc ([91a3e5ca](http://github.com/asimov/asimov-core/commit/91a3e5ca5a90c6d4e703b3a83a726e93b7f662c9))
 
 
 #### Features
 
-* **build:** use a component's .jshintrc if it exists ([f306c31b](http://github.com/0.0.19/commit/f306c31b1385b491bc92f0a5839749c916cc7386))
+* **build:** use a component's .jshintrc if it exists ([f306c31b](http://github.com/asimov/asimov-core/commit/f306c31b1385b491bc92f0a5839749c916cc7386))
 
 <a name="v0.0.19"></a>
 ### v0.0.19 (2013-11-28)
@@ -17,7 +17,7 @@
 
 #### Features
 
-* **build:** add gslint to validate js code style ([f60baf04](http://github.com/0.0.18/commit/f60baf04aee808bc4c01a64ad2f09e2613be2446))
+* **build:** add gslint to validate js code style ([f60baf04](http://github.com/asimov/asimov-core/commit/f60baf04aee808bc4c01a64ad2f09e2613be2446))
 
 <a name="v0.0.18"></a>
 ### v0.0.18 (2013-11-27)
@@ -26,21 +26,21 @@
 #### Bug Fixes
 
 * **build:**
-  * symlink error when compile docs for core ([3ebaf38a](http://github.com/0.0.17/commit/3ebaf38aa2182f5af27da09104f46d918ab1fa8f))
-  * don't load minified dist assets in docs ([0efe5818](http://github.com/0.0.17/commit/0efe58189417f262a2be29dbd500b6b789b00b11))
-  * always generate docs ([c2d7957a](http://github.com/0.0.17/commit/c2d7957a9f2b20dad9066bdc5bcc147ac877adce))
+  * symlink error when compile docs for core ([3ebaf38a](http://github.com/asimov/asimov-core/commit/3ebaf38aa2182f5af27da09104f46d918ab1fa8f))
+  * don't load minified dist assets in docs ([0efe5818](http://github.com/asimov/asimov-core/commit/0efe58189417f262a2be29dbd500b6b789b00b11))
+  * always generate docs ([c2d7957a](http://github.com/asimov/asimov-core/commit/c2d7957a9f2b20dad9066bdc5bcc147ac877adce))
 
 
 #### Features
 
 * **build:**
-  * concurrently run dev watcher and styleguide server ([9c3050a4](http://github.com/0.0.17/commit/9c3050a4d3782786a2d8c626d0ae32776c95c353))
-  * add sane jshint defaults ([4a31831a](http://github.com/0.0.17/commit/4a31831a61cf913ce7a0788beebe9cc19191a680))
-  * add jshint task ([00dcafec](http://github.com/0.0.17/commit/00dcafec0d6f5730129e99497db8076d802e2242))
-  * add jsvalidate for basic js qa ([1f047faf](http://github.com/0.0.17/commit/1f047faf50387ccd377c614961e7c0f20c6ade8c))
-  * remove generated files on fresh build ([9f3af24b](http://github.com/0.0.17/commit/9f3af24b7a5f307c15dfc738bc73e681276e4de9))
-  * add js minification task ([68c2867e](http://github.com/0.0.17/commit/68c2867e3c3564e9a39cb632b46803195477acbf))
-  * add css minification task ([5f545ffe](http://github.com/0.0.17/commit/5f545ffe9b69d6aef297010e42fd2b790725c814))
+  * concurrently run dev watcher and styleguide server ([9c3050a4](http://github.com/asimov/asimov-core/commit/9c3050a4d3782786a2d8c626d0ae32776c95c353))
+  * add sane jshint defaults ([4a31831a](http://github.com/asimov/asimov-core/commit/4a31831a61cf913ce7a0788beebe9cc19191a680))
+  * add jshint task ([00dcafec](http://github.com/asimov/asimov-core/commit/00dcafec0d6f5730129e99497db8076d802e2242))
+  * add jsvalidate for basic js qa ([1f047faf](http://github.com/asimov/asimov-core/commit/1f047faf50387ccd377c614961e7c0f20c6ade8c))
+  * remove generated files on fresh build ([9f3af24b](http://github.com/asimov/asimov-core/commit/9f3af24b7a5f307c15dfc738bc73e681276e4de9))
+  * add js minification task ([68c2867e](http://github.com/asimov/asimov-core/commit/68c2867e3c3564e9a39cb632b46803195477acbf))
+  * add css minification task ([5f545ffe](http://github.com/asimov/asimov-core/commit/5f545ffe9b69d6aef297010e42fd2b790725c814))
 
 <a name="v0.0.17"></a>
 ### v0.0.17 (2013-11-26)
@@ -51,12 +51,12 @@
 
 #### Bug Fixes
 
-* **settings:** cache disabled by set-default but never re-enabled ([261e4565](http://github.com/0.0.15/commit/261e45658c717a363de8306bf4d9a7fe73edf52c))
+* **settings:** cache disabled by set-default but never re-enabled ([261e4565](http://github.com/asimov/asimov-core/commit/261e45658c717a363de8306bf4d9a7fe73edf52c))
 
 
 #### Features
 
-* **sass:** add some core sass APIs ([b4aa9469](http://github.com/0.0.15/commit/b4aa94697c5da3b4ec846eb007af62764b92a44f))
+* **sass:** add some core sass APIs ([b4aa9469](http://github.com/asimov/asimov-core/commit/b4aa94697c5da3b4ec846eb007af62764b92a44f))
 
 <a name="v0.0.15"></a>
 ### v0.0.15 (2013-11-25)
@@ -65,13 +65,13 @@
 #### Bug Fixes
 
 * **docs:**
-  * be smarter about which files to auto inject into docs ([ec5eff95](http://github.com/0.0.14/commit/ec5eff95f2c78a111c3c44d5618170dde5152aae))
-  * load core.js in docs by default ([879d813d](http://github.com/0.0.14/commit/879d813df382b773c5703f66abb8a57e13402436))
+  * be smarter about which files to auto inject into docs ([ec5eff95](http://github.com/asimov/asimov-core/commit/ec5eff95f2c78a111c3c44d5618170dde5152aae))
+  * load core.js in docs by default ([879d813d](http://github.com/asimov/asimov-core/commit/879d813df382b773c5703f66abb8a57e13402436))
 
 
 #### Features
 
-* **build:** reduce amount of dist files generated by requirejs ([02f0743f](http://github.com/0.0.14/commit/02f0743fb14e7c216d7666f68640e9154e3cf096))
+* **build:** reduce amount of dist files generated by requirejs ([02f0743f](http://github.com/asimov/asimov-core/commit/02f0743fb14e7c216d7666f68640e9154e3cf096))
 
 <a name="v0.0.14"></a>
 ### v0.0.14 (2013-11-25)
@@ -79,14 +79,14 @@
 
 #### Bug Fixes
 
-* **dist:** ignore requirejs' build.txt ([9877e89c](http://github.com/0.0.13/commit/9877e89c3e1c8e7e17345f6ef0a1ebc5dcbf9cd1))
-* **docs:** add missing docs assets ([742721d4](http://github.com/0.0.13/commit/742721d465f00b3b2fc8924799e917730aae020c))
+* **dist:** ignore requirejs' build.txt ([9877e89c](http://github.com/asimov/asimov-core/commit/9877e89c3e1c8e7e17345f6ef0a1ebc5dcbf9cd1))
+* **docs:** add missing docs assets ([742721d4](http://github.com/asimov/asimov-core/commit/742721d465f00b3b2fc8924799e917730aae020c))
 
 
 #### Features
 
-* **build:** implement autoprefixer ([109d39f2](http://github.com/0.0.13/commit/109d39f2ca17dd9855b5e5680c8aefd9b79e91e7))
-* **docs:** asset autoloading for component docs ([8698e3fe](http://github.com/0.0.13/commit/8698e3fe86691660a7828cf915942c03c297eef1))
+* **build:** implement autoprefixer ([109d39f2](http://github.com/asimov/asimov-core/commit/109d39f2ca17dd9855b5e5680c8aefd9b79e91e7))
+* **docs:** asset autoloading for component docs ([8698e3fe](http://github.com/asimov/asimov-core/commit/8698e3fe86691660a7828cf915942c03c297eef1))
 
 <a name="v0.0.13"></a>
 ### v0.0.13 (2013-11-25)
@@ -94,7 +94,7 @@
 
 #### Bug Fixes
 
-* **js:** requirejs task should only copy js file to dist dir ([f02813ea](http://github.com/0.0.12/commit/f02813ea87ac89142dd6f31a25d4395bcffea486))
+* **js:** requirejs task should only copy js file to dist dir ([f02813ea](http://github.com/asimov/asimov-core/commit/f02813ea87ac89142dd6f31a25d4395bcffea486))
 
 <a name="v0.0.12"></a>
 ### v0.0.12 (2013-11-25)
@@ -102,7 +102,7 @@
 
 #### Features
 
-* **js:** components can compile their js without local grunt tasks ([271b4bbc](http://github.com/0.0.11/commit/271b4bbcd1a64e806f55c8e29e709b25f0b1ce05))
+* **js:** components can compile their js without local grunt tasks ([271b4bbc](http://github.com/asimov/asimov-core/commit/271b4bbcd1a64e806f55c8e29e709b25f0b1ce05))
 
 <a name="v0.0.11"></a>
 ### v0.0.11 (2013-11-22)
@@ -110,12 +110,12 @@
 
 #### Bug Fixes
 
-* **sass:** dist files being generated in the wrong folder ([6149f006](http://github.com/0.0.10/commit/6149f006cda2c5d37bf412507be6be4cd4672fc3))
+* **sass:** dist files being generated in the wrong folder ([6149f006](http://github.com/asimov/asimov-core/commit/6149f006cda2c5d37bf412507be6be4cd4672fc3))
 
 
 #### Features
 
-* **styleguides:** basic support for styleguides ([ce872cf3](http://github.com/0.0.10/commit/ce872cf383606a0a6318f148ce1f27d5a61990f3))
+* **styleguides:** basic support for styleguides ([ce872cf3](http://github.com/asimov/asimov-core/commit/ce872cf383606a0a6318f148ce1f27d5a61990f3))
 
 <a name="v0.0.10"></a>
 ### v0.0.10 (2013-11-22)
@@ -123,7 +123,7 @@
 
 #### Features
 
-* **js:** add core.js for handle module config ([30065b7f](http://github.com/0.0.9/commit/30065b7fb0c4e0f2a728597ac0ac5e372acf0447))
+* **js:** add core.js for handle module config ([30065b7f](http://github.com/asimov/asimov-core/commit/30065b7fb0c4e0f2a728597ac0ac5e372acf0447))
 
 <a name="v0.0.9"></a>
 ### v0.0.9 (2013-11-22)
@@ -131,7 +131,7 @@
 
 #### Features
 
-* **settings:** remove defaults ([002ff14d](http://github.com/0.0.8/commit/002ff14d3590bc86bb2f377e3b7b02db269e5b24))
+* **settings:** remove defaults ([002ff14d](http://github.com/asimov/asimov-core/commit/002ff14d3590bc86bb2f377e3b7b02db269e5b24))
 
 <a name="v0.0.8"></a>
 ### v0.0.8 (2013-11-22)
@@ -139,7 +139,7 @@
 
 #### Bug Fixes
 
-* **release:** fix typo in release commit message ([8a6cb43e](http://github.com/0.0.7/commit/8a6cb43e4a3bd09818ea1d534f7d4e64d6e506e1))
+* **release:** fix typo in release commit message ([8a6cb43e](http://github.com/asimov/asimov-core/commit/8a6cb43e4a3bd09818ea1d534f7d4e64d6e506e1))
 
 <a name="v0.0.7"></a>
 ### v0.0.7 (2013-11-22)
@@ -147,12 +147,12 @@
 
 #### Bug Fixes
 
-* **release:** fix changelog using the wrong version string ([9190f06f](http://github.com/0.0.6/commit/9190f06fd73f713af87f4d2bbdb7c3de2136d8a0))
+* **release:** fix changelog using the wrong version string ([9190f06f](http://github.com/asimov/asimov-core/commit/9190f06fd73f713af87f4d2bbdb7c3de2136d8a0))
 
 
 #### Features
 
-* **settings:** implement a basic internal cache api ([cedb1539](http://github.com/0.0.6/commit/cedb1539483f156a56b920ba37ab1f470d48e9e9))
+* **settings:** implement a basic internal cache api ([cedb1539](http://github.com/asimov/asimov-core/commit/cedb1539483f156a56b920ba37ab1f470d48e9e9))
 
 <a name="v0.0.6"></a>
 ### v0.0.6 (2013-11-22)
