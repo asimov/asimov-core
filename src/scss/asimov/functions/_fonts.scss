@@ -47,7 +47,17 @@
 // -----------------------------------------------------------------------------
 // @return [Number]
 @function set-font-size($name, $value) {
-    @return set("font-sizes/#{$name}", $value, "font-sizes");
+    $value: set("font-sizes/#{$name}", $value, "font-sizes");
+
+    // Some third party libraries depend on root font-size
+    @if $name == "root" {
+        // Media query library config
+        //
+        // https://github.com/Team-Sass/breakpoint/wiki/Basic-Media-Queries#em-based-media-queries
+        $breakpoint-base-font-size: $value;
+    }
+
+    @return $value;
 }
 
 

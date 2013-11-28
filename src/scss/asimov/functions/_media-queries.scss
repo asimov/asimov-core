@@ -1,0 +1,37 @@
+
+// =============================================================================
+// Breakpoints
+// =============================================================================
+
+// Set the breakpoint config $value associated to $name. If $name already exists
+// it will be over written. Returns the new value of $name.
+// -----------------------------------------------------------------------------
+// @param $key [String] : $name
+// @param $value [Number|List] : $value
+// -----------------------------------------------------------------------------
+// @return [Number|List]
+@function set-breakpoint($name, $value) {
+    @return set("breakpoints/#{$name}", $value, "breakpoints");
+}
+
+
+// Get the breakpoint config value associated with $name.
+// -----------------------------------------------------------------------------
+// @param $key [String] : $name
+// -----------------------------------------------------------------------------
+// @return [Number|List|Null]
+@function get-breakpoint($name) {
+    $map: get-component-map("breakpoints", lookup($settings, "breakpoints"));
+
+    @return lookup($map, $name);
+}
+
+
+// Gets a map of named breakppints their values.
+// -----------------------------------------------------------------------------
+// @param $key [String] : $name
+// -----------------------------------------------------------------------------
+// @return [Number|List|Null]
+@function get-breakpoints() {
+    @return get-component-map("breakpoints", lookup($settings, "breakpoints"));
+}

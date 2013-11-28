@@ -1,5 +1,6 @@
 
 @import "sass-import-once/sass-import-once";
+@import "compass-breakpoint/stylesheets/breakpoint";
 
 // TODO(xzyfer): split this up into small files.
 // This is currently blocked performance issues with sass' @import

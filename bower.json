@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "sass-import-once": "~0.1.0"
+    "sass-import-once": "~0.1.0",
+    "compass-breakpoint": "~2.2.0"
   }
 }
