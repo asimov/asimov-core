@@ -1,3 +1,12 @@
 @import "asimov/core";
 
-$settings: ();
+$settings: () !default;
+
+// Set some sane(?) defaults
+//
+// The duplication is required until set-xx can handle !default
+
+$font-size-root: 16px !default;
+$font-size-root: set-font-size("root", $font-size-root);
+$line-height-root: 1.4 !default;
+$line-height-root: set-line-height("root", $line-height-root);
