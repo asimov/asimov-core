@@ -1,3 +1,11 @@
+<a name="v0.0.19"></a>
+### v0.0.19 (2013-11-28)
+
+
+#### Features
+
+* **build:** add gslint to validate js code style ([f60baf04](http://github.com/0.0.18/commit/f60baf04aee808bc4c01a64ad2f09e2613be2446))
+
 <a name="v0.0.18"></a>
 ### v0.0.18 (2013-11-27)
 
