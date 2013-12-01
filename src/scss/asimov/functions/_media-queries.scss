@@ -3,35 +3,65 @@
 // Breakpoints
 // =============================================================================
 
-// Set the breakpoint config $value associated to $name. If $name already exists
-// it will be over written. Returns the new value of $name.
+// Set the breakpoint $value associated to $name.
+// If $name already exists it will be over written.
+// Returns the new value of $name.
 // -----------------------------------------------------------------------------
 // @param $key [String] : $name
 // @param $value [Number|List] : $value
+// @param $default [Bool] : whether to merge
 // -----------------------------------------------------------------------------
 // @return [Number|List]
-@function set-breakpoint($name, $value) {
-    @return set("breakpoints/#{$name}", $value, "breakpoints");
+@function set-breakpoint($name, $value:null, $default:false) {
+    @if $default {
+        @return set-default("breakpoints/#{$name}", $value);
+    }
+
+    @return set("breakpoints/#{$name}", $value);
 }
 
 
-// Get the breakpoint config value associated with $name.
+// Get the breakpoint value associated with $name.
 // -----------------------------------------------------------------------------
 // @param $key [String] : $name
 // -----------------------------------------------------------------------------
 // @return [Number|List|Null]
 @function get-breakpoint($name) {
-    $map: get-component-map("breakpoints", lookup($settings, "breakpoints"));
-
-    @return lookup($map, $name);
+    @return lookup(get-breakpoints(), $name);
 }
 
 
-// Gets a map of named breakppints their values.
+// Set multiple breakpoints at once.
+// If $default is true $map will be merged with existing breakpoints.
+// If $default is false $map will override all existing breakpoints.
+// Returns a map of all current breakpoints.
 // -----------------------------------------------------------------------------
-// @param $key [String] : $name
+// @param $key [Map] : $name
+// @param $default [Bool] : whether to merge
 // -----------------------------------------------------------------------------
-// @return [Number|List|Null]
+// @return [Map]
+@function set-breakpoints($map, $default:false) {
+    @if $default {
+        @if set-default((breakpoints: $map)) == null {
+            @warn("Something went wrong!");
+        }
+    }
+
+    // Reset the currently settings because `set` will merge by default
+    @else if
+        set("breakpoints", ()) == null or
+        set("breakpoints", $map) == null
+    {
+        @warn("Something went wrong!");
+    }
+
+    @return get-breakpoints();
+}
+
+
+// Gets a map of named breakpoints and their values.
+// -----------------------------------------------------------------------------
+// @return [Map]
 @function get-breakpoints() {
     @return get-component-map("breakpoints", lookup($settings, "breakpoints"));
 }

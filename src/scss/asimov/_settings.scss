@@ -1,4 +1,4 @@
-@import "asimov/core";
+@import "asimov/asimov";
 
 // Initialize the core settings map
 
@@ -11,11 +11,13 @@ $settings: () !default;
 @if
     set-default("font-sizes/root", 16px) == null or
     set-default("line-height/root", 1.4) == null or
-    set-default("breakpoints/small", (0em 40em)) == null or
-    set-default("breakpoints/medium", (40.063em 64em)) == null or
-    set-default("breakpoints/large", (64.063em 90em)) == null or
-    set-default("breakpoints/xlarge", (90.063em 120em)) == null or
-    set-default("breakpoints/xxlarge", 120.063em) == null
+    set-breakpoints((
+        "small": (0em 40em),
+        "medium": (40.063em 64em),
+        "large": (64.063em 90em),
+        "xlarge": (90.063em 120em),
+        "xxlarge": 120.063em
+    ), true) == null
 {
     @warn("Something went wrong :(");
 }

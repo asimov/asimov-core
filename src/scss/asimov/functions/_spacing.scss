@@ -3,22 +3,28 @@
 // Spacings
 // =============================================================================
 
-// Set the spacing $value associated to $name. If $name already exists it will
-// be over written. Returns the new value of $name.
+// Set the spacing $value associated to $name.
+// If $name already exists it will be over written.
+// Returns the new value of $name.
 // -----------------------------------------------------------------------------
 // @param $key [String] : $name
 // @param $value [Number] : $value
+// @param $default [Bool] : whether to merge
 // -----------------------------------------------------------------------------
 // @return [Number]
-@function set-spacing($name, $value) {
-    @return set("spacings/#{$name}", $value, "spacings");
+@function set-spacing($name, $value, $default:false) {
+    @if $default {
+        @return set-default("spacings/#{$name}", $value);
+    }
+
+    @return set("spacings/#{$name}", $value);
 }
 
 
-// Get the spacing value associated with $name. If $name is a number then it is
-// returned. This means all spacing lookups can be done via this function.
+// Get the breakpoint value associated with $name.
+// If $name is a number then it is returned.
 // -----------------------------------------------------------------------------
-// @param $key [String|Number] : $name
+// @param $key [String] : $name
 // -----------------------------------------------------------------------------
 // @return [Number|Null]
 @function get-spacing($name) {
@@ -26,7 +32,41 @@
         @return $name;
     }
 
-    $map: get-component-map("spacings", lookup($settings, "spacings"));
+    @return lookup(get-spacings(), $name);
+}
 
-    @return lookup($map, $name);
+
+// Set multiple spacings at once.
+// If $default is true $map will be merged with existing spacings.
+// If $default is false $map will override all existing spacings.
+// Returns a map of all current spacings.
+// -----------------------------------------------------------------------------
+// @param $key [Map] : $name
+// @param $default [Bool] : whether to merge
+// -----------------------------------------------------------------------------
+// @return [Map]
+@function set-spacings($map, $default:false) {
+    @if $default {
+        @if set-default((spacings: $map)) == null {
+            @warn("Something went wrong!");
+        }
+    }
+
+    // Reset the currently settings because `set` will merge by default
+    @else if
+        set("spacings", ()) == null or
+        set("spacings", $map) == null
+    {
+        @warn("Something went wrong!");
+    }
+
+    @return get-spacings();
+}
+
+
+// Gets a map of named spacings and their values.
+// -----------------------------------------------------------------------------
+// @return [Map]
+@function get-spacings() {
+    @return get-component-map("spacings", lookup($settings, "spacings"));
 }

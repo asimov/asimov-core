@@ -44,7 +44,7 @@ $__a__map-cache: () !default;
 
     @if type-of($key) == map {
         // Reverse the merge order so we don't over write anything
-        $settings: _set($settings, $value, $key) !global;
+        $settings: _set($settings, null, $key) !global;
         $value: $settings;
     } @else if not get($key) {
         $settings: _set($key, $value, $settings) !global;

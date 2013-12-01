@@ -3,23 +3,26 @@
 // Fonts Families
 // =============================================================================
 
-// Set the font family $value associated to $name. If $name already exists it
-// will be over written. Returns the new value of $name.
+// Set the font-family $value associated to $name.
+// If $name already exists it will be over written.
+// Returns the new value of $name.
 // -----------------------------------------------------------------------------
 // @param $key [String] : $name
-// @param $value [String|List] : $value
+// @param $value [Color] : $value
+// @param $default [Bool] : whether to merge
 // -----------------------------------------------------------------------------
-// @return [List]
-@function set-font-family($name, $value) {
-    $value: if(type-of($value) == list, $value, ($value));
+// @return [String|List]
+@function set-font-family($name, $value, $default:false) {
+    @if $default {
+        @return set-default("font-families/#{$name}", $value);
+    }
 
     @return set("font-families/#{$name}", $value, "font-families");
 }
 
 
-// Get the font family value associated with $name. If $name is a list then it
-// is returned. This means all font family lookups can be done via this
-// function.
+// Get the font-family value associated with $name.
+// If $name is a font-family then it is returned.
 // -----------------------------------------------------------------------------
 // @param $key [String|List] : $name
 // -----------------------------------------------------------------------------
@@ -29,9 +32,43 @@
         @return $name;
     }
 
-    $map: get-component-map("font-families", lookup($settings, "font-families"));
+    @return lookup(get-font-families(), $name);
+}
 
-    @return lookup($map, $name);
+
+// Set multiple font-families at once.
+// If $default is true $map will be merged with existing font-families.
+// If $default is false $map will override all existing font-families.
+// Returns a map of all current font-families.
+// -----------------------------------------------------------------------------
+// @param $key [Map] : $name
+// @param $default [Bool] : whether to merge
+// -----------------------------------------------------------------------------
+// @return [Map]
+@function set-font-families($map, $default:false) {
+    @if $default {
+        @if set-default((font-families: $map)) == null {
+            @warn("Something went wrong!");
+        }
+    }
+
+    // Reset the currently settings because `set` will merge by default
+    @else if
+        set("font-families", ()) == null or
+        set("font-families", $map) == null
+    {
+        @warn("Something went wrong!");
+    }
+
+    @return get-font-families();
+}
+
+
+// Gets a map of named font-families and their values.
+// -----------------------------------------------------------------------------
+// @return [Map]
+@function get-font-families() {
+    @return get-component-map("font-families", lookup($settings, "font-families"));
 }
 
 
@@ -39,15 +76,22 @@
 // Fonts Sizes
 // =============================================================================
 
-// Set the font size $value associated to $name. If $name already exists it
-// will be over written. Returns the new value of $name.
+// Set the font-size $value associated to $name.
+// If $name already exists it will be over written.
+// Returns the new value of $name.
 // -----------------------------------------------------------------------------
 // @param $key [String] : $name
-// @param $value [Number] : $value
+// @param $value [Color] : $value
+// @param $default [Bool] : whether to merge
 // -----------------------------------------------------------------------------
 // @return [Number]
-@function set-font-size($name, $value) {
-    $value: set("font-sizes/#{$name}", $value, "font-sizes");
+@function set-font-size($name, $value, $default:false) {
+    @if $default {
+        $value: set-default("font-sizes/#{$name}", $value);
+    } @else {
+        $value: set("font-sizes/#{$name}", $value, "font-sizes");
+    }
+
 
     // Some third party libraries depend on root font-size
     @if $name == "root" {
@@ -61,9 +105,8 @@
 }
 
 
-// Get the font size value associated with $name. If $name is a number then it
-// is returned. This means all font size lookups can be done via this
-// function.
+// Get the font-family value associated with $name.
+// If $name is a font-family then it is returned.
 // -----------------------------------------------------------------------------
 // @param $key [String] : $name
 // -----------------------------------------------------------------------------
@@ -73,7 +116,42 @@
         @return $name;
     }
 
-    $map: get-component-map("font-sizes", lookup($settings, "font-sizes"));
-
-    @return lookup($map, $name);
+    @return lookup(get-font-size(), $name);
 }
+
+
+// Set multiple font-sizes at once.
+// If $default is true $map will be merged with existing font-sizes.
+// If $default is false $map will override all existing font-sizes.
+// Returns a map of all current font-sizes.
+// -----------------------------------------------------------------------------
+// @param $key [Map] : $name
+// @param $default [Bool] : whether to merge
+// -----------------------------------------------------------------------------
+// @return [Map]
+@function set-font-sizes($map, $default:false) {
+    @if $default {
+        @if set-default((font-sizes: $map)) == null {
+            @warn("Something went wrong!");
+        }
+    }
+
+    // Reset the currently settings because `set` will merge by default
+    @else if
+        set("font-sizes", ()) == null or
+        set("font-sizes", $map) == null
+    {
+        @warn("Something went wrong!");
+    }
+
+    @return get-font-sizes();
+}
+
+
+// Gets a map of named font-sizes and their values.
+// -----------------------------------------------------------------------------
+// @return [Map]
+@function get-font-sizes() {
+    @return get-component-map("font-sizes", lookup($settings, "font-sizes"));
+}
+
