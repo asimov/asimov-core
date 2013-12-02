@@ -1,3 +1,17 @@
+<a name="v0.0.22"></a>
+### v0.0.22 (2013-12-02)
+
+
+#### Features
+
+* **breakpoints:** add breakpoint support via compass-breakpoint ([0dc52f43](https://github.com/asimov/asimov-core/commit/0dc52f438c52b9dac4519df08906fe3dd2fa9abe))
+* **core:** make export() available to components ([a76a6b7c](https://github.com/asimov/asimov-core/commit/a76a6b7cc7b230fe6b58bb9dd088033d0c28213c))
+* **settings:**
+  * namespace core settings under asimov ([098bae74](https://github.com/asimov/asimov-core/commit/098bae7466cdf538548c8415c84609ca88c710e1))
+  * allow for setting multiple values at once ([245a366d](https://github.com/asimov/asimov-core/commit/245a366d9bff924eac36b736c9408d809562d739))
+  * set some default brekpoints ([ff0b8d03](https://github.com/asimov/asimov-core/commit/ff0b8d03a00a8146c8888273c4aea0989ff21fc2))
+  * set some defaults ([220b6a7c](https://github.com/asimov/asimov-core/commit/220b6a7c9b883c2abdb288448d7d5d2462c99b25))
+
 <a name="v0.0.21"></a>
 ### v0.0.21 (2013-11-28)
 
