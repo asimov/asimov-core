@@ -42,7 +42,7 @@
 // @return [Map]
 @function set-breakpoints($map, $default:false) {
     @if $default {
-        @if set-default((breakpoints: $map)) == null {
+        @if set-default((asimov: (breakpoints: $map)), "asimov/breakpoints") == null {
             @warn("Something went wrong!");
         }
     }
@@ -50,7 +50,7 @@
     // Reset the currently settings because `set` will merge by default
     @else if
         set("asimov/breakpoints", ()) == null or
-        set("asimov/breakpoints", $map) == null
+        set("asimov/breakpoints", $map, "asimov/breakpoints") == null
     {
         @warn("Something went wrong!");
     }
@@ -64,5 +64,5 @@
 // @return [Map]
 @function get-breakpoints() {
     $map: map-get($settings, "asimov");
-    @return get-component-map("breakpoints", lookup($map, "breakpoints"));
+    @return get-component-map("asimov/breakpoints", lookup($map, "breakpoints"));
 }

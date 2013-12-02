@@ -31,11 +31,12 @@ $__a__map-cache: () !default;
 // @param $value [Literal] : value to set $key to it was a string
 // -----------------------------------------------------------------------------
 // @return [Literal]
-@function set-default($key, $value:null) {
+@function set-default($key, $value:null, $cache-key:null) {
     // Clear the settings caches!
     @if(
         cache-clean("settings") and
         cache-clean("settings--flat") and
+        cache-clean($cache-key) and
         cache-disable()
     ) {
         @warn("Something went wrong!");

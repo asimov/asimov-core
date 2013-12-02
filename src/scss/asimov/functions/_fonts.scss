@@ -14,10 +14,10 @@
 // @return [String|List]
 @function set-font-family($name, $value, $default:false) {
     @if $default {
-        @return set-default("asimov/font-families/#{$name}", $value);
+        @return set-default("asimov/font-families/#{$name}", $value, "asimov/font-families");
     }
 
-    @return set("asimov/font-families/#{$name}", $value, "font-families");
+    @return set("asimov/font-families/#{$name}", $value, "asimov/font-families");
 }
 
 
@@ -47,7 +47,7 @@
 // @return [Map]
 @function set-font-families($map, $default:false) {
     @if $default {
-        @if set-default((font-families: $map)) == null {
+        @if set-default((asimov: (font-families: $map)), "asimov/font-families") == null {
             @warn("Something went wrong!");
         }
     }
@@ -55,7 +55,7 @@
     // Reset the currently settings because `set` will merge by default
     @else if
         set("asimov/font-families", ()) == null or
-        set("asimov/font-families", $map) == null
+        set("asimov/font-families", $map, "asimov/font-sizes") == null
     {
         @warn("Something went wrong!");
     }
@@ -69,7 +69,7 @@
 // @return [Map]
 @function get-font-families() {
     $map: map-get($settings, "asimov");
-    @return get-component-map("font-families", lookup($map, "font-families"));
+    @return get-component-map("asimov/font-families", lookup($map, "font-families"));
 }
 
 
@@ -88,9 +88,9 @@
 // @return [Number]
 @function set-font-size($name, $value, $default:false) {
     @if $default {
-        $value: set-default("asimov/font-sizes/#{$name}", $value);
+        $value: set-default("asimov/font-sizes/#{$name}", $value, "asimov/font-sizes");
     } @else {
-        $value: set("asimov/font-sizes/#{$name}", $value, "font-sizes");
+        $value: set("asimov/font-sizes/#{$name}", $value, "asimov/font-sizes");
     }
 
 
@@ -132,7 +132,7 @@
 // @return [Map]
 @function set-font-sizes($map, $default:false) {
     @if $default {
-        @if set-default((font-sizes: $map)) == null {
+        @if set-default((asimov: (font-sizes: $map)), "asimov/font-sizes") == null {
             @warn("Something went wrong!");
         }
     }
@@ -140,7 +140,7 @@
     // Reset the currently settings because `set` will merge by default
     @else if
         set("asimov/font-sizes", ()) == null or
-        set("asimov/font-sizes", $map) == null
+        set("asimov/font-sizes", $map, "asimov/font-sizes") == null
     {
         @warn("Something went wrong!");
     }
@@ -154,6 +154,6 @@
 // @return [Map]
 @function get-font-sizes() {
     $map: map-get($settings, "asimov");
-    @return get-component-map("font-sizes", lookup($map, "font-sizes"));
+    @return get-component-map("asimov/font-sizes", lookup($map, "font-sizes"));
 }
 
