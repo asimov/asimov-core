@@ -14,10 +14,10 @@
 // @return [Number|List]
 @function set-breakpoint($name, $value:null, $default:false) {
     @if $default {
-        @return set-default("breakpoints/#{$name}", $value);
+        @return set-default("asimov/breakpoints/#{$name}", $value);
     }
 
-    @return set("breakpoints/#{$name}", $value);
+    @return set("asimov/breakpoints/#{$name}", $value);
 }
 
 
@@ -49,8 +49,8 @@
 
     // Reset the currently settings because `set` will merge by default
     @else if
-        set("breakpoints", ()) == null or
-        set("breakpoints", $map) == null
+        set("asimov/breakpoints", ()) == null or
+        set("asimov/breakpoints", $map) == null
     {
         @warn("Something went wrong!");
     }
@@ -63,5 +63,6 @@
 // -----------------------------------------------------------------------------
 // @return [Map]
 @function get-breakpoints() {
-    @return get-component-map("breakpoints", lookup($settings, "breakpoints"));
+    $map: map-get($settings, "asimov");
+    @return get-component-map("breakpoints", lookup($map, "breakpoints"));
 }
