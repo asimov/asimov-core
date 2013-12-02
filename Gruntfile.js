@@ -1,10 +1,7 @@
 /* global require, process */
 /* jshint onevar:false, maxlen:100 */
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     'use strict';
-
-    // require it at the top and pass in the grunt instance
-    require('time-grunt')(grunt);
 
     var matchdep = require('matchdep'),
         path = require('path'),
@@ -361,13 +358,6 @@ module.exports = function (grunt) {
     grunt.loadTasks(asimoveCorePath + '/build/tasks');
 
     // Public tasks
-
-    // grunt.registerTask('dev', [
-    //     'clean',
-    //     'validate',
-    //     meta.name === 'asimov-core' ? 'compile':  'docs',
-    //     'concurrent'
-    // ]);
 
     grunt.registerTask('dev', [
         'clean',
