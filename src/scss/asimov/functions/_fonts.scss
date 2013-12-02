@@ -99,7 +99,7 @@
         // Media query library config
         //
         // https://github.com/Team-Sass/breakpoint/wiki/Basic-Media-Queries#em-based-media-queries
-        $breakpoint-base-font-size: $value;
+        $breakpoint-base-font-size: $value !global;
     }
 
     @return $value;
