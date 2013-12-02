@@ -24,7 +24,7 @@ module.exports = function(grunt) {
     // they were part of your local component/theme.
     var sassLoadPaths = [
         'src/scss',
-        asimoveCorePath + '/bower_components'
+        './bower_components'
     ].concat(bowerDeps.map(function (depPath) {
         return path.join(depPath, 'src', 'scss');
     }));
