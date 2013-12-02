@@ -344,3 +344,39 @@ font-families-set {
     get-tertiary-after-set: assert(get("asimov/font-families/tertiary") == (Arial, Helvetica, sans-serif));
     get-font-family-tertiary-after-set: assert(get-font-family("tertiary") == (Arial, Helvetica, sans-serif));
 }
+
+// ==========================================================================
+// Mediaquery API
+// ==========================================================================
+
+$default: (
+    asimov: (
+        breakpoints: (
+            primary: (1em 10em),
+            secondary: 11em,
+        ),
+    ),
+) !global;
+
+breakpoints-get {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    get-primary: assert(get("asimov/breakpoints/primary") == (1em 10em));
+    get-breakpoint-primary: assert(get-breakpoint("primary") == (1em 10em));
+    get-secondary: assert(get("asimov/breakpoints/secondary") == 11em);
+    get-breakpoint-secondary: assert(get-breakpoint("secondary") == 11em);
+}
+
+breakpoints-set {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    get-tertiary: assert(get("asimov/breakpoints/tertiary") == null);
+    get-breakpoint-tertiary: assert(get-breakpoint("tertiary") == null);
+
+    set-breakpoint-tertiary: assert(set-breakpoint("tertiary", 3%) == 3%);
+
+    get-tertiary-after-set: assert(get("asimov/breakpoints/tertiary") == 3%);
+    get-breakpoint-tertiary-after-set: assert(get-breakpoint("tertiary") == 3%);
+}

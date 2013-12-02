@@ -104,3 +104,18 @@ font-families-set {
   get-tertiary-after-set: true;
   get-font-family-tertiary-after-set: true;
 }
+
+breakpoints-get {
+  get-primary: true;
+  get-breakpoint-primary: true;
+  get-secondary: true;
+  get-breakpoint-secondary: true;
+}
+
+breakpoints-set {
+  get-tertiary: true;
+  get-breakpoint-tertiary: true;
+  set-breakpoint-tertiary: true;
+  get-tertiary-after-set: true;
+  get-breakpoint-tertiary-after-set: true;
+}
