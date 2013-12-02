@@ -287,7 +287,7 @@ $__a__map-cache: () !default;
 @function get-component-map($name, $map, $flatten:false) {
     $name: $name + if($flatten, "--flat", "");
 
-    $ret: lookup($__a__map-cache, $name);
+    $ret: if($__a__cache-enabled, lookup($__a__map-cache, $name), null);
     @if $ret == null {
         $ret: if($flatten, resolve-aliases(flatten-map($map)), get-map($map));
     }
