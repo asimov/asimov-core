@@ -1,3 +1,14 @@
+<a name="v0.0.23"></a>
+### v0.0.23 (2013-12-02)
+
+
+#### Bug Fixes
+
+* **settings:**
+  * fix inconsistent cache invalidation ([0d310a62](https://github.com/asimov/asimov-core/commit/0d310a620a00860c5eb5b31d8b887d79c1c6e50e))
+  * fix get-component-map not respecting cache status ([9e8fdaa3](https://github.com/asimov/asimov-core/commit/9e8fdaa31d04401eb73a82dfdf1ede2f55b24f4f))
+  * default font size and line height set incorrectly ([1594fc49](https://github.com/asimov/asimov-core/commit/1594fc49287877c3b24ddec0dfd88f7255eda7f8))
+
 <a name="v0.0.22"></a>
 ### v0.0.22 (2013-12-02)
 
