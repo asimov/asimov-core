@@ -1,3 +1,11 @@
+<a name="v0.0.27"></a>
+### v0.0.27 (2013-12-02)
+
+
+#### Bug Fixes
+
+* **build:** fix bug with sass load paths ([ece2ecb4](http://github.com/asimov/asimov-core/commit/ece2ecb4e4b896c5bd4ae96458867c8e3dc7c6f8))
+
 <a name="v0.0.26"></a>
 ### v0.0.26 (2013-12-02)
 
