@@ -1,3 +1,11 @@
+<a name="v0.0.26"></a>
+### v0.0.26 (2013-12-02)
+
+
+#### Bug Fixes
+
+* **build:** fix grunt bug with generating docs ([26f06682](http://github.com/asimov/asimov-core/commit/26f0668279644261f0d63f2f5e63c2b180b00393))
+
 <a name="v0.0.25"></a>
 ### v0.0.25 (2013-12-02)
 
