@@ -244,6 +244,58 @@ colors-set {
     get-color-tertiary-after-set: assert(get-color("tertiary") == #00f);
 }
 
+colors-set-multiple {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    $ret: (
+        secondary: (11em 15em),
+        tertiary: 16em,
+    );
+
+    get-secondary: assert(get("asimov/colors/secondary") == #0f0);
+    get-color-secondary: assert(get-color("secondary") == #0f0);
+    get-tertiary: assert(get("asimov/colors/tertiary") == null);
+    get-color-tertiary: assert(get-color("tertiary") == null);
+
+    set-color-tertiary: assert(set-colors((
+        secondary: (11em 15em),
+        tertiary: 16em,
+    )) == $ret);
+
+    get-secondary-after-set: assert(get("asimov/colors/secondary") == (11em 15em));
+    get-color-secondary-after-set: assert(get-color("secondary") == (11em 15em));
+    get-tertiary-after-set: assert(get("asimov/colors/tertiary") == 16em);
+    get-color-tertiary-after-set: assert(get-color("tertiary") == 16em);
+}
+
+colors-set-default-multiple {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    $ret: (
+        secondary: #0f0,
+        tertiary: 16em,
+        primary: red,
+    );
+
+    get-secondary: assert(get("asimov/colors/secondary") == #0f0);
+    get-color-secondary: assert(get-color("secondary") == #0f0);
+    get-tertiary: assert(get("asimov/colors/tertiary") == null);
+    get-color-tertiary: assert(get-color("tertiary") == null);
+
+    set-color-tertiary: assert(set-colors((
+        secondary: (11em 15em),
+        tertiary: 16em,
+    ), $default:true) == $ret);
+
+
+    get-secondary-after-set: assert(get("asimov/colors/secondary") == #0f0);
+    get-color-secondary-after-set: assert(get-color("secondary") == #0f0);
+    get-tertiary-after-set: assert(get("asimov/colors/tertiary") == 16em);
+    get-color-tertiary-after-set: assert(get-color("tertiary") == 16em);
+}
+
 
 // ==========================================================================
 // Spacing API
@@ -279,6 +331,58 @@ spacings-set {
 
     get-tertiary-after-set: assert(get("asimov/spacings/tertiary") == 3%);
     get-spacing-tertiary-after-set: assert(get-spacing("tertiary") == 3%);
+}
+
+spacings-set-multiple {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    $ret: (
+        secondary: (11em 15em),
+        tertiary: 16em,
+    );
+
+    get-secondary: assert(get("asimov/spacings/secondary") == 2em);
+    get-spacing-secondary: assert(get-spacing("secondary") == 2em);
+    get-tertiary: assert(get("asimov/spacings/tertiary") == null);
+    get-spacing-tertiary: assert(get-spacing("tertiary") == null);
+
+    set-spacing-tertiary: assert(set-spacings((
+        secondary: (11em 15em),
+        tertiary: 16em,
+    )) == $ret);
+
+    get-secondary-after-set: assert(get("asimov/spacings/secondary") == (11em 15em));
+    get-spacing-secondary-after-set: assert(get-spacing("secondary") == (11em 15em));
+    get-tertiary-after-set: assert(get("asimov/spacings/tertiary") == 16em);
+    get-spacing-tertiary-after-set: assert(get-spacing("tertiary") == 16em);
+}
+
+spacings-set-default-multiple {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    $ret: (
+        secondary: 2em,
+        tertiary: 16em,
+        primary: 10px,
+    );
+
+    get-secondary: assert(get("asimov/spacings/secondary") == 2em);
+    get-spacing-secondary: assert(get-spacing("secondary") == 2em);
+    get-tertiary: assert(get("asimov/spacings/tertiary") == null);
+    get-spacing-tertiary: assert(get-spacing("tertiary") == null);
+
+    set-spacing-tertiary: assert(set-spacings((
+        secondary: (11em 15em),
+        tertiary: 16em,
+    ), $default:true) == $ret);
+
+
+    get-secondary-after-set: assert(get("asimov/spacings/secondary") == 2em);
+    get-spacing-secondary-after-set: assert(get-spacing("secondary") == 2em);
+    get-tertiary-after-set: assert(get("asimov/spacings/tertiary") == 16em);
+    get-spacing-tertiary-after-set: assert(get-spacing("tertiary") == 16em);
 }
 
 
@@ -322,6 +426,58 @@ font-sizes-set {
     get-font-size-tertiary-after-set: assert(get-font-size("tertiary") == 3%);
 }
 
+font-sizes-set-multiple {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    $ret: (
+        secondary: (11em 15em),
+        tertiary: 16em,
+    );
+
+    get-secondary: assert(get("asimov/font-sizes/secondary") == 2em);
+    get-font-size-secondary: assert(get-font-size("secondary") == 2em);
+    get-tertiary: assert(get("asimov/font-sizes/tertiary") == null);
+    get-font-size-tertiary: assert(get-font-size("tertiary") == null);
+
+    set-font-size-tertiary: assert(set-font-sizes((
+        secondary: (11em 15em),
+        tertiary: 16em,
+    )) == $ret);
+
+    get-secondary-after-set: assert(get("asimov/font-sizes/secondary") == (11em 15em));
+    get-font-size-secondary-after-set: assert(get-font-size("secondary") == (11em 15em));
+    get-tertiary-after-set: assert(get("asimov/font-sizes/tertiary") == 16em);
+    get-font-size-tertiary-after-set: assert(get-font-size("tertiary") == 16em);
+}
+
+font-sizes-set-default-multiple {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    $ret: (
+        secondary: 2em,
+        tertiary: 16em,
+        primary: 10px,
+    );
+
+    get-secondary: assert(get("asimov/font-sizes/secondary") == 2em);
+    get-font-size-secondary: assert(get-font-size("secondary") == 2em);
+    get-tertiary: assert(get("asimov/font-sizes/tertiary") == null);
+    get-font-size-tertiary: assert(get-font-size("tertiary") == null);
+
+    set-font-size-tertiary: assert(set-font-sizes((
+        secondary: (11em 15em),
+        tertiary: 16em,
+    ), $default:true) == $ret);
+
+
+    get-secondary-after-set: assert(get("asimov/font-sizes/secondary") == 2em);
+    get-font-size-secondary-after-set: assert(get-font-size("secondary") == 2em);
+    get-tertiary-after-set: assert(get("asimov/font-sizes/tertiary") == 16em);
+    get-font-size-tertiary-after-set: assert(get-font-size("tertiary") == 16em);
+}
+
 font-families-get {
     $settings: () !global;
     $settings: set($default) !global;
@@ -343,6 +499,58 @@ font-families-set {
 
     get-tertiary-after-set: assert(get("asimov/font-families/tertiary") == (Arial, Helvetica, sans-serif));
     get-font-family-tertiary-after-set: assert(get-font-family("tertiary") == (Arial, Helvetica, sans-serif));
+}
+
+font-families-set-multiple {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    $ret: (
+        secondary: (11em 15em),
+        tertiary: 16em,
+    );
+
+    get-secondary: assert(get("asimov/font-families/secondary") == "Arial Black");
+    get-font-family-secondary: assert(get-font-family("secondary") == "Arial Black");
+    get-tertiary: assert(get("asimov/font-families/tertiary") == null);
+    get-font-family-tertiary: assert(get-font-family("tertiary") == null);
+
+    set-font-family-tertiary: assert(set-font-families((
+        secondary: (11em 15em),
+        tertiary: 16em,
+    )) == $ret);
+
+    get-secondary-after-set: assert(get("asimov/font-families/secondary") == (11em 15em));
+    get-font-family-secondary-after-set: assert(get-font-family("secondary") == (11em 15em));
+    get-tertiary-after-set: assert(get("asimov/font-families/tertiary") == 16em);
+    get-font-family-tertiary-after-set: assert(get-font-family("tertiary") == 16em);
+}
+
+font-families-set-default-multiple {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    $ret: (
+        secondary: "Arial Black",
+        tertiary: 16em,
+        primary: ("Times New Roman", Times, serif),
+    );
+
+    get-secondary: assert(get("asimov/font-families/secondary") == "Arial Black");
+    get-font-family-secondary: assert(get-font-family("secondary") == "Arial Black");
+    get-tertiary: assert(get("asimov/font-families/tertiary") == null);
+    get-font-family-tertiary: assert(get-font-family("tertiary") == null);
+
+    set-font-family-tertiary: assert(set-font-families((
+        secondary: (11em 15em),
+        tertiary: 16em,
+    ), $default:true) == $ret);
+
+
+    get-secondary-after-set: assert(get("asimov/font-families/secondary") == "Arial Black");
+    get-font-family-secondary-after-set: assert(get-font-family("secondary") == "Arial Black");
+    get-tertiary-after-set: assert(get("asimov/font-families/tertiary") == 16em);
+    get-font-family-tertiary-after-set: assert(get-font-family("tertiary") == 16em);
 }
 
 // ==========================================================================
@@ -379,4 +587,56 @@ breakpoints-set {
 
     get-tertiary-after-set: assert(get("asimov/breakpoints/tertiary") == 3%);
     get-breakpoint-tertiary-after-set: assert(get-breakpoint("tertiary") == 3%);
+}
+
+breakpoints-set-multiple {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    $ret: (
+        secondary: (11em 15em),
+        tertiary: 16em,
+    );
+
+    get-secondary: assert(get("asimov/breakpoints/secondary") == 11em);
+    get-breakpoint-secondary: assert(get-breakpoint("secondary") == 11em);
+    get-tertiary: assert(get("asimov/breakpoints/tertiary") == null);
+    get-breakpoint-tertiary: assert(get-breakpoint("tertiary") == null);
+
+    set-breakpoint-tertiary: assert(set-breakpoints((
+        secondary: (11em 15em),
+        tertiary: 16em,
+    )) == $ret);
+
+    get-secondary-after-set: assert(get("asimov/breakpoints/secondary") == (11em 15em));
+    get-breakpoint-secondary-after-set: assert(get-breakpoint("secondary") == (11em 15em));
+    get-tertiary-after-set: assert(get("asimov/breakpoints/tertiary") == 16em);
+    get-breakpoint-tertiary-after-set: assert(get-breakpoint("tertiary") == 16em);
+}
+
+breakpoints-set-default-multiple {
+    $settings: () !global;
+    $settings: set($default) !global;
+
+    $ret: (
+        secondary: 11em,
+        tertiary: 16em,
+        primary: (1em 10em),
+    );
+
+    get-secondary: assert(get("asimov/breakpoints/secondary") == 11em);
+    get-breakpoint-secondary: assert(get-breakpoint("secondary") == 11em);
+    get-tertiary: assert(get("asimov/breakpoints/tertiary") == null);
+    get-breakpoint-tertiary: assert(get-breakpoint("tertiary") == null);
+
+    set-breakpoint-tertiary: assert(set-breakpoints((
+        secondary: (11em 15em),
+        tertiary: 16em,
+    ), $default:true) == $ret);
+
+
+    get-secondary-after-set: assert(get("asimov/breakpoints/secondary") == 11em);
+    get-breakpoint-secondary-after-set: assert(get-breakpoint("secondary") == 11em);
+    get-tertiary-after-set: assert(get("asimov/breakpoints/tertiary") == 16em);
+    get-breakpoint-tertiary-after-set: assert(get-breakpoint("tertiary") == 16em);
 }
