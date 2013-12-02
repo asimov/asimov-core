@@ -9,7 +9,7 @@ module.exports = function (grunt) {
             grunt.task.run('sass:docs');
             grunt.task.run('symlink:core');
 
-            if (grunt.config('pkg').name !== 'asimov-core') {
+            if (grunt.config('bower').name !== 'asimov-core') {
                 grunt.task.run('symlink:docs');
             }
 
