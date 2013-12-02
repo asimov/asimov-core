@@ -1,3 +1,11 @@
+<a name="v0.0.24"></a>
+### v0.0.24 (2013-12-02)
+
+
+#### Features
+
+* **sass:** add some common normalization styles ([d35501ed](http://github.com/asimov/asimov-core/commit/d35501ed5fc7b6df1379f20e797ea16539cb66cf))
+
 <a name="v0.0.23"></a>
 ### v0.0.23 (2013-12-02)
 
