@@ -69,7 +69,7 @@ module.exports = function (grunt) {
 
 
     grunt.initConfig({
-        pkg: grunt.file.readJSON('bower.json'),
+        bower: grunt.file.readJSON('bower.json'),
         jshintrc: grunt.file.exists('.jshintrc') ?
             grunt.file.readJSON('.jshintrc') :
             grunt.file.readJSON(asimoveCorePath + '/.jshintrc'),
@@ -184,7 +184,7 @@ module.exports = function (grunt) {
         }, (meta.name === 'asimov-core' ? {} : {
             docs: {
                 src: 'dist',
-                dest: 'docs/assets/<%= pkg.name %>'
+                dest: 'docs/assets/<%= bower.name %>'
             }
         })),
 
@@ -315,7 +315,7 @@ module.exports = function (grunt) {
         bump: {
             options: {
                 files: ['bower.json'],
-                updateConfigs: ['pkg'],
+                updateConfigs: ['bower'],
                 commit: true,
                 commitMessage: 'chore(release): release v%VERSION%',
                 commitFiles: ['bower.json', '<%= changelog.options.dest %>'],
@@ -333,6 +333,7 @@ module.exports = function (grunt) {
             options: {
                 dest: 'CHANGELOG.md',
                 prepend: true,
+                version: '<%= bower.version %>',
                 editor: 'subl -w'
             }
         },
