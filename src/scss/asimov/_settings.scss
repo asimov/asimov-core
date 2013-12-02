@@ -9,7 +9,7 @@ $settings: () !default;
 // The duplication is required until set-xx can handle !default
 
 @if
-    set-default("font-sizes/root", 16px) == null or
+    set-font-size("root", 16px) == null or
     set-default("line-height/root", 1.4) == null or
     set-breakpoints((
         "small": (0em 40em),
