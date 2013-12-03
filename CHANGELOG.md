@@ -1,3 +1,11 @@
+<a name="v0.0.28"></a>
+### v0.0.28 (2013-12-03)
+
+
+#### Bug Fixes
+
+* **changelog:** cannot generate changelog for first tag ([c9239111](http://github.com/asimov/asimov-core/commit/c92391113212d5e83216861d65676a2dd82ec94c))
+
 <a name="v0.0.27"></a>
 ### v0.0.27 (2013-12-02)
 
