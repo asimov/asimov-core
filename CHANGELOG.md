@@ -1,3 +1,14 @@
+<a name="v0.0.29"></a>
+### v0.0.29 (2013-12-03)
+
+
+#### Bug Fixes
+
+* **breakpoints:** passing a list or number into get-breakpoint should return early ([7ae143ca](http://github.com/asimov/asimov-core/commit/7ae143caec0d1135fa984b6ebab1e06f7da94fbd))
+* **changelog:** use the correct changelog dep ([2bb2c6f9](http://github.com/asimov/asimov-core/commit/2bb2c6f99662559943be9fc64a1d050d8db41c68))
+* **font-family:** fix documentation ([591c9200](http://github.com/asimov/asimov-core/commit/591c9200233565884c0dbee42965281ae85cab54))
+* **font-size:** fix documentation ([16962984](http://github.com/asimov/asimov-core/commit/169629842693334eaddeb938bdd3634dbaa17f12))
+
 <a name="v0.0.28"></a>
 ### v0.0.28 (2013-12-03)
 
