@@ -22,11 +22,16 @@
 
 
 // Get the breakpoint value associated with $name.
+// If $name is a list or number then it is returned.
 // -----------------------------------------------------------------------------
 // @param $key [String] : $name
 // -----------------------------------------------------------------------------
 // @return [Number|List|Null]
 @function get-breakpoint($name) {
+    @if type-of($name) == list or type-of($name) == number {
+        @return $name;
+    }
+
     @return lookup(get-breakpoints(), $name);
 }
 
