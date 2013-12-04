@@ -1,3 +1,11 @@
+<a name="v0.0.30"></a>
+### v0.0.30 (2013-12-05)
+
+
+#### Features
+
+* **settings:** get should traverse settings not flatten them ([64f04903](http://github.com/asimov/asimov-core/commit/64f04903f2c1aa87c4ab55a99fc3dc9420738c80))
+
 <a name="v0.0.29"></a>
 ### v0.0.29 (2013-12-03)
 
