@@ -19,7 +19,8 @@ basic--flat {
 }
 
 settings-get {
-  set-new: true;
+  get-scalar: true;
+  get-map: true;
 }
 
 settings-set {

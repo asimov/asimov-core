@@ -93,7 +93,11 @@ settings-get {
     $settings: () !global;
     $settings: set($default) !global;
 
-    set-new: assert(get("foo/bar/baz") == "boo");
+    get-scalar: assert(get("foo/bar/baz") == "boo");
+    get-map: assert(get("foo/bar") == (
+        bat: "boom",
+        baz: "boo",
+    ));
 }
 
 settings-set {
