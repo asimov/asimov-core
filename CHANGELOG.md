@@ -1,3 +1,12 @@
+<a name="v0.0.31"></a>
+### v0.0.31 (2013-12-06)
+
+
+#### Features
+
+* **cache:** remove internal cache madness for now ([d3d77c47](http://github.com/asimov/asimov-core/commit/d3d77c47f2e704780714923ec30a81203181a115))
+* **core:** deprecate get-component-map ([77e479de](http://github.com/asimov/asimov-core/commit/77e479def668a3ead6d86e9dd898820867b5080e))
+
 <a name="v0.0.30"></a>
 ### v0.0.30 (2013-12-05)
 
