@@ -32,7 +32,7 @@
         @return $name;
     }
 
-    @return lookup(get-font-families(), $name);
+    @return get($name, get-font-families());
 }
 
 
@@ -68,8 +68,7 @@
 // -----------------------------------------------------------------------------
 // @return [Map]
 @function get-font-families() {
-    $map: map-get($settings, "asimov");
-    @return get-component-map("asimov/font-families", lookup($map, "font-families"));
+    @return get("asimov/font-families");
 }
 
 
@@ -117,7 +116,7 @@
         @return $name;
     }
 
-    @return lookup(get-font-sizes(), $name);
+    @return get($name, get-font-sizes());
 }
 
 
@@ -153,7 +152,6 @@
 // -----------------------------------------------------------------------------
 // @return [Map]
 @function get-font-sizes() {
-    $map: map-get($settings, "asimov");
-    @return get-component-map("asimov/font-sizes", lookup($map, "font-sizes"));
+    @return get("asimov/font-sizes");
 }
 

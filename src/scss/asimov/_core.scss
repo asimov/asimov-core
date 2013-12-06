@@ -289,31 +289,6 @@ $__a__map-cache: () !default;
 }
 
 
-// Main proxy for accessing settings maps. Returned maps can either be just
-// root level keys, or the entire map flattened with / used to flatten keys.
-// Fetches are cached using $name and $flatten as seeds for the cache key.
-// -----------------------------------------------------------------------------
-// @param $name [String] : used a cache key
-// @param $map [Map] : the map you want to retrieve
-// @param $flatten [Bool] : whethen to flatten the map or just return root keys
-// -----------------------------------------------------------------------------
-// @return [Literal]
-@function get-component-map($name, $map, $flatten:false) {
-    $name: $name + if($flatten, "--flat", "");
-
-    $ret: if($__a__cache-enabled, lookup($__a__map-cache, $name), null);
-    @if $ret == null {
-        $ret: if($flatten, resolve-aliases(flatten-map($map)), get-map($map));
-    }
-
-    @if $__a__cache-enabled {
-        $__a__map-cache: map-merge($__a__map-cache, ($name: $ret));
-    }
-
-    @return $ret;
-}
-
-
 // Joins all elements of single dimensional $list with $glue
 // -------------------------------------------------------------------------------
 // @param $list [List] : list

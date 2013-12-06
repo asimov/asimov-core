@@ -32,7 +32,7 @@
         @return $name;
     }
 
-    @return lookup(get-colors(), $name);
+    @return get($name, get-colors());
 }
 
 
@@ -68,6 +68,5 @@
 // -----------------------------------------------------------------------------
 // @return [Map]
 @function get-colors() {
-    $map: map-get($settings, "asimov");
-    @return get-component-map("asimov/colors", lookup($map, "colors"));
+    @return get("asimov/colors");
 }

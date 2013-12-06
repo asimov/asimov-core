@@ -32,7 +32,7 @@
         @return $name;
     }
 
-    @return lookup(get-spacings(), $name);
+    @return get($name, get-spacings());
 }
 
 
@@ -68,6 +68,5 @@
 // -----------------------------------------------------------------------------
 // @return [Map]
 @function get-spacings() {
-    $map: map-get($settings, "asimov");
-    @return get-component-map("asimov/spacings", lookup($map, "spacings"));
+    @return get("asimov/spacings");
 }

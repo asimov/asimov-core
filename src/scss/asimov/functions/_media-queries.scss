@@ -32,7 +32,7 @@
         @return $name;
     }
 
-    @return lookup(get-breakpoints(), $name);
+    @return get($name, get-breakpoints());
 }
 
 
@@ -68,6 +68,5 @@
 // -----------------------------------------------------------------------------
 // @return [Map]
 @function get-breakpoints() {
-    $map: map-get($settings, "asimov");
-    @return get-component-map("asimov/breakpoints", lookup($map, "breakpoints"));
+    @return get("asimov/breakpoints");
 }

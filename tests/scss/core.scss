@@ -9,74 +9,6 @@ $settings: ();
 
 
 // ==========================================================================
-// Internal API
-// ==========================================================================
-
-$default: (
-    "base": "red",
-    "foo": "bar",
-    "bar": "baz",
-
-    "one": (
-        "base": "eno",
-        "bar": "baz",
-        "bar-bell": "bazzab",
-
-        "baz": (
-            "base": "blue",
-            "boo": "bam",
-            "boo-who": "bammab",
-        ),
-    ),
-
-    "one-time": (
-        "base": "eno",
-        "bar": "baz",
-        "bar-bell": "bazzab",
-
-        "baz": (
-            "base": "blue",
-            "boo": "bam",
-            "boo-who": "bammab",
-        ),
-    ),
-) !global;
-
-
-basic {
-    $settings: () !global;
-    $settings: set($default) !global;
-
-    $data: get-component-map("map", $settings, false);
-
-    fetch-base: assert(lookup($data, base) == null);
-    fetch-foo: assert(lookup($data, foo) == "bar");
-    fetch-bar: assert(lookup($data, bar) == "baz");
-}
-
-basic--flat {
-    $settings: () !global;
-    $settings: set($default) !global;
-
-    $data: get-component-map("map", $settings, true);
-
-    fetch-base: assert(lookup($data, "base") == "red");
-    fetch-foo: assert(lookup($data, "foo") == "bar");
-    fetch-bar: assert(lookup($data, "bar") == "baz");
-    fetch-one: assert(lookup($data, "one") == "eno");
-
-    fetch-one\/base: assert(lookup($data, "one/base") == "eno");
-    fetch-one\/bar: assert(lookup($data, "one/bar") == "baz");
-    fetch-one\/bar-bell: assert(lookup($data, "one/bar-bell") == "bazzab");
-
-    fetch-one\/baz: assert(lookup($data, "one/baz") == "blue");
-    fetch-one\/baz\/base: assert(lookup($data, "one/baz/base") == "blue");
-    fetch-one\/baz\/boo: assert(lookup($data, "one/baz/boo") == "bam");
-    fetch-one\/baz\/boo-who: assert(lookup($data, "one/baz/boo-who") == "bammab");
-}
-
-
-// ==========================================================================
 // Settings API
 // ==========================================================================
 
@@ -255,6 +187,9 @@ colors-set-multiple {
     $ret: (
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     );
 
     get-secondary: assert(get("asimov/colors/secondary") == #0f0);
@@ -265,6 +200,9 @@ colors-set-multiple {
     set-color-tertiary: assert(set-colors((
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     )) == $ret);
 
     get-secondary-after-set: assert(get("asimov/colors/secondary") == (11em 15em));
@@ -281,6 +219,9 @@ colors-set-default-multiple {
         secondary: #0f0,
         tertiary: 16em,
         primary: red,
+        foo: (
+            bar: baz,
+        ),
     );
 
     get-secondary: assert(get("asimov/colors/secondary") == #0f0);
@@ -291,6 +232,9 @@ colors-set-default-multiple {
     set-color-tertiary: assert(set-colors((
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     ), $default:true) == $ret);
 
 
@@ -344,6 +288,9 @@ spacings-set-multiple {
     $ret: (
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     );
 
     get-secondary: assert(get("asimov/spacings/secondary") == 2em);
@@ -354,6 +301,9 @@ spacings-set-multiple {
     set-spacing-tertiary: assert(set-spacings((
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     )) == $ret);
 
     get-secondary-after-set: assert(get("asimov/spacings/secondary") == (11em 15em));
@@ -370,6 +320,9 @@ spacings-set-default-multiple {
         secondary: 2em,
         tertiary: 16em,
         primary: 10px,
+        foo: (
+            bar: baz,
+        ),
     );
 
     get-secondary: assert(get("asimov/spacings/secondary") == 2em);
@@ -380,6 +333,9 @@ spacings-set-default-multiple {
     set-spacing-tertiary: assert(set-spacings((
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     ), $default:true) == $ret);
 
 
@@ -437,6 +393,9 @@ font-sizes-set-multiple {
     $ret: (
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     );
 
     get-secondary: assert(get("asimov/font-sizes/secondary") == 2em);
@@ -447,6 +406,9 @@ font-sizes-set-multiple {
     set-font-size-tertiary: assert(set-font-sizes((
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     )) == $ret);
 
     get-secondary-after-set: assert(get("asimov/font-sizes/secondary") == (11em 15em));
@@ -463,6 +425,9 @@ font-sizes-set-default-multiple {
         secondary: 2em,
         tertiary: 16em,
         primary: 10px,
+        foo: (
+            bar: baz,
+        ),
     );
 
     get-secondary: assert(get("asimov/font-sizes/secondary") == 2em);
@@ -473,6 +438,9 @@ font-sizes-set-default-multiple {
     set-font-size-tertiary: assert(set-font-sizes((
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     ), $default:true) == $ret);
 
 
@@ -512,6 +480,9 @@ font-families-set-multiple {
     $ret: (
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     );
 
     get-secondary: assert(get("asimov/font-families/secondary") == "Arial Black");
@@ -522,6 +493,9 @@ font-families-set-multiple {
     set-font-family-tertiary: assert(set-font-families((
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     )) == $ret);
 
     get-secondary-after-set: assert(get("asimov/font-families/secondary") == (11em 15em));
@@ -538,6 +512,9 @@ font-families-set-default-multiple {
         secondary: "Arial Black",
         tertiary: 16em,
         primary: ("Times New Roman", Times, serif),
+        foo: (
+            bar: baz,
+        ),
     );
 
     get-secondary: assert(get("asimov/font-families/secondary") == "Arial Black");
@@ -548,6 +525,9 @@ font-families-set-default-multiple {
     set-font-family-tertiary: assert(set-font-families((
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     ), $default:true) == $ret);
 
 
@@ -600,6 +580,9 @@ breakpoints-set-multiple {
     $ret: (
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     );
 
     get-secondary: assert(get("asimov/breakpoints/secondary") == 11em);
@@ -610,6 +593,9 @@ breakpoints-set-multiple {
     set-breakpoint-tertiary: assert(set-breakpoints((
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     )) == $ret);
 
     get-secondary-after-set: assert(get("asimov/breakpoints/secondary") == (11em 15em));
@@ -626,6 +612,9 @@ breakpoints-set-default-multiple {
         secondary: 11em,
         tertiary: 16em,
         primary: (1em 10em),
+        foo: (
+            bar: baz,
+        ),
     );
 
     get-secondary: assert(get("asimov/breakpoints/secondary") == 11em);
@@ -636,6 +625,9 @@ breakpoints-set-default-multiple {
     set-breakpoint-tertiary: assert(set-breakpoints((
         secondary: (11em 15em),
         tertiary: 16em,
+        foo: (
+            bar: baz,
+        ),
     ), $default:true) == $ret);
 
 
