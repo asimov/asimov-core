@@ -6,9 +6,6 @@
 // This is currently blocked performance issues with sass' @import
 // https://github.com/nex3/sass/issues/1019#issuecomment-29128022
 
-$__a__cache-enabled: true !default;
-$__a__map-cache: () !default;
-
 // ==========================================================================
 // Settings API
 // ==========================================================================
@@ -46,18 +43,7 @@ $__a__map-cache: () !default;
 // @param $value [Literal] : value to set $key to it was a string
 // -----------------------------------------------------------------------------
 // @return [Literal]
-@function set-default($key, $value:null, $cache-key:null) {
-    // Clear the settings caches!
-    @if(
-        cache-clean("settings") and
-        cache-clean("settings--flat") and
-        cache-clean($cache-key) and
-        cache-disable()
-    ) {
-        @warn("Something went wrong!");
-        @return null;
-    }
-
+@function set-default($key, $value:null) {
     @if type-of($key) == map {
         // Reverse the merge order so we don't over write anything
         $settings: _set($settings, null, $key) !global;
@@ -69,12 +55,7 @@ $__a__map-cache: () !default;
         // $key exists in $settings, do nothing!
     }
 
-    @if(cache-enable()) {
-        @return $value;
-    }
-
-    @warn("Something went wrong!");
-    @return null;
+    @return $value;
 }
 
 
@@ -86,23 +67,14 @@ $__a__map-cache: () !default;
 // @param $value [Literal] : value to set $key to it was a string
 // -----------------------------------------------------------------------------
 // @return [Literal|Null]
-@function set($key, $value:null, $cache-key:null) {
-    // Clear the settings caches!
-    @if cache-clean("settings") and
-        cache-clean("settings--flat") and
-        cache-clean($cache-key)
-    {
-        $settings: _set($key, $value, $settings) !global;
+@function set($key, $value:null) {
+    $settings: _set($key, $value, $settings) !global;
 
-        @if type-of($key) == map {
-            @return $settings;
-        }
-
-        @return get($key);
+    @if type-of($key) == map {
+        @return $settings;
     }
 
-    @warn("Something went wrong!");
-    @return null;
+    @return get($key);
 }
 
 
@@ -140,53 +112,6 @@ $__a__map-cache: () !default;
     }
 
     @return map-merge($_root, ($key: $value));
-}
-
-
-// ==========================================================================
-// Internal caching API
-// ==========================================================================
-
-// Clears the internal cache. If $key is supplied only that key is cleared
-// Returned the new state of the cache
-// -----------------------------------------------------------------------------
-// @param $key [String] : an optional key to clear
-// -----------------------------------------------------------------------------
-// @return [Map]
-@function cache-clean($key:null) {
-    @if $key {
-        $__a__map-cache: map-merge($__a__map-cache, ($key: null)) !global;
-    } @else {
-        $__a__map-cache: () !global;
-    }
-
-    @return $__a__map-cache;
-}
-
-
-// Returns whether the internal cache is enabled or not
-// -----------------------------------------------------------------------------
-// @return [Bool] true if the cache is enabled, otherwise false
-@function cache-status() {
-    @return $__a__cache-enabled;
-}
-
-
-// Disables the internal cache
-// -----------------------------------------------------------------------------
-// @return [Bool] true if the cache is enabled, otherwise false
-@function cache-disable() {
-    $__a__cache-enabled: false !global;
-    @return cache-status();
-}
-
-
-// Disables the internal cache
-// -----------------------------------------------------------------------------
-// @return [Bool] true if the cache is enabled, otherwise false
-@function cache-enable() {
-    $__a__cache-enabled: true !global;
-    @return cache-status();
 }
 
 
