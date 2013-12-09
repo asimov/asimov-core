@@ -26,6 +26,8 @@ build.txt
 # ruby env settings
 *.rbenv-version
 *.ruby-version
+/.bundle
+/bundle_components
 
 # generated files
 /.build

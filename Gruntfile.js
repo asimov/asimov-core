@@ -109,7 +109,8 @@ module.exports = function(grunt) {
                 style: 'expanded',
                 lineNumbers: false,
                 loadPath: sassLoadPaths,
-                cacheLocation: '.build/.sass-cache'
+                cacheLocation: '.build/.sass-cache',
+                bundleExec: true
             },
             test: {
                 files: [{

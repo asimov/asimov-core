@@ -9,15 +9,16 @@ asimov-core and all it's components has the following dependencies:
 - Node.js >= 0.8.0
 - Bower >= 1.2.6
 - Grunt >= 0.4.1
-- Sass >= 3.3.0-rc2 `gem install sass --version '3.3.0.rc.2'`
+- Sass >= 3.3.0.rc2
 
 # Getting started
 
-[Grunt](http://gruntjs.com) and [Bower](http://bower.io) are require by asimov-core and all asimov components.
+asimov-core requires [Grunt](http://gruntjs.com), [Bower](http://bower.io) and [Bundler](http://bundler.io/).
 
-_asimov-core uses Grunt which requires Node.js `>= 0.8.0`_
+_Grunt which requires Node.js `>= 0.8.0`_
+_Bundler & SASS require ruby `>= 1.9.3`_
 
-## Install in Grunt
+## Installing Grunt
 
 Grunt is used by asimov-core to compile asimov's css and js as well fun things like generating the docs and running file system watcher tasks. Install Grunt globally by running the following command
 
@@ -39,6 +40,16 @@ npm install -g bower
 This will put the `bower` command in your system path, allowing it to be run from any directory.
 For more information installing Bower refer the projects [getting stated guide](http://bower.io).
 
+## Installing bundler
+
+Bundler is used by asimov's ruby dependencies to manage versions & dependencies. Install it by running the following command:
+
+```
+gem install bundler
+```
+
+This will put the `bundle` command in yours system path.
+
 ## Installing asimov-core
 
 To install asimov-core you just need to checkout the git repo, and install it's dependencies by running the following commands
@@ -47,6 +58,7 @@ To install asimov-core you just need to checkout the git repo, and install it's 
 git checkout https://github.com/asimov/asimov-core.git
 bower install
 npm install
+bundle install --path bundle_components  # Installs gems into a subdirectory, rather than globally
 ```
 
 # Compiling asimov-core
@@ -59,7 +71,7 @@ Compiling asimov-core, and any of it's components, is done via Grunt. The grunt 
 
 # The API
 
-The asimov-core api is responsible for managing the underlying settings at heart of all Asimov components. Asimov's settings is a complex nested Sass Map _(link to sass map documentation when it's live)_. 
+The asimov-core api is responsible for managing the underlying settings at heart of all Asimov components. Asimov's settings is a complex nested Sass Map _(link to sass map documentation when it's live)_.
 
 **set($key[, $value])**
 
@@ -68,7 +80,7 @@ The asimov-core api is responsible for managing the underlying settings at heart
 `$key`: `String` or `Map`
 `$value`: `Literal`
 
-Returns: 
+Returns:
 - if `$key` is a `String` it's new value is returned.
 - if `$key` is a `Map` the update settings map is returned.
 
@@ -79,15 +91,15 @@ Returns:
 `$key`: `String` or `Map`
 `$value`: `Literal`
 
-Returns: 
+Returns:
 - if `$key` is a `String` it's new value is returned.
 - if `$key` is a `Map` the update settings map is returned.
 
 **get($key)**
 
-> Gets `$key` from the settings. In order to allow easy access to a nest Sass Map as a String we use `/` to denote tree traversal. So to access `(foo: (bar: (baz: 'yay')))` you would use `get("foo/bar/baz")`. 
+> Gets `$key` from the settings. In order to allow easy access to a nest Sass Map as a String we use `/` to denote tree traversal. So to access `(foo: (bar: (baz: 'yay')))` you would use `get("foo/bar/baz")`.
 
-Returns: 
+Returns:
 - if `$keys` location is a leaf then it's `Literal` value is returned.
 - if `$keys` location isn't a leaf, then it's child `Map` is returned
 - otherwise `null` is returned.
