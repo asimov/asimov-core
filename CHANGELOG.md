@@ -1,3 +1,11 @@
+<a name="v0.0.33"></a>
+### v0.0.33 (2013-12-09)
+
+
+#### Bug Fixes
+
+* **jshint:** predefine the asimov global ([fb1f7baa](http://github.com/asimov/asimov-core/commit/fb1f7baa63db5848f76e22a0a692299d7e0348d5))
+
 <a name="v0.0.32"></a>
 ### v0.0.32 (2013-12-09)
 
