@@ -1,5 +1,6 @@
 {
     "predef": [
+        "asimov",
         "require",
         "define",
         "module",
