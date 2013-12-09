@@ -1,3 +1,10 @@
+<a name="v0.0.32"></a>
+### v0.0.32 (2013-12-09)
+
+
+#### Bug Fixes
+* **build:** run sass with bundler ([3b080d8a](http://github.com/asimov/asimov-core/commit/3b080d8a4e988c56d5d962cd46d3c599f3e69372))
+
 <a name="v0.0.31"></a>
 ### v0.0.31 (2013-12-06)
 
