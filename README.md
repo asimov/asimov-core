@@ -9,7 +9,7 @@ asimov-core and all it's components has the following dependencies:
 - Node.js >= 0.8.0
 - Bower >= 1.2.6
 - Grunt >= 0.4.1
-- Sass >= 2.3.0-rc2
+- Sass >= 3.3.0-rc2 `gem install sass --version '3.3.0.rc.2'`
 
 # Getting started
 
