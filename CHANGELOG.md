@@ -1,3 +1,14 @@
+<a name="v0.0.34"></a>
+### v0.0.34 (2013-12-10)
+
+
+#### Features
+
+* **settings:**
+  * resolve aliases on write ([ef9803d8](http://github.com/asimov/asimov-core/commit/ef9803d8df1aa68f588df07709c018bde45b0d21))
+  * back lookup() onto get() for developer happiness ([981419ca](http://github.com/asimov/asimov-core/commit/981419ca3514352c2baab3a2dd2233402c28b5f2))
+* **theme:** ship with a basic default theme ([a7699821](http://github.com/asimov/asimov-core/commit/a7699821cfe4e89379955023507df48a90f807d0))
+
 <a name="v0.0.33"></a>
 ### v0.0.33 (2013-12-09)
 
