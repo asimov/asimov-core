@@ -100,7 +100,7 @@ $settings: () !default;
     @if type-of($key) == map or
         type-of($key) == list // 1
     {
-        @return resolve-aliases(map-merge-recursive($_root, $key), $settings);
+        @return map-merge-recursive($_root, $key);
     }
 
     @if str-index($key, "/") > 0 {
@@ -112,7 +112,7 @@ $settings: () !default;
         $value: _set($child-key, $value, map-get($_root, $key))
     }
 
-    @return resolve-aliases(map-merge($_root, ($key: $value)), $settings);
+    @return map-merge($_root, ($key: $value));
 }
 
 
@@ -185,8 +185,6 @@ $settings: () !default;
         @if type-of($value) == string {
             $value: lookup($ret, $value, lookup($extras, $value, $value));
             $ret: map-merge($ret, ($name: $value));
-        } @else if type-of($value) == map {
-            $ret: map-merge($ret, ($name: resolve-aliases($value, $extras)));
         } @else {
             $ret: map-merge($ret, ($name: $value));
         }
