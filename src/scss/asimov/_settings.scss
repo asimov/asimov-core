@@ -1,23 +1,53 @@
 @import "asimov/asimov";
 
-// Initialize the core settings map
+// Initialize the core settings map with some sane(?) defaults
 
-$settings: () !default;
-
-// Set some sane(?) defaults
-//
-// The duplication is required until set-xx can handle !default
-
-@if
-    set-font-size("root", 16px) == null or
-    set-default("line-height/root", 1.4) == null or
-    set-breakpoints((
-        "small": (0em 40em),
-        "medium": (40.063em 64em),
-        "large": (64.063em 90em),
-        "xlarge": (90.063em 120em),
+$settings: set-default((
+    "colors": (
+        "primary": hsl(15, 88, 59),
+        "primary-darker-1": darken(hsl(15, 88, 59), 5%),
+        "primary-darker-2": darken(hsl(15, 88, 59), 10%),
+        "primary-darker-3": darken(hsl(15, 88, 59), 15%),
+        "primary-lighter-1": lighten(hsl(15, 88, 59), 5%),
+        "primary-lighter-2": lighten(hsl(15, 88, 59), 10%),
+        "primary-lighter-3": lighten(hsl(15, 88, 59), 15%),
+    ),
+    "font-families": (
+        "base": ("Helvetica Neue", Helvetica, Arial, sans-serif),
+        "monospace": (Monaco, Menlo, Consolas, "Courier New", monospace),
+    ),
+    "font-sizes": (
+        "base": 16px,
+        "alpha": 48px,
+        "beta": 40px,
+        "gamma": 28px,
+        "delta": 20px,
+        "epsilon": 16px,
+        "zeta": 14px,
+    ),
+    "font-weights": (
+        "normal": 400,
+        "medium": 500,
+        "bold": 700,
+    ),
+    "line-heights": (
+        "base": 1.4,
+    ),
+    "breakpoints": (
+        "small": 0em 40em,
+        "medium": 40.063em 64em,
+        "large": 64.063em 90em,
+        "xlarge": 90.063em 120em,
         "xxlarge": 120.063em
-    ), true) == null
-{
-    @warn("Something went wrong :(");
-}
+    ),
+    "border-radiuses": (
+        "base": 3px,
+        "round": 6x,
+    ),
+    "spaces": (
+        "small": 10px,
+        "medium": 20px,
+        "large": 30px,
+        "gutter": "giga",
+    ),
+)) !global;
