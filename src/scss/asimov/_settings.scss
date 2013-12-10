@@ -42,12 +42,12 @@ $settings: set-default((
     ),
     "border-radiuses": (
         "base": 3px,
-        "round": 6x,
+        "round": 6px,
     ),
     "spaces": (
         "small": 10px,
         "medium": 20px,
         "large": 30px,
-        "gutter": "giga",
+        "gutter": "spaces/large",
     ),
 )) !global;
