@@ -224,14 +224,27 @@ $settings: () !default;
 }
 
 
-// Takes a string $name and resolves it's alias against $settings
+// Takes $name and resolves it's alias against $settings.
+// If name is a list each item is resolved individually.
+// Returns either the resolved values or $name
 // -----------------------------------------------------------------------------
-// @param $name [String] : $name
+// @param $name [List|String] : $name
 // -----------------------------------------------------------------------------
 // @return [Literal]
 @function resolve-alias($name) {
     $map: flatten-map($settings);
-    @return if(map-has-key($map, $name), map-get($map, $name), null);
+
+    @if type-of($name) == list {
+        $ret:();
+
+        @each $item in $name {
+            $ret: append($ret, resolve-alias($item));
+        }
+
+        @return $ret;
+    }
+
+    @return if(map-has-key($map, $name), map-get($map, $name), $name);
 }
 
 
