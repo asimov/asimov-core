@@ -1,3 +1,17 @@
+<a name="v0.0.35"></a>
+### v0.0.35 (2013-12-10)
+
+
+#### Bug Fixes
+
+* **settings:** revert resolve aliases on write ([4c5f6d1c](http://github.com/asimov/asimov-core/commit/4c5f6d1c0a7e60b0fbff2c79a11dea9da068b0f8))
+
+
+#### Features
+
+* **lazy:** add lazy function evaluation for setting values ([95acc73b](http://github.com/asimov/asimov-core/commit/95acc73b7c1ae562dca3507e16a6bc54c4059c5f))
+* **settings:** resolves aliases on read ([7d9c4a6e](http://github.com/asimov/asimov-core/commit/7d9c4a6e828e8d0e5842d6a42e3bc762fbca85f6))
+
 <a name="v0.0.34"></a>
 ### v0.0.34 (2013-12-10)
 
