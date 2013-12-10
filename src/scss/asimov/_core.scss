@@ -3,9 +3,55 @@
 
 $settings: () !default;
 
+
 // TODO(xzyfer): split this up into small files.
 // This is currently blocked performance issues with sass' @import
 // https://github.com/nex3/sass/issues/1019#issuecomment-29128022
+
+// ==========================================================================
+// Lazy API
+// ==========================================================================
+
+// Serializes function metadata so that it can be evaluated by `get()`.
+// The primary use cause for this is to evaluate aliased values in realtime.
+// -----------------------------------------------------------------------------
+// @param $func [String] : the name of the function to call
+// @param $$args [Map] : a map of named arguments to pass to $func
+// -----------------------------------------------------------------------------
+// @return [Map]
+@function lazy($func, $args:()) {
+    @return (
+        "_type": "function",
+        "_func": $func,
+        "_args": $args,
+    );
+}
+
+
+// Is $map a serialized lazy?
+// -----------------------------------------------------------------------------
+// @param $map [Map] : $map
+// -----------------------------------------------------------------------------
+// @return [Bool]
+@function is-lazy($map) {
+    @return type-of($map) == map
+        and map-has-key($map, "_type")
+        and map-get($map, "_type") == "function";
+}
+
+
+// Execute a lazy function after resolving any aliases in it's arguments
+// -----------------------------------------------------------------------------
+// @param $map [Map] : $map
+// -----------------------------------------------------------------------------
+// @return [Literal]
+@function exec-lazy($map) {
+    $name: map-get($map, "_func");
+    $args: resolve-aliases(map-get($map, "_args"), $settings);
+
+    @return call($name, $args...);
+}
+
 
 // ==========================================================================
 // Settings API
@@ -32,7 +78,13 @@ $settings: () !default;
         @return get($child-key, map-get($_root, $key));
     }
 
-    @return map-get($_root, $key);
+    $value: map-get($_root, $key);
+
+    @if is-lazy($value) {
+        @return exec-lazy($value);
+    } @else {
+        @return resolve-alias($value);
+    };
 }
 
 
@@ -169,6 +221,17 @@ $settings: () !default;
     }
 
     @return $ret;
+}
+
+
+// Takes a string $name and resolves it's alias against $settings
+// -----------------------------------------------------------------------------
+// @param $name [String] : $name
+// -----------------------------------------------------------------------------
+// @return [Literal]
+@function resolve-alias($name) {
+    $map: flatten-map($settings);
+    @return if(map-has-key($map, $name), map-get($map, $name), null);
 }
 
 
