@@ -28,10 +28,10 @@
 
         // Override the original $key and $value we can have one @return
         $key: str-slice($key, 1, str-index($key, "/") - 1);
-        @return get($child-key, lookup($_root, $key));
+        @return get($child-key, map-get($_root, $key));
     }
 
-    @return lookup($_root, $key);
+    @return map-get($_root, $key);
 }
 
 
@@ -206,8 +206,9 @@
         @return $default;
     }
 
-    @if map-has-key($map, $key) {
-        @return map-get($map, $key);
+    $ret: get($key, $map);
+    @if $ret {
+        @return $ret;
     }
 
     @return if($is-key, lookup($map, $default), $default);
