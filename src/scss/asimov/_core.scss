@@ -244,7 +244,12 @@ $settings: () !default;
         @return $ret;
     }
 
-    @return if(map-has-key($map, $name), map-get($map, $name), $name);
+    $value: $name;
+    @while map-has-key($map, $value) {
+        $value: map-get($map, $value);
+    }
+
+    @return $value;
 }
 
 
