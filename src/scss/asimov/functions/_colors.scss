@@ -14,10 +14,10 @@
 // @return [Color]
 @function set-color($name, $value, $default:false) {
     @if $default {
-        @return set-default("asimov/colors/#{$name}", $value);
+        @return set-default("colors/#{$name}", $value);
     }
 
-    @return set("asimov/colors/#{$name}", $value);
+    @return set("colors/#{$name}", $value);
 }
 
 
@@ -54,8 +54,8 @@
 
     // Reset the currently settings because `set` will merge by default
     @else if
-        set("asimov/colors", ()) == null or
-        set("asimov/colors", $map) == null
+        set("colors", ()) == null or
+        set("colors", $map) == null
     {
         @warn("Something went wrong!");
     }
@@ -68,5 +68,5 @@
 // -----------------------------------------------------------------------------
 // @return [Map]
 @function get-colors() {
-    @return get("asimov/colors");
+    @return get("colors");
 }

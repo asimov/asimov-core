@@ -14,10 +14,10 @@
 // @return [Number]
 @function set-spacing($name, $value, $default:false) {
     @if $default {
-        @return set-default("asimov/spacings/#{$name}", $value);
+        @return set-default("spacings/#{$name}", $value);
     }
 
-    @return set("asimov/spacings/#{$name}", $value);
+    @return set("spacings/#{$name}", $value);
 }
 
 
@@ -54,8 +54,8 @@
 
     // Reset the currently settings because `set` will merge by default
     @else if
-        set("asimov/spacings", ()) == null or
-        set("asimov/spacings", $map) == null
+        set("spacings", ()) == null or
+        set("spacings", $map) == null
     {
         @warn("Something went wrong!");
     }
@@ -68,5 +68,5 @@
 // -----------------------------------------------------------------------------
 // @return [Map]
 @function get-spacings() {
-    @return get("asimov/spacings");
+    @return get("spacings");
 }
