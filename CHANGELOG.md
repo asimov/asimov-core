@@ -1,3 +1,16 @@
+<a name="v0.0.36"></a>
+### v0.0.36 (2013-12-10)
+
+
+#### Bug Fixes
+
+* **theme:** fix some bugs in the default theme ([8f93a5a0](http://github.com/asimov/asimov-core/commit/8f93a5a007ffadbae04684608685901d89dfd86e))
+
+
+#### Features
+
+* **setting:** give resolve-alias wings ([10b20e17](http://github.com/asimov/asimov-core/commit/10b20e17c52477f2f712ea0b377ea29f85a5d0a4))
+
 <a name="v0.0.35"></a>
 ### v0.0.35 (2013-12-10)
 
