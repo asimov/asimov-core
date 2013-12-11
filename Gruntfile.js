@@ -24,7 +24,9 @@ module.exports = function(grunt) {
     // they were part of your local component/theme.
     var sassLoadPaths = [
         'src/scss',
-        './bower_components'
+        './bower_components',
+        // Allow @import "docs/assets/scss/docs" in theme/component docs themes
+        './bower_components/asimov-core/src'
     ].concat(bowerDeps.map(function (depPath) {
         return path.join(depPath, 'src', 'scss');
     }));
@@ -125,6 +127,12 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= asimov.src %>/docs/assets/scss',
+                    src: ['*.scss', '!_*.scss'],
+                    dest: 'docs/assets/css',
+                    ext: '.css'
+                }, {
+                    expand: true,
+                    cwd: 'src/docs/assets/scss',
                     src: ['*.scss', '!_*.scss'],
                     dest: 'docs/assets/css',
                     ext: '.css'
