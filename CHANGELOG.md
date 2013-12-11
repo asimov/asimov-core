@@ -1,3 +1,13 @@
+<a name="v0.0.37"></a>
+### v0.0.37 (2013-12-12)
+
+
+#### Features
+
+* **dist:** sync non sass and js files to dist ([31c018a3](http://github.com/asimov/asimov-core/commit/31c018a3157322f1495be38621dd46f3c2c23ff6))
+* **docs:** allow themeing of docs ([6059aa1c](http://github.com/asimov/asimov-core/commit/6059aa1cb1fcf2f18f54bb3d547a12e3993567d1))
+* **theme:** add some extra border-radiuses ([e2828c23](http://github.com/asimov/asimov-core/commit/e2828c234dd393b07d3184fbdf930cd4732ee2ea))
+
 <a name="v0.0.36"></a>
 ### v0.0.36 (2013-12-10)
 
