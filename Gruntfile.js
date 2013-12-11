@@ -224,6 +224,13 @@ module.exports = function(grunt) {
                     src: ['**', '!scss/**'],
                     dest: 'docs/assets'
                 }]
+            },
+            dist: {
+                files: [{
+                    cwd: 'src',
+                    src: ['**', '!scss/**', '!js/**', '!docs/**'],
+                    dest: 'dist'
+                }]
             }
         },
 

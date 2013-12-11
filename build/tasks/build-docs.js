@@ -13,6 +13,7 @@ module.exports = function (grunt) {
                 grunt.task.run('symlink:docs');
             }
 
+            grunt.task.run('sync:dist');
             grunt.task.run('sync:docs');
             grunt.task.run('template:docs');
             grunt.task.run('exec:docs');
