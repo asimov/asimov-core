@@ -1,3 +1,11 @@
+<a name="v0.0.39"></a>
+### v0.0.39 (2013-12-12)
+
+
+#### Features
+
+* **build:** bump grunt-contrib-sass to simplify grunt sass config ([fcfc808f](http://github.com/asimov/asimov-core/commit/fcfc808f0bcc082a7123f8f915de2b7f8f5e0ae5))
+
 <a name="v0.0.38"></a>
 ### v0.0.38 (2013-12-12)
 
