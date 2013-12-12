@@ -1,3 +1,11 @@
+<a name="v0.0.38"></a>
+### v0.0.38 (2013-12-12)
+
+
+#### Features
+
+* **build:** allow components to define requirejs paths ([dbd9f396](http://github.com/asimov/asimov-core/commit/dbd9f396b308466de38940c547f0cbbc468a6865))
+
 <a name="v0.0.37"></a>
 ### v0.0.37 (2013-12-12)
 
