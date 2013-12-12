@@ -11,6 +11,13 @@ $settings: set-default((
         "primary-lighter-1": lighten(hsl(15, 88, 59), 5%),
         "primary-lighter-2": lighten(hsl(15, 88, 59), 10%),
         "primary-lighter-3": lighten(hsl(15, 88, 59), 15%),
+        "secondary": hsl(207, 83, 45),
+        "secondary-darker-1": darken(hsl(207, 83, 45), 5%),
+        "secondary-darker-2": darken(hsl(207, 83, 45), 10%),
+        "secondary-darker-3": darken(hsl(207, 83, 45), 15%),
+        "secondary-lighter-1": lighten(hsl(207, 83, 45), 5%),
+        "secondary-lighter-2": lighten(hsl(207, 83, 45), 10%),
+        "secondary-lighter-3": lighten(hsl(207, 83, 45), 15%),   
     ),
     "font-families": (
         "base": ("Helvetica Neue", Helvetica, Arial, sans-serif),
