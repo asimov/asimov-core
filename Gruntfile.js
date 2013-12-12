@@ -5,12 +5,15 @@ module.exports = function(grunt) {
 
     var matchdep = require('matchdep'),
         path = require('path'),
-        meta = grunt.file.readJSON('./bower.json')
+        meta = grunt.file.readJSON('./bower.json'),
+        pkg = grunt.util._.merge(grunt.file.readJSON('./package.json'),
+            { asimov: { requirejs: {} } })
     ;
 
     var asimoveCorePath = path.resolve(meta.name === 'asimov-core' ?
         '.' :
         './bower_components/asimov-core');
+
 
     // Create an array of asimov deps
     //
@@ -39,29 +42,25 @@ module.exports = function(grunt) {
     var rjsOptions = {};
     if (meta.name === 'asimov-core') {
         rjsOptions = {
-            core: {
-                options: {
-                    baseUrl: 'src/js',
-                    name: 'asimov/core',
-                    out: 'dist/js/asimov/core.js'
-                }
+            options: {
+                baseUrl: 'src/js',
+                name: 'asimov/core',
+                out: 'dist/js/asimov/core.js'
             }
         };
     } else {
         rjsOptions = {
-            modules: {
-                options: {
-                    baseUrl: 'src/js',
-                    dir: 'dist/js',
-                    // wrap: {
-                    //     startFile: '<%= asimov.core %>/build/js/intro.js',
-                    //     endFile: '<%= asimov.core %>/build/js/outro.js'
-                    // },
-                    modules: grunt.file.expand({ cwd: 'src/js' }, '*.js')
-                        .map(function (file) {
-                            return { name: file.replace(/\.js$/, '') };
-                        })
-                }
+            options: {
+                baseUrl: 'src/js',
+                dir: 'dist/js',
+                // wrap: {
+                //     startFile: '<%= asimov.core %>/build/js/intro.js',
+                //     endFile: '<%= asimov.core %>/build/js/outro.js'
+                // },
+                modules: grunt.file.expand({ cwd: 'src/js' }, '*.js')
+                    .map(function (file) {
+                        return { name: file.replace(/\.js$/, '') };
+                    })
             }
         };
     }
@@ -90,19 +89,21 @@ module.exports = function(grunt) {
 
         // RequireJS
 
-        requirejs: grunt.util._.extend({
-            options: {
-                logLevel: 3,
-                optimize: 'none',
-                keepBuildDir: false,
-                skipModuleInsertion: true,
-                removeCombined: true,
-                paths: {
-                    jquery: 'empty:',
-                    asimov: '<%= asimov.src %>/js/asimov'
+        requirejs: {
+            all: grunt.util._.merge({
+                options: {
+                    logLevel: 3,
+                    optimize: 'none',
+                    keepBuildDir: false,
+                    skipModuleInsertion: true,
+                    removeCombined: true,
+                    paths: grunt.util._.merge({
+                        jquery: 'empty:',
+                        asimov: '<%= asimov.src %>/js/asimov'
+                    }, pkg.asimov.requirejs.paths)
                 }
-            }
-        }, rjsOptions),
+            }, rjsOptions)
+        },
 
         // Sass compilation
 
@@ -182,7 +183,7 @@ module.exports = function(grunt) {
 
         // Generate the docs
 
-        symlink: grunt.util._.extend({
+        symlink: grunt.util._.merge({
             core: {
                 src: path.join(asimoveCorePath, 'dist'),
                 dest: 'docs/assets/asimov-core'
