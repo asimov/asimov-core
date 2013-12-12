@@ -119,7 +119,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'tests/scss',
-                    src: ['*.scss', '!_*.scss'],
+                    src: ['*.scss'],
                     dest: '.build/sasstest',
                     ext: '.css'
                 }]
@@ -128,13 +128,13 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= asimov.src %>/docs/assets/scss',
-                    src: ['*.scss', '!_*.scss'],
+                    src: ['*.scss'],
                     dest: 'docs/assets/css',
                     ext: '.css'
                 }, {
                     expand: true,
                     cwd: 'src/docs/assets/scss',
-                    src: ['*.scss', '!_*.scss'],
+                    src: ['*.scss'],
                     dest: 'docs/assets/css',
                     ext: '.css'
                 }]
@@ -143,7 +143,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'src/scss',
-                    src: ['*.scss', '!_*.scss'],
+                    src: ['*.scss'],
                     dest: 'dist/css',
                     ext: '.css'
                 }]
