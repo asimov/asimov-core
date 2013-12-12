@@ -47,7 +47,7 @@
 // @return [Map]
 @function set-colors($map, $default:false) {
     @if $default {
-        @if set-default((asimov: (colors: $map))) == null {
+        @if set-default((colors: $map)) == null {
             @warn("Something went wrong!");
         }
     }

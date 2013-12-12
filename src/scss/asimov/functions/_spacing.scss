@@ -47,7 +47,7 @@
 // @return [Map]
 @function set-spacings($map, $default:false) {
     @if $default {
-        @if set-default((asimov: (spacings: $map))) == null {
+        @if set-default((spacings: $map)) == null {
             @warn("Something went wrong!");
         }
     }

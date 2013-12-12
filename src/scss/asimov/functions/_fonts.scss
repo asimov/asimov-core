@@ -47,7 +47,7 @@
 // @return [Map]
 @function set-font-families($map, $default:false) {
     @if $default {
-        @if set-default((asimov: (font-families: $map))) == null {
+        @if set-default((font-families: $map)) == null {
             @warn("Something went wrong!");
         }
     }
@@ -131,7 +131,7 @@
 // @return [Map]
 @function set-font-sizes($map, $default:false) {
     @if $default {
-        @if set-default((asimov: (font-sizes: $map))) == null {
+        @if set-default((font-sizes: $map)) == null {
             @warn("Something went wrong!");
         }
     }

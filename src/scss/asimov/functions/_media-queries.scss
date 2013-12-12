@@ -47,7 +47,7 @@
 // @return [Map]
 @function set-breakpoints($map, $default:false) {
     @if $default {
-        @if set-default((asimov: (breakpoints: $map))) == null {
+        @if set-default((breakpoints: $map)) == null {
             @warn("Something went wrong!");
         }
     }
