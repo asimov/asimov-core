@@ -1,3 +1,21 @@
+<a name="v0.0.40"></a>
+### v0.0.40 (2013-12-16)
+
+
+#### Bug Fixes
+
+* **dist:** sync required assets from asimov dependencies ([31b23604](http://github.com/asimov/asimov-core/commit/31b23604f5c537ec0595a83ef669533caea84533))
+* **settings:** some functions were incorrectly namespacing settings ([3936f71c](http://github.com/asimov/asimov-core/commit/3936f71c17987c9480fa68285e116570319f057b))
+
+
+#### Features
+
+* **scss:** secondary colors in core settings ([96d62ebc](http://github.com/asimov/asimov-core/commit/96d62ebcc9ea5dc557cf80539e756f1d3012970b))
+* **theme:**
+  * some tweaks to the default theme ([42d5e47f](http://github.com/asimov/asimov-core/commit/42d5e47f70612c2c198e7e69c241b5a030e9faf9))
+  * add the neutral colour palette ([93fd25f1](http://github.com/asimov/asimov-core/commit/93fd25f16bbc6b8b967f3b464b8800384126d582))
+  * some tweaks to the default theme ([a4617b2e](http://github.com/asimov/asimov-core/commit/a4617b2e30fab5396eff72188a0cb50ffb72176f))
+
 <a name="v0.0.39"></a>
 ### v0.0.39 (2013-12-12)
 
