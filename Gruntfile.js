@@ -231,6 +231,17 @@ module.exports = function(grunt) {
                     cwd: 'src',
                     src: ['**', '!scss/**', '!js/**', '!docs/**'],
                     dest: 'dist'
+                }, {
+                    expand: true,
+                    cwd: 'bower_components',
+                    src: ['asimov-*/src/**', '!**/scss/**', '!**/js/**', '!**/docs/**'],
+                    dest: 'dist',
+                    filter: function(src) {
+                        return grunt.file.isFile(src);
+                    },
+                    rename: function(dest, src) {
+                        return dest + path.sep + src.replace(/asimov-[^/]+\/src\//, '');
+                    }
                 }]
             }
         },
