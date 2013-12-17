@@ -283,7 +283,10 @@ module.exports = function(grunt) {
         // 2: allow for debug code when in dev
 
         jsvalidate: {
-            dist: ['src/js/**/*.js'],
+            dist: [
+                'src/js/**/*.js',
+                '!**/vendor/**'                 // 1
+            ],
             docs: [
                 'src/docs/assets/js/**/*.js',
                 '!**/vendor/**'                 // 1
