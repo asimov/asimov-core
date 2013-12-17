@@ -1,3 +1,11 @@
+<a name="v0.0.41"></a>
+### v0.0.41 (2013-12-17)
+
+
+#### Features
+
+* **build:** don't validate 3rdparty js ([7d295365](http://github.com/asimov/asimov-core/commit/7d295365c71005147fbf56ba15891c219e634a75))
+
 <a name="v0.0.40"></a>
 ### v0.0.40 (2013-12-16)
 
