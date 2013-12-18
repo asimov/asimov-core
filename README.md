@@ -6,10 +6,13 @@ asimov-core
 ### Dependencies
 
 asimov-core and all it's components has the following dependencies:
-- Node.js >= 0.8.0
+- Node.js >= 0.8.0, NPM
 - Bower >= 1.2.6
 - Grunt >= 0.4.1
 - Sass >= 3.3.0.rc2
+
+**Preferred but no strictly required**
+- NPM >= 1.3.17
 
 # Getting started
 
