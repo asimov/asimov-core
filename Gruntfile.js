@@ -320,11 +320,11 @@ module.exports = function(grunt) {
                 spawn: false
             },
             sass: {
-                files: ['src/scss/**/*.scss', '!src/docs/assets/scss/**'],
+                files: ['src/@(scss|docs)/**/*.scss'],
                 tasks: ['build-styles:dev', 'build-docs:dev']
             },
             js: {
-                files: ['src/js/**/*.js', '!src/docs/assets/js/**'],
+                files: ['src/@(scss|docs)/**/*.js'],
                 tasks: ['build-scripts:dev', 'build-docs:dev']
             }
         },
