@@ -1,0 +1,18 @@
+
+@mixin responsive-property($key, $property) {
+    $map: get($key);
+
+    @if type-of($map) != map {
+        #{$property}: $map;
+    } @else {
+        @each $bp, $value in $map {
+            @if $bp == "all" {
+                #{$property}: get($value);
+            } @else {
+                @include breakpoint(get-breakpoint($bp)) {
+                    #{$property}: get($value);
+                }
+            }
+        }
+    }
+}
