@@ -1,3 +1,18 @@
+<a name="v0.0.42"></a>
+### v0.0.42 (2013-12-20)
+
+
+#### Bug Fixes
+
+* **build:** watch doc assets in dev ([fcdeee03](http://github.com/asimov/asimov-core/commit/fcdeee03fb82167fd34ebee8aeb32230525f77a5))
+* **settings:** use some saner default media queries ([cff942ec](http://github.com/asimov/asimov-core/commit/cff942ecb30e3f2bd924b246eae8fae7e04bb143))
+
+
+#### Features
+
+* **docs:** add a default docs theme ([485655fe](http://github.com/asimov/asimov-core/commit/485655fe6ab00d0d6981cf0e869276868c10669b))
+* **mixins:** added the responsive property mixin ([545187db](http://github.com/asimov/asimov-core/commit/545187dba492bd0c20cb66982b7f43c23d4e8038))
+
 <a name="v0.0.41"></a>
 ### v0.0.41 (2013-12-17)
 
