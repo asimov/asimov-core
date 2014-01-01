@@ -3,6 +3,9 @@
 module.exports = function(grunt) {
     'use strict';
 
+    // require it at the top and pass in the grunt instance
+    require('time-grunt')(grunt);
+
     var matchdep = require('matchdep'),
         path = require('path'),
         meta = grunt.file.readJSON('./bower.json'),
