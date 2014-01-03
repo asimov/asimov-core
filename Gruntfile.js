@@ -1,5 +1,5 @@
 /* global require, process */
-/* jshint onevar:false, maxlen:100 */
+/* jshint onevar:false, maxlen:100, maxcomplexity:8 */
 module.exports = function(grunt) {
     'use strict';
 
@@ -8,11 +8,19 @@ module.exports = function(grunt) {
 
     var matchdep = require('matchdep'),
         path = require('path'),
+        _ = require('lodash'),
         meta = grunt.file.readJSON('./bower.json'),
-        pkg = grunt.util._.merge(grunt.file.readJSON('./package.json'),
+        pkg = _.merge(grunt.file.readJSON('./package.json'),
             { asimov: { requirejs: {} } }),
         isTheme = meta.name.indexOf('-theme-') !== -1
     ;
+
+    var readPackage = function readPackage(cwd) {
+        return _.merge(
+            grunt.file.readJSON(path.join(cwd, 'package.json')),
+            { asimov: { requirejs: {} } }
+        );
+    };
 
     var asimoveCorePath = path.resolve(meta.name === 'asimov-core' ?
         '.' :
@@ -50,7 +58,7 @@ module.exports = function(grunt) {
             keepBuildDir: true,
             skipModuleInsertion: true,
             removeCombined: true,
-            paths: grunt.util._.merge({
+            paths: _.merge({
                 jquery: 'empty:',
                 asimov: '<%= asimov.src %>/js/asimov'
             }, pkg.asimov.requirejs.paths)
@@ -59,7 +67,7 @@ module.exports = function(grunt) {
 
     // if we're compiling a asimov-core
     if (meta.name === 'asimov-core') {
-        rjsOptions = { all: grunt.util._.merge({
+        rjsOptions = { all: _.merge({
             options: {
                 baseUrl: 'src/js',
                 name: 'asimov/core',
@@ -74,10 +82,16 @@ module.exports = function(grunt) {
                 var parts = file.split('/'),
                     cwd = 'bower_components/' + parts[0] + '/src/js';
 
-                tmpRjsOptions[parts[0]] = grunt.util._.merge({
+                tmpRjsOptions[parts[0]] = _.merge({
                     options: {
                         baseUrl: cwd,
                         dir: 'dist/js',
+                        paths: _.mapValues(
+                            readPackage(cwd + '/../../').asimov.requirejs.paths || {},
+                            function(item) {
+                                return '../../' + item;
+                            }
+                        ),
                         modules: grunt.file.expand({ cwd: cwd }, '*.js')
                             .map(function (file) {
                                 return { name: file.replace(/\.js$/, '') };
@@ -90,10 +104,11 @@ module.exports = function(grunt) {
     }
     // we're compiling a component
     else {
-        rjsOptions = { all: grunt.util._.merge({
+        rjsOptions = { all: _.merge({
             options: {
                 baseUrl: 'src/js',
                 dir: 'dist/js',
+                paths: pkg.asimov.requirejs.paths,
                 modules: grunt.file.expand({ cwd: 'src/js' }, '*.js')
                     .map(function (file) {
                         return { name: file.replace(/\.js$/, '') };
@@ -205,7 +220,7 @@ module.exports = function(grunt) {
 
         // Generate the docs
 
-        symlink: grunt.util._.merge({
+        symlink: _.merge({
             core: {
                 src: path.join(asimoveCorePath, 'dist'),
                 dest: 'docs/assets/asimov-core'
