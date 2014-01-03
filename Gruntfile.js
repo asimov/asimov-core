@@ -10,7 +10,8 @@ module.exports = function(grunt) {
         path = require('path'),
         meta = grunt.file.readJSON('./bower.json'),
         pkg = grunt.util._.merge(grunt.file.readJSON('./package.json'),
-            { asimov: { requirejs: {} } })
+            { asimov: { requirejs: {} } }),
+        isTheme = meta.name.indexOf('-theme-') !== -1
     ;
 
     var asimoveCorePath = path.resolve(meta.name === 'asimov-core' ?
@@ -42,32 +43,64 @@ module.exports = function(grunt) {
     // If we're compiling asimov-core then we only need to compile the one file
     // If we're compiling themes or components we need to walk directories to
     // find what modules we need to build
-    var rjsOptions = {};
+    var rjsOptions = {
+        options: {
+            logLevel: 3,
+            optimize: 'none',
+            keepBuildDir: true,
+            skipModuleInsertion: true,
+            removeCombined: true,
+            paths: grunt.util._.merge({
+                jquery: 'empty:',
+                asimov: '<%= asimov.src %>/js/asimov'
+            }, pkg.asimov.requirejs.paths)
+        }
+    };
+
+    // if we're compiling a asimov-core
     if (meta.name === 'asimov-core') {
-        rjsOptions = {
+        rjsOptions = { all: grunt.util._.merge({
             options: {
                 baseUrl: 'src/js',
                 name: 'asimov/core',
                 out: 'dist/js/asimov/core.js'
             }
-        };
-    } else {
-        rjsOptions = {
+        }, rjsOptions) };
+    // if we're compiling a theme
+    } else if (isTheme) {
+        var tmpRjsOptions = {};
+        grunt.file.expand({ cwd: 'bower_components' }, 'asimov-*/src/js/*.js')
+            .forEach(function(file) {
+                var parts = file.split('/'),
+                    cwd = 'bower_components/' + parts[0] + '/src/js';
+
+                tmpRjsOptions[parts[0]] = grunt.util._.merge({
+                    options: {
+                        baseUrl: cwd,
+                        dir: 'dist/js',
+                        modules: grunt.file.expand({ cwd: cwd }, '*.js')
+                            .map(function (file) {
+                                return { name: file.replace(/\.js$/, '') };
+                            })
+                    }
+                }, rjsOptions);
+            });
+
+        rjsOptions = tmpRjsOptions;
+    }
+    // we're compiling a component
+    else {
+        rjsOptions = { all: grunt.util._.merge({
             options: {
                 baseUrl: 'src/js',
                 dir: 'dist/js',
-                // wrap: {
-                //     startFile: '<%= asimov.core %>/build/js/intro.js',
-                //     endFile: '<%= asimov.core %>/build/js/outro.js'
-                // },
                 modules: grunt.file.expand({ cwd: 'src/js' }, '*.js')
                     .map(function (file) {
                         return { name: file.replace(/\.js$/, '') };
                     })
             }
-        };
+        }, rjsOptions) };
     }
-
 
     grunt.initConfig({
         bower: grunt.file.readJSON('bower.json'),
@@ -92,21 +125,7 @@ module.exports = function(grunt) {
 
         // RequireJS
 
-        requirejs: {
-            all: grunt.util._.merge({
-                options: {
-                    logLevel: 3,
-                    optimize: 'none',
-                    keepBuildDir: false,
-                    skipModuleInsertion: true,
-                    removeCombined: true,
-                    paths: grunt.util._.merge({
-                        jquery: 'empty:',
-                        asimov: '<%= asimov.src %>/js/asimov'
-                    }, pkg.asimov.requirejs.paths)
-                }
-            }, rjsOptions)
-        },
+        requirejs: rjsOptions,
 
         // Sass compilation
 
