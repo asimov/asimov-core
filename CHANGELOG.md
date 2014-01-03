@@ -1,3 +1,11 @@
+<a name="v0.0.44"></a>
+### v0.0.44 (2014-01-03)
+
+
+#### Features
+
+* **build:** correctly compile js in themes ([14c99ca6](http://github.com/asimov/asimov-core/commit/14c99ca6ad6d02bd0ea83ac8c554773da7c7d271))
+
 <a name="v0.0.43"></a>
 ### v0.0.43 (2014-01-02)
 
