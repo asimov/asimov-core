@@ -1,3 +1,11 @@
+<a name="v0.0.47"></a>
+### v0.0.47 (2014-01-07)
+
+
+#### Features
+
+* **build:** load component's npm deps before running prepare ([ac1f2f51](http://github.com/asimov/asimov-core/commit/ac1f2f51e8763aaf759aa39145632ed503d03bdf))
+
 <a name="v0.0.46"></a>
 ### v0.0.46 (2014-01-07)
 
