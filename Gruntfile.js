@@ -131,6 +131,7 @@ module.exports = function(grunt) {
         // Project settings
 
         asimov: {
+            isCore: meta.name === 'asimov-core',
             core: asimoveCorePath,
             src: '<%= asimov.core %>/src'
         },

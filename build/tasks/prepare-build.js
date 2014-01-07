@@ -69,7 +69,7 @@ module.exports = function (grunt) {
 
             if (isTheme) {
                 prepareTheme(this.async());
-            } else {
+            } else if (!grunt.config.get('asimov.isCore')) {
                 prepareComponent(this.async());
             }
         }
