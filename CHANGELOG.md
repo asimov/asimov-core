@@ -1,3 +1,11 @@
+<a name="v0.0.46"></a>
+### v0.0.46 (2014-01-07)
+
+
+#### Features
+
+* **build:** add a prepare task hook ([3d70fc00](http://github.com/asimov/asimov-core/commit/3d70fc003e6686a25973f45983a8fd05ce67ce0c))
+
 <a name="v0.0.45"></a>
 ### v0.0.45 (2014-01-07)
 
