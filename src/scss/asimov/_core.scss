@@ -75,7 +75,7 @@ $settings: () !default;
 
         // Override the original $key and $value we can have one @return
         $key: str-slice($key, 1, str-index($key, "/") - 1);
-        @return get($child-key, map-get($_root, $key));
+        @return get($child-key, map-get($_root, $key) or ());
     }
 
     $value: map-get($_root, $key);
