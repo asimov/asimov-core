@@ -84,6 +84,11 @@ module.exports = function(grunt) {
 
                 tmpRjsOptions[parts[0]] = _.merge({
                     options: {
+                        // this line a work around for a bug in r.js
+                        // https://github.com/jrburke/r.js/issues/587
+                        // https://github.com/gruntjs/grunt-contrib-requirejs/issues/45
+                        _buildPathToModuleIndex: [],
+
                         baseUrl: cwd,
                         dir: 'dist/js',
                         paths: _.mapValues(
