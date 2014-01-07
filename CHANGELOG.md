@@ -1,3 +1,11 @@
+<a name="v0.0.48"></a>
+### v0.0.48 (2014-01-07)
+
+
+#### Features
+
+* **build:** themes need to run each components prepare ([12b353b1](http://github.com/asimov/asimov-core/commit/12b353b103be2fe837e8c5acf6821d1888df5082))
+
 <a name="v0.0.47"></a>
 ### v0.0.47 (2014-01-07)
 
