@@ -1,3 +1,13 @@
+<a name="v0.0.45"></a>
+### v0.0.45 (2014-01-07)
+
+
+#### Bug Fixes
+
+* **build:**
+  * patch for require js bug ([14ff7938](http://github.com/asimov/asimov-core/commit/14ff793868dc67bcf4c533580d0c03b0ebd64140))
+  * fix requirejs paths for component deps ([3aa24e49](http://github.com/asimov/asimov-core/commit/3aa24e4994317aea331c720d4ee1b766570507d3))
+
 <a name="v0.0.44"></a>
 ### v0.0.44 (2014-01-03)
 
