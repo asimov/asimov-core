@@ -1,3 +1,13 @@
+<a name="v0.0.49"></a>
+### v0.0.49 (2014-01-07)
+
+
+#### Bug Fixes
+
+* **build:**
+  * don't run prepare task on core ([ad293a26](http://github.com/asimov/asimov-core/commit/ad293a261af7db0d13db616cbe72fbc3fd50cb40))
+  * run component's prepare in the correct context ([44024709](http://github.com/asimov/asimov-core/commit/44024709ea501f5c96b4d0fed5fd30a1eb6dea75))
+
 <a name="v0.0.48"></a>
 ### v0.0.48 (2014-01-07)
 
