@@ -4,36 +4,58 @@ module.exports = function (grunt) {
 
     var shell = require('shelljs'),
         path = require('path'),
+        async = require('async'),
         meta = grunt.file.readJSON('./bower.json'),
         isTheme = meta.name.indexOf('-theme-') !== -1;
 
-    function prepareTheme() {
-        var dep,
-            taskDir = function(dep) {
-                return path.join('bower_components', dep, 'build/tasks');
-            };
+    function prepareTheme(done) {
+        function taskDir(dep) {
+            return path.join('bower_components', dep, 'build/tasks');
+        }
 
-        for (dep in meta.dependencies) {
-            if (!grunt.file.exists(path.join(taskDir(dep), 'prepare.js'))) {
-                continue;
+        async.each(Object.keys(meta.dependencies), function(item, callback) {
+            if (!grunt.file.exists(path.join(taskDir(item), 'prepare.js'))) {
+                callback();
+                return;
             }
 
-            grunt.task.loadTasks(taskDir(dep));
-            grunt.task.renameTask('prepare', 'prepare-' + dep);
-            grunt.task.run('prepare-' + dep);
-        }
+            prepareComponentDeps(item, function(err) {
+                if (!err) {
+                    grunt.task.loadTasks(taskDir(item));
+                    grunt.task.renameTask('prepare', 'prepare-' + item);
+                    grunt.task.run('prepare-' + item);
+                }
+
+                callback(err);
+            });
+        }, function(err) {
+            if(err) { grunt.log.error(err); }
+            done();
+        });
     }
 
     function prepareComponent(done) {
-        shell.exec('npm install', function(code, output) {
-            if (code !== 0) {
-                grunt.log.error(output);
-                done();
-            }
-
+        prepareComponentDeps(null, function() {
             grunt.loadTasks('build/tasks');
             grunt.task.run('prepare');
             done();
+        });
+    }
+
+    function prepareComponentDeps(dep, cb) {
+        var pwd = shell.pwd();
+
+        if (dep) {
+            shell.cd(path.join('bower_components', dep));
+        }
+
+        shell.exec('npm install', function(code, output) {
+            if (code !== 0) {
+                cb(output);
+            }
+
+            shell.cd(pwd);
+            cb();
         });
     }
 
@@ -46,7 +68,7 @@ module.exports = function (grunt) {
             }
 
             if (isTheme) {
-                prepareTheme();
+                prepareTheme(this.async());
             } else {
                 prepareComponent(this.async());
             }
