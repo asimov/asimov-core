@@ -430,10 +430,15 @@ module.exports = function(grunt) {
 
     grunt.loadTasks(asimoveCorePath + '/build/tasks');
 
+    if (grunt.file.exists('./build/tasks')) {
+        grunt.loadTasks('build/tasks');
+    }
+
     // Public tasks
 
     grunt.registerTask('dev', [
         'clean',
+        'prepare',
         'build-scripts:dev',
         'build-styles:dev',
         'build-docs:dev',
@@ -442,6 +447,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         'clean',
+        'prepare',
         'build-scripts:prod',
         'build-styles:prod',
         'build-docs:prod'
