@@ -1,3 +1,11 @@
+<a name="v0.0.50"></a>
+### v0.0.50 (2014-01-07)
+
+
+#### Bug Fixes
+
+* **core:** get() sometimes incorrectly sets  to ([34daaa59](http://github.com/asimov/asimov-core/commit/34daaa5966eb1607394e1f7231f2541bb25cbe26))
+
 <a name="v0.0.49"></a>
 ### v0.0.49 (2014-01-07)
 
