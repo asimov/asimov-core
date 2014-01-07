@@ -438,7 +438,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('dev', [
         'clean',
-        'prepare',
+        'prepare-build',
         'build-scripts:dev',
         'build-styles:dev',
         'build-docs:dev',
@@ -447,7 +447,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         'clean',
-        'prepare',
+        'prepare-build',
         'build-scripts:prod',
         'build-styles:prod',
         'build-docs:prod'
