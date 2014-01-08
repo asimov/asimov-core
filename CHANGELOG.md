@@ -1,3 +1,17 @@
+<a name="v0.0.52"></a>
+### v0.0.52 (2014-01-08)
+
+
+#### Bug Fixes
+
+* **core:** tweak settings merging ([97488422](http://github.com/asimov/asimov-core/commit/974884224beddaaa0fbbca76bf8f970d1bcadf16))
+* **settings:** breakpoints setting is now breakpoint ([cf2c27f5](http://github.com/asimov/asimov-core/commit/cf2c27f5dc508113865dbabc2640088d6ea5b3f0))
+
+
+#### Features
+
+* **docs:** fix layout classes ([7506d0b1](http://github.com/asimov/asimov-core/commit/7506d0b14358717299f01b79e623acc6a48f3184))
+
 <a name="v0.0.51"></a>
 ### v0.0.51 (2014-01-08)
 
