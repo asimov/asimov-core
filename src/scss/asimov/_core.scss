@@ -291,16 +291,13 @@ $__a__map-cache: () !default;
 // @return [Map]
 @function flatten-map($map, $ret:(), $prefix:null) {
     @each $name, $value in $map {
-        // TODO 3.3: this can be simplified with `if()`
-        @if $prefix {
-            $name: $prefix + if($name, "/#{$name}", "");
-        }
+        $name: if($prefix, $prefix + if($name, "/#{$name}", ""), $name);
 
         @if type-of($value) == map {
+            $ret: flatten-map($value, $ret, $name);
             // Append to the end of the root map because alias need to be after
             // the value they're aliasing to resolve correctly "#{$name}-base"
-            $ls: append($value, null "#{$name}/base");
-            $ret: flatten-map($ls, $ret, $name);
+            $ret: map-merge($ret, ($name: "#{$name}/base"));
         } @else {
             $ret: map-merge($ret, ($name: $value));
         }
