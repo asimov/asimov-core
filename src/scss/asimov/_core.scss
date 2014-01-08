@@ -349,6 +349,11 @@ $__a__map-cache: () !default;
         @if type-of($value) == string {
             $value: lookup($ret, $value, lookup($extras, $value, $value));
             $ret: map-merge($ret, ($name: $value));
+        } @else
+        // Recursion yo!
+        if type-of($value) == map {
+            $value: resolve-aliases($value, $extras);
+            $ret: map-merge($ret, ($name: $value));
         } @else {
             $ret: map-merge($ret, ($name: $value));
         }
