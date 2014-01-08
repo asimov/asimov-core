@@ -543,7 +543,7 @@ font-families-set-default-multiple {
 
 $default: (
     asimov: (
-        breakpoints: (
+        breakpoint: (
             primary: (1em 10em),
             secondary: 11em,
         ),
@@ -554,9 +554,9 @@ breakpoints-get {
     $settings: () !global;
     $settings: set($default) !global;
 
-    get-primary: assert(get("asimov/breakpoints/primary") == (1em 10em));
+    get-primary: assert(get("asimov/breakpoint/primary") == (1em 10em));
     get-breakpoint-primary: assert(get-breakpoint("primary") == (1em 10em));
-    get-secondary: assert(get("asimov/breakpoints/secondary") == 11em);
+    get-secondary: assert(get("asimov/breakpoint/secondary") == 11em);
     get-breakpoint-secondary: assert(get-breakpoint("secondary") == 11em);
 }
 
@@ -564,12 +564,12 @@ breakpoints-set {
     $settings: () !global;
     $settings: set($default) !global;
 
-    get-tertiary: assert(get("asimov/breakpoints/tertiary") == null);
+    get-tertiary: assert(get("asimov/breakpoint/tertiary") == null);
     get-breakpoint-tertiary: assert(get-breakpoint("tertiary") == null);
 
     set-breakpoint-tertiary: assert(set-breakpoint("tertiary", 3%) == 3%);
 
-    get-tertiary-after-set: assert(get("asimov/breakpoints/tertiary") == 3%);
+    get-tertiary-after-set: assert(get("asimov/breakpoint/tertiary") == 3%);
     get-breakpoint-tertiary-after-set: assert(get-breakpoint("tertiary") == 3%);
 }
 
@@ -585,9 +585,9 @@ breakpoints-set-multiple {
         ),
     );
 
-    get-secondary: assert(get("asimov/breakpoints/secondary") == 11em);
+    get-secondary: assert(get("asimov/breakpoint/secondary") == 11em);
     get-breakpoint-secondary: assert(get-breakpoint("secondary") == 11em);
-    get-tertiary: assert(get("asimov/breakpoints/tertiary") == null);
+    get-tertiary: assert(get("asimov/breakpoint/tertiary") == null);
     get-breakpoint-tertiary: assert(get-breakpoint("tertiary") == null);
 
     set-breakpoint-tertiary: assert(set-breakpoints((
@@ -598,9 +598,9 @@ breakpoints-set-multiple {
         ),
     )) == $ret);
 
-    get-secondary-after-set: assert(get("asimov/breakpoints/secondary") == (11em 15em));
+    get-secondary-after-set: assert(get("asimov/breakpoint/secondary") == (11em 15em));
     get-breakpoint-secondary-after-set: assert(get-breakpoint("secondary") == (11em 15em));
-    get-tertiary-after-set: assert(get("asimov/breakpoints/tertiary") == 16em);
+    get-tertiary-after-set: assert(get("asimov/breakpoint/tertiary") == 16em);
     get-breakpoint-tertiary-after-set: assert(get-breakpoint("tertiary") == 16em);
 }
 
@@ -617,9 +617,9 @@ breakpoints-set-default-multiple {
         ),
     );
 
-    get-secondary: assert(get("asimov/breakpoints/secondary") == 11em);
+    get-secondary: assert(get("asimov/breakpoint/secondary") == 11em);
     get-breakpoint-secondary: assert(get-breakpoint("secondary") == 11em);
-    get-tertiary: assert(get("asimov/breakpoints/tertiary") == null);
+    get-tertiary: assert(get("asimov/breakpoint/tertiary") == null);
     get-breakpoint-tertiary: assert(get-breakpoint("tertiary") == null);
 
     set-breakpoint-tertiary: assert(set-breakpoints((
@@ -631,8 +631,8 @@ breakpoints-set-default-multiple {
     ), $default:true) == $ret);
 
 
-    get-secondary-after-set: assert(get("asimov/breakpoints/secondary") == 11em);
+    get-secondary-after-set: assert(get("asimov/breakpoint/secondary") == 11em);
     get-breakpoint-secondary-after-set: assert(get-breakpoint("secondary") == 11em);
-    get-tertiary-after-set: assert(get("asimov/breakpoints/tertiary") == 16em);
+    get-tertiary-after-set: assert(get("asimov/breakpoint/tertiary") == 16em);
     get-breakpoint-tertiary-after-set: assert(get-breakpoint("tertiary") == 16em);
 }

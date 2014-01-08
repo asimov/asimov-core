@@ -14,10 +14,10 @@
 // @return [Number|List]
 @function set-breakpoint($name, $value:null, $default:false) {
     @if $default {
-        @return set-default("breakpoints/#{$name}", $value);
+        @return set-default("breakpoint/#{$name}", $value);
     }
 
-    @return set("breakpoints/#{$name}", $value);
+    @return set("breakpoint/#{$name}", $value);
 }
 
 
@@ -47,15 +47,15 @@
 // @return [Map]
 @function set-breakpoints($map, $default:false) {
     @if $default {
-        @if set-default((breakpoints: $map)) == null {
+        @if set-default((breakpoint: $map)) == null {
             @warn("Something went wrong!");
         }
     }
 
     // Reset the currently settings because `set` will merge by default
     @else if
-        set("breakpoints", ()) == null or
-        set("breakpoints", $map) == null
+        set("breakpoint", ()) == null or
+        set("breakpoint", $map) == null
     {
         @warn("Something went wrong!");
     }
@@ -68,5 +68,5 @@
 // -----------------------------------------------------------------------------
 // @return [Map]
 @function get-breakpoints() {
-    @return get("breakpoints");
+    @return get("breakpoint");
 }
