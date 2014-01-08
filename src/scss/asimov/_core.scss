@@ -227,6 +227,9 @@ $__a__map-cache: () !default;
 // -----------------------------------------------------------------------------
 // @return [Literal]
 @function _set($key, $value:null, $_root:null) {
+    // Clear out caches, or bad things will happen
+    @if cache-status() and cache-clean() {}
+
     // $_root won't exist in recursive calls if $key is a new branch
     @if $_root == null {
         $_root: ($key: ());
@@ -315,7 +318,12 @@ $__a__map-cache: () !default;
 // -----------------------------------------------------------------------------
 // @return [Literal]
 @function resolve-alias($name) {
-    $map: flatten-map($settings);
+    // Use a cache since we can only resolved against $settings
+    $map: if(
+        cache-status(),
+        cache-get("resolve-alias-map") or cache-set("resolve-alias-map", flatten-map($settings)),
+        flatten-map($settings)
+    );
 
     @if type-of($name) == list {
         $ret:();
