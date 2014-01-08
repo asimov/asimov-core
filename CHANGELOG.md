@@ -1,3 +1,16 @@
+<a name="v0.0.51"></a>
+### v0.0.51 (2014-01-08)
+
+
+#### Features
+
+* **core:**
+  * resolve-aliases should be recursive ([302ec209](http://github.com/asimov/asimov-core/commit/302ec2092c2a832c51ea8930bc3fbc3218c88d53))
+  * simplify flatten-map() ([04365a88](http://github.com/asimov/asimov-core/commit/04365a889eaaf5f3bdea89c88d12be549919d924))
+  * remove unnecessary recursion from get() ([577140f4](http://github.com/asimov/asimov-core/commit/577140f4e368423be06cf104a0c1543ed43c74b9))
+  * re-add the cache and debug APIs ([17f853ee](http://github.com/asimov/asimov-core/commit/17f853ee2c82fcd04b64ee52022eb79d9dc58b76))
+* **perf:** speed up resolving aliases with the internal cache ([f865a35e](http://github.com/asimov/asimov-core/commit/f865a35ebe3105238b5008031377b239b3c056e9))
+
 <a name="v0.0.50"></a>
 ### v0.0.50 (2014-01-07)
 
