@@ -168,6 +168,8 @@ $__a__map-cache: () !default;
 
     @if is-lazy($value) {
         @return exec-lazy($value);
+    } @else if type-of($value) == map {
+        @return resolve-aliases($value, $settings);
     } @else {
         @return resolve-alias($value);
     };
