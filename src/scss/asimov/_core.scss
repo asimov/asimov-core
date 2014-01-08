@@ -241,7 +241,11 @@ $__a__map-cache: () !default;
     @if type-of($key) == map or
         type-of($key) == list // 1
     {
-        @return map-merge-recursive($_root, $key);
+        // $ret: ();
+        // @each $k, $v in $_root {
+        //     $ret: map-merge($ret, ($k: map-get($key, $k) or $v));
+        // }
+        @return map-merge($_root, $key);
     }
 
     @if str-index($key, "/") > 0 {
