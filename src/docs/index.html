@@ -31,11 +31,11 @@
 
 </head>
 <body>
-    <div class="list--vertical l-row" data-list-expand-to="horizontal-list" data-list-expand-at="desktop">
+    <div class="list--stacked l-row" data-list-expand-to="list--inline" data-list-expand-at="desktop">
         <div id="nav" class="list__item list__item--align-top">
             <h3>Styleguide</h3>
             <aside>
-                <nav><ul class="list--horizontal" data-list-expand-to="vertical-list" data-list-expand-at="desktop">
+                <nav><ul class="list--inline" data-list-expand-to="list--stacked" data-list-expand-at="desktop">
                     <li class="list__item"><a href="index.html">0.0: Overview</a></li>
                     {{#eachRoot}}
                     <li class="list__item"><a href="section-{{reference}}.html">{{reference}}.0: {{header}}</a></li>
