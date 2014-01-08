@@ -158,13 +158,10 @@ $__a__map-cache: () !default;
         $_root: $settings;
     }
 
-    @if str-index($key, "/") > 0 {
-        // Determin the $new key for the recursion
-        $child-key: str-slice($key, str-index($key, "/") + 1);
-
-        // Override the original $key and $value we can have one @return
-        $key: str-slice($key, 1, str-index($key, "/") - 1);
-        @return get($child-key, map-get($_root, $key) or ());
+    @while str-index($key, "/") > 0 {
+        $child-key: str-slice($key, 1, str-index($key, "/") - 1);
+        $key: str-slice($key, str-index($key, "/") + 1);
+        $_root: map-get($_root, $child-key) or ();
     }
 
     $value: map-get($_root, $key);
