@@ -1,3 +1,11 @@
+<a name="v0.0.55"></a>
+### v0.0.55 (2014-01-09)
+
+
+#### Features
+
+* **build:** easier docs theming ([ece94803](http://github.com/asimov/asimov-core/commit/ece948035f23d04a0a7af29834ff0ace06cfa320))
+
 <a name="v0.0.54"></a>
 ### v0.0.54 (2014-01-09)
 
