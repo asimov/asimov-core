@@ -1,3 +1,12 @@
+<a name="v0.0.53"></a>
+### v0.0.53 (2014-01-09)
+
+
+#### Bug Fixes
+
+* **core:** get should resolve aliases ([e8bbd892](http://github.com/asimov/asimov-core/commit/e8bbd89239611ab3a99a90ad1382f4c89f21d2e7))
+* **docs:** docs should reflow ([1f35e52f](http://github.com/asimov/asimov-core/commit/1f35e52f43ac611a101284b03e1b97efc4de7afe))
+
 <a name="v0.0.52"></a>
 ### v0.0.52 (2014-01-08)
 
