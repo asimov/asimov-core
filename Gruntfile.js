@@ -168,19 +168,20 @@ module.exports = function(grunt) {
                 }]
             },
             docs: {
-                files: [{
+                files: (!grunt.file.exists('src/docs/assets/scss') ?
+                [{
                     expand: true,
                     cwd: '<%= asimov.src %>/docs/assets/scss',
                     src: ['*.scss'],
                     dest: 'docs/assets/css',
                     ext: '.css'
-                }, {
+                }] : [{
                     expand: true,
                     cwd: 'src/docs/assets/scss',
                     src: ['*.scss'],
                     dest: 'docs/assets/css',
                     ext: '.css'
-                }]
+                }])
             },
             dist: {
                 files: [{
