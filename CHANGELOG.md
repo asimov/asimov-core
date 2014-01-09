@@ -1,3 +1,11 @@
+<a name="v0.0.57"></a>
+### v0.0.57 (2014-01-09)
+
+
+#### Bug Fixes
+
+* **theme:** small breakpoint should be max-width ([43874ddc](http://github.com/asimov/asimov-core/commit/43874ddc821c33b6a718e68e1d0a2d0be4ccd912))
+
 <a name="v0.0.56"></a>
 ### v0.0.56 (2014-01-09)
 
