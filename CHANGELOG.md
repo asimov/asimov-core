@@ -1,3 +1,11 @@
+<a name="v0.0.54"></a>
+### v0.0.54 (2014-01-09)
+
+
+#### Bug Fixes
+
+* **docs:** only apply pretty print for code samples ([8b5ea62d](http://github.com/asimov/asimov-core/commit/8b5ea62d2273f56b9d0c7349b6a27c092c191fbf))
+
 <a name="v0.0.53"></a>
 ### v0.0.53 (2014-01-09)
 
