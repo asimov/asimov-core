@@ -138,6 +138,14 @@ $__a__map-cache: () !default;
     $name: map-get($map, "_func");
     $args: resolve-aliases(map-get($map, "_args"), $settings);
 
+    // allow lazy's as parameters to lazy's
+    @each $k, $v in $args {
+        @if is-lazy($v) {
+            $v: exec-lazy($v);
+        }
+        $args: map-merge($args, ($k: $v));
+    }
+
     @return call($name, $args...);
 }
 
