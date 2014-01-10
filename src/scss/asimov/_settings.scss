@@ -55,10 +55,11 @@ $settings: set-default((
         "small": 1.2,
     ),
     "breakpoint": (
-        "small": 0 600px,
-        "medium": 601px 900px,
-        "normal": 901px 1300px,
-        "large": 1301px,
+        "smallest": "breakpoint/small", // required alias
+        "small": 0 599px,
+        "medium": 600px 899px,
+        "normal": 900px 1299px,
+        "large": 1300px,
     ),
     "border-radiuses": (
         "base": 3px,
