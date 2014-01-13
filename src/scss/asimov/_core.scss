@@ -135,6 +135,10 @@ $__a__map-cache: () !default;
 // -----------------------------------------------------------------------------
 // @return [Literal]
 @function exec-lazy($map) {
+    @if is-lazy($map) == false {
+        @return $map;
+    }
+
     $name: map-get($map, "_func");
     $args: resolve-aliases(map-get($map, "_args"), $settings);
 
