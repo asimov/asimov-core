@@ -327,6 +327,15 @@ $__a__map-cache: () !default;
     @return $ret;
 }
 
+// All we can do is guess. If $name looks like an alias and smells like an
+// alias, it could be an alias.
+// -----------------------------------------------------------------------------
+// @param $name [List|String] : $name
+// -----------------------------------------------------------------------------
+// @return [Bool]
+@function looks-like-an-alias($name) {
+    @return type-of($name) == string and str-index($name, "/") > 1;
+}
 
 // Takes $name and resolves it's alias against $settings.
 // If name is a list each item is resolved individually.
@@ -354,11 +363,26 @@ $__a__map-cache: () !default;
     }
 
     $value: $name;
-    @while map-has-key($map, $value) {
-        $value: map-get($map, $value);
+    $break: false; // Emulate break statements
+
+    @while looks-like-an-alias($value) and $break == false {
+        $key: $value;
+        $_root: $settings;
+
+        @while str-index($key, "/") > 0 {
+            $child-key: str-slice($key, 1, str-index($key, "/") - 1);
+            $key: str-slice($key, str-index($key, "/") + 1);
+            $_root: map-get($_root, $child-key) or ();
+        }
+
+        @if length($_root) > 0 {
+            $value: map-get($_root, $key);
+        } @else {
+            $break: true;
+        }
     }
 
-    @return $value;
+    @return if(is-lazy($value), exec-lazy($value), $value);
 }
 
 
