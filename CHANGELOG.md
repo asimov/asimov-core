@@ -1,3 +1,17 @@
+<a name="v0.0.58"></a>
+### v0.0.58 (2014-01-13)
+
+
+#### Bug Fixes
+
+* **responsive-property:** don't proxy value through get ([695fea90](http://github.com/asimov/asimov-core/commit/695fea9034583e325d6b80fb3250518f041583b7))
+
+
+#### Features
+
+* **clearfix:** add a clearfix mixin ([e7173c02](http://github.com/asimov/asimov-core/commit/e7173c02bfdf9e324d719ecb289d12a9da7b73cf))
+* **lazy:** allow lazys to take lazys as arguments ([142247c8](http://github.com/asimov/asimov-core/commit/142247c8279b06f909633c32a9e9936f0d78877c))
+
 <a name="v0.0.57"></a>
 ### v0.0.57 (2014-01-09)
 
