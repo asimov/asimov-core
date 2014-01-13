@@ -1,3 +1,11 @@
+<a name="v0.0.59"></a>
+### v0.0.59 (2014-01-13)
+
+
+#### Features
+
+* **aliases:** make resolve-alias more robust ([9fc86c70](http://github.com/asimov/asimov-core/commit/9fc86c7029d6f9b2aa7beb2a1a878e58798b0348))
+
 <a name="v0.0.58"></a>
 ### v0.0.58 (2014-01-13)
 
