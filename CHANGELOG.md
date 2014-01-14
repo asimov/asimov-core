@@ -1,3 +1,11 @@
+<a name="v0.0.60"></a>
+### v0.0.60 (2014-01-14)
+
+
+#### Features
+
+* **numbers:** add number helper functions ([809ea9b6](http://github.com/asimov/asimov-core/commit/809ea9b69eadb709794294ed6be1901d10bcca30))
+
 <a name="v0.0.59"></a>
 ### v0.0.59 (2014-01-13)
 
