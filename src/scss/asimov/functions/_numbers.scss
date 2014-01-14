@@ -1,0 +1,57 @@
+
+// What's the precision of $number
+@function precision($number) {
+    @if is-float($number) {
+        $number: #{strip-units($number)};
+        // FIXME: make this >= 0 once https://github.com/nex3/sass/issues/1060 is closed
+        @if str-index($number, ".") >= 1 {
+            @return str-length($number) - str-index($number, ".");
+        }
+    }
+
+    @return 0;
+}
+
+// Is a $number a float?
+// Inspired by https://github.com/Team-Sass/Sassy-math/blob/master/sass/math.scss#L297
+@function is-float($number) {
+    @if type-of($number) != "number" {
+        @warn "#{$number} is not a number!";
+        @return false;
+    }
+
+    @return $number - floor($number) != 0;
+}
+
+// Remove the unit from a $number
+// Inspired by https://github.com/nex3/sass/issues/533#issuecomment-11675408
+@function strip-units($number) {
+    @return $number / ($number * 0 + 1);
+}
+
+// Number exponents
+// Inspired by https://github.com/Team-Sass/Sassy-math/blob/master/sass/math.scss#L36
+@function exponent($base, $exponent) {
+    $value: $base;
+
+    // positive intergers get multiplied
+    @if $exponent > 1 {
+        @for $i from 2 through $exponent {
+            $value: $value * $base;
+        }
+    }
+
+    // negitive intergers get divided. A number divided by itself is 1
+    @if $exponent < 1 {
+        @for $i from 0 through -$exponent {
+            $value: $value / $base;
+        }
+    }
+
+    @return $value;
+}
+
+// Increment a number by it's smallest precision, preserving units
+@function increment($number) {
+    @return $number + 1 / exponent(10, precision($number));
+}
