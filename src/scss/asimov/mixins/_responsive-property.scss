@@ -6,6 +6,8 @@
         #{$property}: $map;
     } @else {
         @each $bp, $value in $map {
+            $value: if(is-lazy($value), exec-lazy($value), $value);
+
             @if $bp == "all" {
                 #{$property}: $value;
             } @else {
