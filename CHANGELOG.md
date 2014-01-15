@@ -1,3 +1,11 @@
+<a name="v0.0.61"></a>
+### v0.0.61 (2014-01-15)
+
+
+#### Features
+
+* **responsive-property:** allow the value to be a lazy ([e3c9e582](http://github.com/asimov/asimov-core/commit/e3c9e582ca2c4217a4e3d49f19fff9239e164ee2))
+
 <a name="v0.0.60"></a>
 ### v0.0.60 (2014-01-14)
 
