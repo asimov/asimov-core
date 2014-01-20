@@ -1,3 +1,11 @@
+<a name="v0.0.62"></a>
+### v0.0.62 (2014-01-20)
+
+
+#### Bug Fixes
+
+* **build:** add support for requirejs shims ([7cdbe4b4](http://github.com/asimov/asimov-core/commit/7cdbe4b4a922fb32282cac5035913bfa905903b0))
+
 <a name="v0.0.61"></a>
 ### v0.0.61 (2014-01-15)
 
