@@ -56,7 +56,7 @@ module.exports = function(grunt) {
             logLevel: 3,
             optimize: 'none',
             keepBuildDir: true,
-            skipModuleInsertion: true,
+            // skipModuleInsertion: true,
             removeCombined: true,
             shim: pkg.asimov.requirejs.shim || {},
             paths: _.merge({
