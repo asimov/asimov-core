@@ -1,3 +1,11 @@
+<a name="v0.0.63"></a>
+### v0.0.63 (2014-01-20)
+
+
+#### Bug Fixes
+
+* **requirejs:** generate module definitions ([bbe20588](http://github.com/asimov/asimov-core/commit/bbe20588800da8d48042a77e8c27e851cf4931c5))
+
 <a name="v0.0.62"></a>
 ### v0.0.62 (2014-01-20)
 
