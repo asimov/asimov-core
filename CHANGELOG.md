@@ -1,3 +1,11 @@
+<a name="v0.0.64"></a>
+### v0.0.64 (2014-01-22)
+
+
+#### Features
+
+* **performance:** disable expensive internal caching that was no longer needed ([325b6c3a](http://github.com/asimov/asimov-core/commit/325b6c3a2a86b6c003e6c9c48ef1f6974211cebc))
+
 <a name="v0.0.63"></a>
 ### v0.0.63 (2014-01-20)
 
