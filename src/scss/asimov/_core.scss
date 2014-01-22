@@ -13,71 +13,71 @@ $__a__map-cache: () !default;
 // This is currently blocked performance issues with sass' @import
 // https://github.com/nex3/sass/issues/1019#issuecomment-29128022
 
-// ==========================================================================
-// Internal caching API
-// ==========================================================================
+// // ==========================================================================
+// // Internal caching API
+// // ==========================================================================
 
-@function cache-get($key) {
-    @if $debug {
-        @debug("cache get #{$key} as");
-        @debug(map-get($__a__map-cache, $key));
-    }
+// @function cache-get($key) {
+//     @if $debug {
+//         @debug("cache get #{$key} as");
+//         @debug(map-get($__a__map-cache, $key));
+//     }
 
-    @return map-get($__a__map-cache, $key);
-}
+//     @return map-get($__a__map-cache, $key);
+// }
 
-@function cache-set($key, $value) {
-    $__a__map-cache: map-merge($__a__map-cache, ($key: $value)) !global;
+// @function cache-set($key, $value) {
+//     $__a__map-cache: map-merge($__a__map-cache, ($key: $value)) !global;
 
-    @if $debug {
-        @debug("cache set #{$key} to");
-        @debug($value);
-    }
+//     @if $debug {
+//         @debug("cache set #{$key} to");
+//         @debug($value);
+//     }
 
-    @return $__a__map-cache;
-}
+//     @return $__a__map-cache;
+// }
 
-// Clears the internal cache. If $key is supplied only that key is cleared
-// Returned the new state of the cache
-// -----------------------------------------------------------------------------
-// @param $key [String] : an optional key to clear
-// -----------------------------------------------------------------------------
-// @return [Map]
-@function cache-clean($key:null) {
-    @if $key {
-        $__a__map-cache: map-merge($__a__map-cache, ($key: null)) !global;
-    } @else {
-        $__a__map-cache: () !global;
-    }
+// // Clears the internal cache. If $key is supplied only that key is cleared
+// // Returned the new state of the cache
+// // -----------------------------------------------------------------------------
+// // @param $key [String] : an optional key to clear
+// // -----------------------------------------------------------------------------
+// // @return [Map]
+// @function cache-clean($key:null) {
+//     @if $key {
+//         $__a__map-cache: map-merge($__a__map-cache, ($key: null)) !global;
+//     } @else {
+//         $__a__map-cache: () !global;
+//     }
 
-    @return $__a__map-cache;
-}
-
-
-// Returns whether the internal cache is enabled or not
-// -----------------------------------------------------------------------------
-// @return [Bool] true if the cache is enabled, otherwise false
-@function cache-status() {
-    @return $__a__cache-enabled;
-}
+//     @return $__a__map-cache;
+// }
 
 
-// Disables the internal cache
-// -----------------------------------------------------------------------------
-// @return [Bool] true if the cache is enabled, otherwise false
-@function cache-disable() {
-    $__a__cache-enabled: false !global;
-    @return cache-status();
-}
+// // Returns whether the internal cache is enabled or not
+// // -----------------------------------------------------------------------------
+// // @return [Bool] true if the cache is enabled, otherwise false
+// @function cache-status() {
+//     @return $__a__cache-enabled;
+// }
 
 
-// Disables the internal cache
-// -----------------------------------------------------------------------------
-// @return [Bool] true if the cache is enabled, otherwise false
-@function cache-enable() {
-    $__a__cache-enabled: true !global;
-    @return cache-status();
-}
+// // Disables the internal cache
+// // -----------------------------------------------------------------------------
+// // @return [Bool] true if the cache is enabled, otherwise false
+// @function cache-disable() {
+//     $__a__cache-enabled: false !global;
+//     @return cache-status();
+// }
+
+
+// // Disables the internal cache
+// // -----------------------------------------------------------------------------
+// // @return [Bool] true if the cache is enabled, otherwise false
+// @function cache-enable() {
+//     $__a__cache-enabled: true !global;
+//     @return cache-status();
+// }
 
 
 // ==========================================================================
@@ -346,11 +346,11 @@ $__a__map-cache: () !default;
 // @return [Literal]
 @function resolve-alias($name) {
     // Use a cache since we can only resolved against $settings
-    $map: if(
-        cache-status(),
-        cache-get("resolve-alias-map") or cache-set("resolve-alias-map", flatten-map($settings)),
-        flatten-map($settings)
-    );
+    // $map: if(
+    //     cache-status(),
+    //     cache-get("resolve-alias-map") or cache-set("resolve-alias-map", flatten-map($settings)),
+    //     flatten-map($settings)
+    // );
 
     @if type-of($name) == list {
         $ret:();
