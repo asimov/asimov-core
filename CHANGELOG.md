@@ -1,3 +1,11 @@
+<a name="v0.0.65"></a>
+### v0.0.65 (2014-01-23)
+
+
+#### Bug Fixes
+
+* **sass:** remove explicit @charset call in favour of coersion ([eb82eb4c](http://github.com/asimov/asimov-core/commit/eb82eb4cc6a4595d6ff0119b9af52d32ac789f66))
+
 <a name="v0.0.64"></a>
 ### v0.0.64 (2014-01-22)
 
