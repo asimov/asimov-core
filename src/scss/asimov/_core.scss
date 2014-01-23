@@ -170,7 +170,7 @@ $__a__map-cache: () !default;
         $_root: $settings;
     }
 
-    @while str-index($key, "/") > 0 {
+    @while (str-index($key, "/") or 0) > 0 {
         $child-key: str-slice($key, 1, str-index($key, "/") - 1);
         $key: str-slice($key, str-index($key, "/") + 1);
         $_root: map-get($_root, $child-key) or ();
@@ -262,7 +262,7 @@ $__a__map-cache: () !default;
         @return map-merge($_root, $key);
     }
 
-    @if str-index($key, "/") > 0 {
+    @if (str-index($key, "/") or 0) > 0 {
         // Determin the $new key for the recursion
         $child-key: str-slice($key, str-index($key, "/") + 1);
 
@@ -334,7 +334,7 @@ $__a__map-cache: () !default;
 // -----------------------------------------------------------------------------
 // @return [Bool]
 @function looks-like-an-alias($name) {
-    @return type-of($name) == string and str-index($name, "/") > 1;
+    @return type-of($name) == string and (str-index($name, "/") or 0) > 1;
 }
 
 // Takes $name and resolves it's alias against $settings.
@@ -369,7 +369,7 @@ $__a__map-cache: () !default;
         $key: $value;
         $_root: $settings;
 
-        @while str-index($key, "/") > 0 {
+        @while (str-index($key, "/") or 0) > 0 {
             $child-key: str-slice($key, 1, str-index($key, "/") - 1);
             $key: str-slice($key, str-index($key, "/") + 1);
             $_root: map-get($_root, $child-key) or ();
