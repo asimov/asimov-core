@@ -1,3 +1,12 @@
+<a name="v0.0.66"></a>
+### v0.0.66 (2014-01-23)
+
+
+#### Bug Fixes
+
+* **core:** explicitly make  and  globals ([20f6888a](http://github.com/asimov/asimov-core/commit/20f6888a7c9356a008bc765338c77a92e0541c13))
+* **sass:** address breaking change in str-index ([2c70b0fa](http://github.com/asimov/asimov-core/commit/2c70b0fa941b7334ee5bcedfab52f9cf32750d49))
+
 <a name="v0.0.65"></a>
 ### v0.0.65 (2014-01-23)
 
