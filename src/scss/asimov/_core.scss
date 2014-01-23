@@ -1,8 +1,8 @@
 @import "sass-import-once/sass-import-once";
 @import "compass-breakpoint/stylesheets/breakpoint";
 
-$settings: () !default;
-$debug: false !default;
+$settings: () !default !global;
+$debug: false !default !global;
 
 // Internal caching get sass iteration be slow!
 $__a__cache-enabled: true !default;
