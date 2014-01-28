@@ -19,7 +19,7 @@
   "gitHead": "999d30c5afd644c73d7b6a71e30aefa7b63cc2fd",
   "devDependencies": {
     "matchdep": "0.3.0",
-    "grunt-contrib-sass": "0.5.0",
+    "grunt-contrib-sass": "~0.6.0",
     "diff": "~1.0.8",
     "grunt-conventional-changelog": "~1.0.0",
     "grunt-bump": "0.0.13",
@@ -44,7 +44,6 @@
     "time-grunt": "~0.2.5"
   },
   "dependencies": {
-    "grunt-contrib-sass": "~0.5.0",
     "lodash": "~2.4.1",
     "shelljs": "~0.2.6",
     "async": "~0.2.9"
