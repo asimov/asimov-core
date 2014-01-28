@@ -1,3 +1,11 @@
+<a name="v0.0.67"></a>
+### v0.0.67 (2014-01-28)
+
+
+#### Bug Fixes
+
+* fixup panel ([fcffe496](http://github.com/asimov/asimov-core/commit/fcffe496e7a027c0c527dd83b58ed5dc605a6be0))
+
 <a name="v0.0.66"></a>
 ### v0.0.66 (2014-01-23)
 
