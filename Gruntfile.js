@@ -156,6 +156,7 @@ module.exports = function(grunt) {
             options: {
                 style: 'expanded',
                 lineNumbers: false,
+                trace: true,
                 loadPath: sassLoadPaths,
                 cacheLocation: '.build/.sass-cache',
                 bundleExec: true
@@ -199,6 +200,15 @@ module.exports = function(grunt) {
         autoprefixer: {
             options: {
                 browsers: ['last 2 version', 'ie 8', 'ie 9']
+                // browsers: [
+                //     'last 2 version',
+                //     'Firefox ESR',
+                //     'BlackBerry 10',
+                //     'Android 4',
+                //     'Explorer 8',
+                //     'Explorer 9',
+                //     'Opera 12.1'
+                // ]
             },
             dist: {
                 src: 'dist/css/*!(.min).css'
