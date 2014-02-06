@@ -17,10 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "sass-import-once": "git@github.com:xzyfer/sass-import-once.git#patch-1",
+    "sass-import-once": "git@github.com:xzyfer/sass-import-once.git#global",
     "compass-breakpoint": "~2.2.0"
-  },
-  "resolutions": {
-    "sass-import-once": "patch-1"
   }
 }
