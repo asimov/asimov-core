@@ -466,7 +466,17 @@ $__a__map-cache: () !default;
 
     @each $key, $value in $map2 {
         @if map-get($ret, $key) != null and type-of($value) == map {
-            $value: map-merge-recursive(map-get($ret, $key), $value);
+            // Keys that start with `!` override rather than merge
+            @if str-index($key, "!") == null {
+                $value: map-merge-recursive(map-get($ret, $key), $value);
+            }
+        }
+
+        // Keys that start with `!` override rather than merge
+        @if str-index($key, "!") == 1 {
+            // Remove the `!` from $key
+            $key: str-slice($key, 2);
+            $ret: map-remove($ret, $key);
         }
 
         $ret: map-merge($ret, ($key: $value));
