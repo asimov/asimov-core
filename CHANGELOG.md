@@ -1,3 +1,11 @@
+<a name="v0.0.69"></a>
+### v0.0.69 (2014-02-06)
+
+
+#### Features
+
+* **settings:** in  keys prefixed with ! will override instead of merge ([5cdd0cb9](http://github.com/asimov/asimov-core/commit/5cdd0cb9ea124cdd2f50480aac294491b7dc3ad3))
+
 <a name="v0.0.68"></a>
 ### v0.0.68 (2014-02-06)
 
