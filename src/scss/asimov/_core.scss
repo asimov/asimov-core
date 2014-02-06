@@ -259,7 +259,7 @@ $__a__map-cache: () !default;
         // @each $k, $v in $_root {
         //     $ret: map-merge($ret, ($k: map-get($key, $k) or $v));
         // }
-        @return map-merge($_root, $key);
+        @return map-merge-recursive($_root, $key);
     }
 
     @if (str-index($key, "/") or 0) > 0 {
