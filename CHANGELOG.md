@@ -1,3 +1,11 @@
+<a name="v0.0.68"></a>
+### v0.0.68 (2014-02-06)
+
+
+#### Bug Fixes
+
+* **settings:** set should merge component settings not override. fixes #10 ([4d8d43a1](http://github.com/asimov/asimov-core/commit/4d8d43a14c38b322b6b813cba8df4baf70eaf851))
+
 <a name="v0.0.67"></a>
 ### v0.0.67 (2014-01-28)
 
