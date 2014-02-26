@@ -1,3 +1,11 @@
+<a name="v0.0.70"></a>
+### v0.0.70 (2014-02-26)
+
+
+#### Features
+
+* **js:** move core.js to be consistent with all other components ([4016175c](http://github.com/asimov/asimov-core/commit/4016175ca01d305b62f698b9f700407c555bdce6))
+
 <a name="v0.0.69"></a>
 ### v0.0.69 (2014-02-06)
 
