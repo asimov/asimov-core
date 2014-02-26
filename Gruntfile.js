@@ -71,7 +71,7 @@ module.exports = function(grunt) {
         rjsOptions = { all: _.merge({
             options: {
                 baseUrl: 'src/js',
-                name: 'asimov/core',
+                name: 'core',
                 out: 'dist/js/asimov/core.js'
             }
         }, rjsOptions) };
