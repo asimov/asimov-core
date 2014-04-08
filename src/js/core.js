@@ -78,6 +78,10 @@
             });
 
             return data;
+        },
+
+        repaint: function ($elem) {
+            $elem.attr('class', $elem.attr('class'));
         }
     };
 }));
