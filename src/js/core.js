@@ -17,31 +17,32 @@
 }(this, function($, undefined) {
     'use strict';
 
+    var getElementData = function($elem, prefix) {
+        var data = {},
+
+            // does it start with our prefix?
+            re = new RegExp('^' + prefix + '[A-Z]'),
+
+            // $.data() turns data-prefix-foo-bar into
+            // prefixFooBar, we want it to be prefix-foo-bar
+            upperToHyphenLower = function(match) {
+                return '-' + match.toLowerCase();
+            };
+
+        $.each($elem.data(), function(key, value) {
+            if (re.test(key)) {
+                data[key.replace(/[A-Z]/g, upperToHyphenLower)] = value;
+            }
+        });
+
+        return data;
+    };
+
     return {
-        getElementData: function($elem, prefix) {
-            var data = {},
-
-                // does it start with our prefix?
-                re = new RegExp('^' + prefix + '[A-Z]'),
-
-                // $.data() turns data-prefix-foo-bar into
-                // prefixFooBar, we want it to be prefix-foo-bar
-                upperToHyphenLower = function(match) {
-                    return '-' + match.toLowerCase();
-                };
-
-            $.each($elem.data(), function(key, value) {
-                if (re.test(key)) {
-                    data[key.replace(/[A-Z]/g, upperToHyphenLower)] = value;
-                }
-            });
-
-            return data;
-        },
-
         mergeElementData: function($elem, prefix, defaults) {
+
             // Get an object of dom data attributes that we care about
-            var domData = this.getElementData($elem, prefix),
+            var domData = getElementData($elem, prefix),
                 data = $.extend(true, {}, defaults);
 
             // Deep merges dom data with the defaults.
