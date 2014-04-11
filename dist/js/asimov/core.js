@@ -7,7 +7,7 @@
 
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define('asimov/core',['jquery'], function(jQuery) {
+        define('core',['jquery'], function(jQuery) {
             root.asimov.core = factory(jQuery);
             return root.asimov.core;
         });
