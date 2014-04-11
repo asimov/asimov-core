@@ -1,16 +1,10 @@
-GIT
-  remote: git://github.com/nex3/sass.git
-  revision: 980eece35960253959e92a39feb8d7f873e41068
-  ref: 980eece35960253959e92a39feb8d7f873e41068
-  specs:
-    sass (3.3.0.rc.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
+    sass (3.3.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  sass!
+  sass
