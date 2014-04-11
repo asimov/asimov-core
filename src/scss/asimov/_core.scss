@@ -206,6 +206,7 @@ $__a__map-cache: () !default;
         $value: get($key);
     } @else {
         // $key exists in $settings, do nothing!
+        $value: get($key);
     }
 
     @return $value;
@@ -422,7 +423,7 @@ $__a__map-cache: () !default;
 // -----------------------------------------------------------------------------
 // @return [Literal]
 @function lookup($map, $key, $default:null, $is-key:false) {
-    @if length($map) == 0 {
+    @if type-of($map) != map {
         @return $default;
     }
 
@@ -465,7 +466,7 @@ $__a__map-cache: () !default;
     $ret: $map1;
 
     @each $key, $value in $map2 {
-        @if map-get($ret, $key) != null and type-of($value) == map {
+        @if map-get($ret, $key) != null and type-of($value) == map and type-of(map-get($ret, $key)) == map {
             // Keys that start with `!` override rather than merge
             @if str-index($key, "!") == null {
                 $value: map-merge-recursive(map-get($ret, $key), $value);

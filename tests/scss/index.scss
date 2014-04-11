@@ -1,0 +1,23 @@
+//
+// Import test runner
+//
+
+@import "bootcamp";
+
+//
+// Start test runner
+//
+
+@include runner-start;
+
+//
+// Tests
+//
+
+@import "core";
+
+//
+// Start test runner
+//
+
+@include runner-end;
