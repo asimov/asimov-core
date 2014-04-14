@@ -280,28 +280,6 @@ $__a__map-cache: () !default;
 // List functions
 // ==========================================================================
 
-// Return the first dimension of a multi dimensional $map with aliases resolved
-// -----------------------------------------------------------------------------
-// @param $map [Map] : map
-// -----------------------------------------------------------------------------
-// @return [Map]
-@function get-map($map) {
-    $ret: ();
-    $base: null;
-    @each $name, $value in $map {
-        // ignore "base" as a value
-        @if type-of($value) != map and $name != "base" {
-            $ret: map-merge($ret, ($name: $value));
-        } @else if $name == "base" {
-            // preserver the "base" value for later
-            $base: $value;
-        }
-    }
-
-    // inject the "base" value for alias lookups only
-    @return resolve-aliases($ret, ("base": $base));
-}
-
 
 // Turns multidimensional $map into a one-level map with aliases resolved.
 // Map keys are composed by prefixing it's parent's key separated by a /
