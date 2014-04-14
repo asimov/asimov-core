@@ -1,3 +1,12 @@
+<a name="v0.0.71"></a>
+### v0.0.71 (2014-04-14)
+
+
+#### Bug Fixes
+
+* **build:** components with js fail to compile ([d32fdb15](http://github.com/asimov/asimov-core/commit/d32fdb15595b10e689a22c4820b0c9bda251f364))
+* **js:** update the compiled js ([a409d0e4](http://github.com/asimov/asimov-core/commit/a409d0e4d86d74c9dbf1810b9c1a325dfb4497e4))
+
 <a name="v0.0.70"></a>
 ### v0.0.70 (2014-02-26)
 
