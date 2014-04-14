@@ -1,3 +1,11 @@
+<a name="v0.0.72"></a>
+### v0.0.72 (2014-04-15)
+
+
+#### Features
+
+* **js:** create public repaint method ([859fd639](http://github.com/asimov/asimov-core/commit/859fd6394e3b2f51018926d713c0695ecbd8e100))
+
 <a name="v0.0.71"></a>
 ### v0.0.71 (2014-04-14)
 
