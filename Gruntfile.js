@@ -61,7 +61,7 @@ module.exports = function(grunt) {
             shim: pkg.asimov.requirejs.shim || {},
             paths: _.merge({
                 jquery: 'empty:',
-                asimov: '<%= asimov.src %>/js/asimov'
+                asimov: '<%= asimov.src %>/js/core'
             }, pkg.asimov.requirejs.paths)
         }
     };
