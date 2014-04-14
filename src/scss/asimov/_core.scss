@@ -280,32 +280,6 @@ $__a__map-cache: () !default;
 // List functions
 // ==========================================================================
 
-
-// Turns multidimensional $map into a one-level map with aliases resolved.
-// Map keys are composed by prefixing it's parent's key separated by a /
-// -----------------------------------------------------------------------------
-// @param $map [Map] : map
-// @param $ret [Map] : the parent map to flatten $map into
-// @param $prefix [String] : the prefix to append to $map's keys
-// -----------------------------------------------------------------------------
-// @return [Map]
-@function flatten-map($map, $ret:(), $prefix:null) {
-    @each $name, $value in $map {
-        $name: if($prefix, $prefix + if($name, "/#{$name}", ""), $name);
-
-        @if type-of($value) == map {
-            $ret: flatten-map($value, $ret, $name);
-            // Append to the end of the root map because alias need to be after
-            // the value they're aliasing to resolve correctly "#{$name}-base"
-            $ret: map-merge($ret, ($name: "#{$name}/base"));
-        } @else {
-            $ret: map-merge($ret, ($name: $value));
-        }
-    }
-
-    @return $ret;
-}
-
 // All we can do is guess. If $name looks like an alias and smells like an
 // alias, it could be an alias.
 // -----------------------------------------------------------------------------
@@ -324,13 +298,6 @@ $__a__map-cache: () !default;
 // -----------------------------------------------------------------------------
 // @return [Literal]
 @function resolve-alias($name) {
-    // Use a cache since we can only resolved against $settings
-    // $map: if(
-    //     cache-status(),
-    //     cache-get("resolve-alias-map") or cache-set("resolve-alias-map", flatten-map($settings)),
-    //     flatten-map($settings)
-    // );
-
     @if type-of($name) == list {
         $ret:();
 
