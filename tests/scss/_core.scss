@@ -4,6 +4,10 @@
 
 @import "asimov/asimov";
 
+// -----------------------------------------------------------------------------
+// Test data
+// -----------------------------------------------------------------------------
+
 $before: ((
     foo: (
         bar: (
@@ -23,6 +27,19 @@ $before: ((
         ),
     ),
 )) !global;
+
+
+// -----------------------------------------------------------------------------
+// Function required to test Lazy implementation
+// -----------------------------------------------------------------------------
+
+@function foofoofoofoo($foo:"bar") {
+    @return "winning " + $foo;
+}
+
+// -----------------------------------------------------------------------------
+// Test cases
+// -----------------------------------------------------------------------------
 
 @include describe("get") {
 
@@ -319,6 +336,62 @@ $before: ((
             @include should(expect(lookup($map, baz, $default:$default, $is-key:true)), to(be($ret)));
         }
 
+    }
+
+}
+
+@include describe("resovle-alias") {
+
+    @include it("should resolve alias") {
+        $map: (
+            foo: "oof",
+            bar: "rab",
+            baz: "zab",
+        );
+
+        $settings: (
+            list: (
+                foo: one two three
+            ),
+            scalar: $map,
+            map: ( foo: $map ),
+        ) !global;
+
+        @include should(expect(resolve-alias("list/foo")), to(be(one two three)));
+        @include should(expect(resolve-alias("scalar/foo")), to(be("oof")));
+        @include should(expect(resolve-alias("map/foo")), to(be($map)));
+    }
+
+    @include it("should resolve all aliases in a list") {
+        $map: (
+            foo: "oof",
+            bar: "rab",
+            baz: "zab",
+        );
+
+        $settings: (
+            list: (
+                foo: "map/foo" "map/bar" "map/baz",
+                bar: ("map/foo", "map/bar", "map/baz"),
+            ),
+            map: $map,
+        ) !global;
+
+        @include should(expect(get("map")), to(be($map)));
+        @include should(expect(resolve-alias("map/foo" "map/bar" "map/baz")), to(be("oof" "rab" "zab")));
+        @include should(expect(resolve-alias(("map/foo", "map/bar", "map/baz"))), to(be("oof" "rab" "zab")));
+    }
+
+    @include it("should resolve all aliases in a list") {
+        $settings: (
+            foo: (
+                bar: lazy("foofoofoofoo"),
+                baz: lazy("foofoofoofoo", ("foo": "baz")),
+            )
+        ) !global;
+
+        @include should(expect(resolve-alias("foo/bar")), to(be("winning bar")));
+        @include should(expect(resolve-alias(("foo/baz"))), to(be("winning baz")));
     }
 
 }
