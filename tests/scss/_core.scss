@@ -395,3 +395,79 @@ $before: ((
     }
 
 }
+
+@include describe("resovle-aliases") {
+
+    @include it("should resolve aliases internally") {
+        $map: (
+            foo: "oof",
+            bar: "rab",
+            baz: "bar", // alias to `bar`
+            bam: "mab",
+        );
+
+        $ret: (
+            foo: "oof",
+            bar: "rab",
+            baz: "rab",
+            bam: "mab",
+        );
+
+        @include should(expect(resolve-aliases($map)), to(be($ret)));
+    }
+
+    @include it("should resolve aliases in another map") {
+        $map: (
+            foo: "oof", // alias to $settings->foo
+            bar: "rab", // alias to $settings->rab
+            baz: "bar", // alias to `bar`
+            bam: "mab",
+        );
+
+        $ret: (
+            foo: 1,
+            bar: 2,
+            baz: 2,
+            bam: "mab",
+        );
+
+        $settings: (
+            oof: 1,
+            rab: 2,
+            zab: 3,
+        ) !global;
+
+        @include should(expect(resolve-aliases($map, $settings)), to(be($ret)));
+    }
+
+    @include it("should resolve all aliases in a list") {
+        $map: (
+            foo: "oof",
+            bar: "rab",
+            baz: "zab",
+        );
+
+        $settings: (
+            list: (
+                foo: "map/foo" "map/bar" "map/baz",
+                bar: ("map/foo", "map/bar", "map/baz"),
+            ),
+            map: $map,
+        ) !global;
+
+        @include should(expect(get("map")), to(be($map)));
+    }
+
+    @include it("should resolve all aliases in a list") {
+        $settings: (
+            foo: (
+                bar: lazy("foofoofoofoo"),
+                baz: lazy("foofoofoofoo", ("foo": "baz")),
+            )
+        ) !global;
+
+        @include should(expect(resolve-alias("foo/bar")), to(be("winning bar")));
+        @include should(expect(resolve-alias("foo/baz")), to(be("winning baz")));
+    }
+
+}
