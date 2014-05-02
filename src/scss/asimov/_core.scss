@@ -214,7 +214,7 @@ $__a__map-cache: () !default;
 
 // Sets $key's to $value in the core $settings map
 // If $key was a string it's new value is returned
-// If $key was a map the core $settings map is returned
+// If $key was not a string the core $settings map is returned
 // -----------------------------------------------------------------------------
 // @param $key [String|Map] : key to lookup or map to merge with $settings
 // @param $value [Literal] : value to set $key to it was a string
@@ -223,7 +223,7 @@ $__a__map-cache: () !default;
 @function set($key, $value:null) {
     $settings: _set($key, $value, $settings) !global;
 
-    @if type-of($key) == map {
+    @if type-of($key) == map or type-of($key) == list {
         @return $settings;
     }
 
