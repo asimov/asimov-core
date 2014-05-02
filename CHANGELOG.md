@@ -1,3 +1,11 @@
+<a name="v0.0.73"></a>
+### v0.0.73 (2014-05-02)
+
+
+#### Bug Fixes
+
+* **set:** set should treat empty lists like maps not strings ([559afccb](http://github.com/asimov/asimov-core/commit/559afccbc2964c8036d962b298ad0b87d2080a85))
+
 <a name="v0.0.72"></a>
 ### v0.0.72 (2014-04-15)
 
