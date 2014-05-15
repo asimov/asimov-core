@@ -30,7 +30,7 @@ npm install -g grunt-cli
 ```
 
 This will put the `grunt` command in your system path, allowing it to be run from any directory.
-For more information installing Grunt refer the projects [getting stated guide](http://gruntjs.com/getting-started).
+For more information installing Grunt refer the projects [getting started guide](http://gruntjs.com/getting-started).
 
 ## Installing bower
 
@@ -41,7 +41,7 @@ npm install -g bower
 ```
 
 This will put the `bower` command in your system path, allowing it to be run from any directory.
-For more information installing Bower refer the projects [getting stated guide](http://bower.io).
+For more information installing Bower refer the projects [getting started guide](http://bower.io).
 
 ## Installing bundler
 
