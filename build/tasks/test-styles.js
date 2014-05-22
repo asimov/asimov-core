@@ -7,7 +7,7 @@ module.exports = function (grunt) {
         'Tests styles',
         function () {
             grunt.task.run('sass:test');
-            grunt.task.run('sasstest');
+            grunt.task.run('bootcamp:test');
         }
     );
 };

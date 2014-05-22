@@ -41,7 +41,8 @@ module.exports = function(grunt) {
         'src/scss',
         './bower_components',
         // Allow @import "docs/assets/scss/docs" in theme/component docs themes
-        './bower_components/asimov-core/src'
+        './bower_components/asimov-core/src',
+        './node_modules/bootcamp/dist'
     ].concat(bowerDeps.map(function (depPath) {
         return path.join(depPath, 'src', 'scss');
     }));
@@ -166,7 +167,7 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'tests/scss',
                     src: ['*.scss'],
-                    dest: '.build/sasstest',
+                    dest: '.build/tests/css',
                     ext: '.css'
                 }]
             },
@@ -194,6 +195,14 @@ module.exports = function(grunt) {
                     dest: 'dist/css',
                     ext: '.css'
                 }]
+            }
+        },
+
+        bootcamp: {
+            test: {
+                files: {
+                    src: ['.build/tests/css/index.css']
+                }
             }
         },
 
@@ -327,12 +336,6 @@ module.exports = function(grunt) {
             dev: {}
         },
 
-        // Run our sass tests
-
-        sasstest: {
-            test: {}
-        },
-
         // Javscript QA
         //
         // 1: wash our hands of 3rd party assets
@@ -442,6 +445,7 @@ module.exports = function(grunt) {
 
     // Load our custom tasks
 
+    grunt.loadNpmTasks('bootcamp');
     grunt.loadTasks(asimoveCorePath + '/build/tasks');
 
     if (grunt.file.exists('./build/tasks')) {

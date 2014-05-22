@@ -1,0 +1,473 @@
+//
+// Import Asimov
+//
+
+@import "asimov/asimov";
+
+// -----------------------------------------------------------------------------
+// Test data
+// -----------------------------------------------------------------------------
+
+$before: ((
+    foo: (
+        bar: (
+            bat: "woop",
+            door: "more"
+        ),
+        who: "you?"
+    ),
+    this: (
+        is: (
+            new: "you!",
+            who: "me?",
+            an: (
+                alias: "this/is/an/aliased",
+                aliased: "value",
+            ),
+        ),
+    ),
+)) !global;
+
+
+// -----------------------------------------------------------------------------
+// Function required to test Lazy implementation
+// -----------------------------------------------------------------------------
+
+@function foofoofoofoo($foo:"bar") {
+    @return "winning " + $foo;
+}
+
+// -----------------------------------------------------------------------------
+// Test cases
+// -----------------------------------------------------------------------------
+
+@include describe("get") {
+
+    @include describe("a key") {
+
+        @include it("should return primitive values") {
+            $settings: set($before) !global;
+
+            @include should(expect(get("foo/bar/bat")), to(be("woop")));
+            @include should(expect(get("foo/bar/door")), to(be("more")));
+            @include should(expect(get("foo/who")), to(be("you?")));
+            @include should(expect(get("this/is/new")), to(be("you!")));
+            @include should(expect(get("this/is/who")), to(be("me?")));
+        }
+
+        @include it("should return null if a key is not set") {
+            $settings: set($before) !global;
+
+            @include should(expect(get("foo/bar/baz")), to(be-null()));
+        }
+
+    }
+
+    @include describe("an alias") {
+
+        @include it("should return the aliased value") {
+            $settings: set($before) !global;
+
+            @include should(expect(get("this/is/an/alias")), to(be("value")));
+        }
+
+        @include it("should return null if the alias does not exist") {
+            $settings: set($before) !global;
+
+            @include should(expect(get("this/is/an/alias-not")), to(be-null()));
+            @include should(expect(get("this/is/not/an/alias")), to(be-null()));
+        }
+
+    }
+
+}
+
+@include describe("set") {
+
+    @include describe("a key") {
+
+        @include it("should return the new value") {
+            $settings: () !global;
+
+            @include should(expect(set("bool", true)), to(be(true)));
+            @include should(expect(set("string", "value")), to(be("value")));
+            @include should(expect(set("number", 99)), to(be(99)));
+        }
+
+        @include it("should create the needed nested maps") {
+            $settings: () !global;
+
+            @include should(expect(get("no/such/setting")), to(be-null()));
+            @include should(expect(set("no/such/setting", "foo")), to(be("foo")));
+            @include should(expect(get("no/such/setting")), to(be("foo")));
+        }
+
+    }
+
+    @include describe("a map") {
+
+        @include it("should return the new value") {
+            $settings: () !global;
+
+            $map: ((
+                hello: "john",
+                john: "person",
+            ));
+            $settings: set($map) !global;
+
+            @include should(expect($settings == $map), to(be(true)));
+        }
+
+        @include it("should create the needed nested maps") {
+            $settings: () !global;
+
+            $map: ((
+                hello: "john",
+                my: ( name: ( is: "bob" ) ),
+            ));
+            $settings: set($map) !global;
+
+            @include should(expect($settings == $map), to(be(true)));
+        }
+
+        @include it("should override existing values") {
+            $settings: $before !global;
+
+            $map: ((
+                hello: "john",
+                my: ( name: ( is: "bob" ) ),
+                this: ( is: "me" ),
+            ));
+            $settings: set($map) !global;
+
+            $ret: ((
+                hello: "john",
+                my: ( name: ( is: "bob" ) ),
+                this: ( is: "me" ),
+                foo: (
+                    bar: ( bat: "woop", door: "more" ),
+                    who: "you?"
+                ),
+            ));
+
+            @include should(expect($settings == $ret), to(be(true)));
+        }
+
+    }
+
+}
+
+@include describe("set-default") {
+
+    @include describe("set-default a key") {
+
+        @include it("should return the new value") {
+            $settings: () !global;
+
+            @include should(expect(set-default("bool", true)), to(be(true)));
+            @include should(expect(set-default("string", "value")), to(be("value")));
+            @include should(expect(set-default("number", 99)), to(be(99)));
+        }
+
+        @include it("should not override existing values") {
+            $settings: set($before) !global;
+
+            @include should(expect(set-default("foo/bar/bat", "new-value")), to(be("woop")));
+        }
+
+        @include it("should create the needed nested maps") {
+            $settings: () !global;
+
+            @include should(expect(get("no/such/setting")), to(be-null()));
+            @include should(expect(set-default("no/such/setting", "foo")), to(be("foo")));
+            @include should(expect(get("no/such/setting")), to(be("foo")));
+        }
+
+    }
+
+    @include describe("set-default a map") {
+
+        @include it("should return the new value") {
+            $settings: () !global;
+
+            $map: ((
+                hello: "john",
+                john: "person",
+            ));
+            $settings: set-default($map) !global;
+
+            @include should(expect($settings == $map), to(be(true)));
+        }
+
+        @include it("should create the needed nested maps") {
+            $settings: () !global;
+
+            $map: ((
+                hello: "john",
+                my: ( name: ( is: "bob" ) ),
+            ));
+            $settings: set-default($map) !global;
+
+            @include should(expect($settings == $map), to(be(true)));
+        }
+
+        @include it("should override existing values") {
+            $settings: $before !global;
+
+            $map: ((
+                hello: "john",
+                my: ( name: ( is: "bob" ) ),
+                this: ( is: "me" ),
+            ));
+            $settings: set-default($map) !global;
+
+            $ret: ((
+                hello: "john",
+                my: ( name: ( is: "bob" ) ),
+                foo: (
+                    bar: ( bat: "woop", door: "more" ),
+                    who: "you?"
+                ),
+                this: ( is: (
+                    new: "you!", who: "me?",
+                    an: ( alias: "this/is/an/aliased", aliased: "value" ),
+                ) ),
+            ));
+
+            @include should(expect($settings == $ret), to(be(true)));
+        }
+
+    }
+}
+
+@include describe("map-merge-recursive") {
+
+    @include it("should merge") {
+        $map1: ( foo: bar, bar: baz );
+        $map2: ( inie: mini, minie: moe );
+        $expected: ( foo: bar, bar: baz, inie: mini, minie: moe );
+        $ret: map-merge-recursive($map1, $map2);
+
+        @include should(expect($ret == $expected), to(be(true)));
+    }
+
+    @include it("should merge recursively") {
+        $map1: ( foo: bar, bar: baz, nested: ( key: value ) );
+        $map2: ( inie: mini, minie: moe, nested: ( new-key: new-value ),
+            still-nested: ( foo: bar ),
+        );
+        $expected: ( foo: bar, bar: baz, inie: mini, minie: moe,
+            nested: ( key: value, new-key: new-value ),
+            still-nested: ( foo: bar ),
+        );
+        $ret: map-merge-recursive($map1, $map2);
+
+        @include should(expect($ret == $expected), to(be(true)));
+    }
+
+    @include it("should override value") {
+        $map1: ( foo: bar, bar: baz, nested: ( key: value ) );
+        $map2: ( inie: mini, minie: moe, nested: ( key: new-value ),
+            still-nested: ( foo: bar ),
+        );
+        $expected: ( foo: bar, bar: baz, inie: mini, minie: moe,
+            nested: ( key: new-value ),
+            still-nested: ( foo: bar ),
+        );
+        $ret: map-merge-recursive($map1, $map2);
+
+        @include should(expect($ret == $expected), to(be(true)));
+    }
+}
+
+@include describe("implode") {
+
+    @include it("should implode a list") {
+        $list: (foo, bar, baz);
+
+        @include should(expect(implode($list)), to(be("foo,bar,baz")));
+    }
+
+    @include it("should implode a list with a custom delimiter") {
+        $list: (foo, bar, baz);
+
+        @include should(expect(implode($list, "+")), to(be("foo+bar+baz")));
+    }
+
+    @include it("should be a noop if a scalar is provided") {
+        $scalar: "foo";
+
+        @include should(expect(implode($scalar)), to(be("foo")));
+        @include should(expect(implode($scalar, "+")), to(be("foo")));
+    }
+}
+
+@include describe("lookup") {
+
+    @include it("should lookup a map") {
+        $map: (foo: bar, bar: baz);
+
+        @include should(expect(lookup($map, foo)), to(be("bar")));
+        @include should(expect(lookup($map, baz)), to(be-null()));
+    }
+
+    @include it("should be a noop if no map is provided") {
+        $scalar: "foo";
+        $default: "default";
+
+        @include should(expect(lookup($scalar, foo)), to(be-null()));
+        @include should(expect(lookup($scalar, foo, $default:$default)), to(be($default)));
+    }
+
+    @include describe("fails") {
+
+        @include it("should return a custom default value") {
+            $map: (foo: bar, bar: baz);
+            $default: "default";
+
+            @include should(expect(lookup($map, baz, $default:$default)), to(be($default)));
+        }
+
+        @include it("should return a custom default lookup") {
+            $map: (foo: bar, bar: baz);
+            $default: "bar";
+            $ret: "baz";
+
+            @include should(expect(lookup($map, baz, $default:$default, $is-key:true)), to(be($ret)));
+        }
+
+    }
+
+}
+
+@include describe("resovle-alias") {
+
+    @include it("should resolve alias") {
+        $map: (
+            foo: "oof",
+            bar: "rab",
+            baz: "zab",
+        );
+
+        $settings: (
+            list: (
+                foo: one two three
+            ),
+            scalar: $map,
+            map: ( foo: $map ),
+        ) !global;
+
+        @include should(expect(resolve-alias("list/foo")), to(be(one two three)));
+        @include should(expect(resolve-alias("scalar/foo")), to(be("oof")));
+        @include should(expect(resolve-alias("map/foo")), to(be($map)));
+    }
+
+    @include it("should resolve all aliases in a list") {
+        $map: (
+            foo: "oof",
+            bar: "rab",
+            baz: "zab",
+        );
+
+        $settings: (
+            list: (
+                foo: "map/foo" "map/bar" "map/baz",
+                bar: ("map/foo", "map/bar", "map/baz"),
+            ),
+            map: $map,
+        ) !global;
+
+        @include should(expect(get("map")), to(be($map)));
+        @include should(expect(resolve-alias("map/foo" "map/bar" "map/baz")), to(be("oof" "rab" "zab")));
+        @include should(expect(resolve-alias(("map/foo", "map/bar", "map/baz"))), to(be("oof" "rab" "zab")));
+    }
+
+    @include it("should resolve all aliases in a list") {
+        $settings: (
+            foo: (
+                bar: lazy("foofoofoofoo"),
+                baz: lazy("foofoofoofoo", ("foo": "baz")),
+            )
+        ) !global;
+
+        @include should(expect(resolve-alias("foo/bar")), to(be("winning bar")));
+        @include should(expect(resolve-alias(("foo/baz"))), to(be("winning baz")));
+    }
+
+}
+
+@include describe("resovle-aliases") {
+
+    @include it("should resolve aliases internally") {
+        $map: (
+            foo: "oof",
+            bar: "rab",
+            baz: "bar", // alias to `bar`
+            bam: "mab",
+        );
+
+        $ret: (
+            foo: "oof",
+            bar: "rab",
+            baz: "rab",
+            bam: "mab",
+        );
+
+        @include should(expect(resolve-aliases($map)), to(be($ret)));
+    }
+
+    @include it("should resolve aliases in another map") {
+        $map: (
+            foo: "oof", // alias to $settings->foo
+            bar: "rab", // alias to $settings->rab
+            baz: "bar", // alias to `bar`
+            bam: "mab",
+        );
+
+        $ret: (
+            foo: 1,
+            bar: 2,
+            baz: 2,
+            bam: "mab",
+        );
+
+        $settings: (
+            oof: 1,
+            rab: 2,
+            zab: 3,
+        ) !global;
+
+        @include should(expect(resolve-aliases($map, $settings)), to(be($ret)));
+    }
+
+    @include it("should resolve all aliases in a list") {
+        $map: (
+            foo: "oof",
+            bar: "rab",
+            baz: "zab",
+        );
+
+        $settings: (
+            list: (
+                foo: "map/foo" "map/bar" "map/baz",
+                bar: ("map/foo", "map/bar", "map/baz"),
+            ),
+            map: $map,
+        ) !global;
+
+        @include should(expect(get("map")), to(be($map)));
+    }
+
+    @include it("should resolve all aliases in a list") {
+        $settings: (
+            foo: (
+                bar: lazy("foofoofoofoo"),
+                baz: lazy("foofoofoofoo", ("foo": "baz")),
+            )
+        ) !global;
+
+        @include should(expect(resolve-alias("foo/bar")), to(be("winning bar")));
+        @include should(expect(resolve-alias("foo/baz")), to(be("winning baz")));
+    }
+
+}

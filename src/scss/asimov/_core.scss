@@ -206,6 +206,7 @@ $__a__map-cache: () !default;
         $value: get($key);
     } @else {
         // $key exists in $settings, do nothing!
+        $value: get($key);
     }
 
     @return $value;
@@ -279,54 +280,6 @@ $__a__map-cache: () !default;
 // List functions
 // ==========================================================================
 
-// Return the first dimension of a multi dimensional $map with aliases resolved
-// -----------------------------------------------------------------------------
-// @param $map [Map] : map
-// -----------------------------------------------------------------------------
-// @return [Map]
-@function get-map($map) {
-    $ret: ();
-    $base: null;
-    @each $name, $value in $map {
-        // ignore "base" as a value
-        @if type-of($value) != map and $name != "base" {
-            $ret: map-merge($ret, ($name: $value));
-        } @else if $name == "base" {
-            // preserver the "base" value for later
-            $base: $value;
-        }
-    }
-
-    // inject the "base" value for alias lookups only
-    @return resolve-aliases($ret, ("base": $base));
-}
-
-
-// Turns multidimensional $map into a one-level map with aliases resolved.
-// Map keys are composed by prefixing it's parent's key separated by a /
-// -----------------------------------------------------------------------------
-// @param $map [Map] : map
-// @param $ret [Map] : the parent map to flatten $map into
-// @param $prefix [String] : the prefix to append to $map's keys
-// -----------------------------------------------------------------------------
-// @return [Map]
-@function flatten-map($map, $ret:(), $prefix:null) {
-    @each $name, $value in $map {
-        $name: if($prefix, $prefix + if($name, "/#{$name}", ""), $name);
-
-        @if type-of($value) == map {
-            $ret: flatten-map($value, $ret, $name);
-            // Append to the end of the root map because alias need to be after
-            // the value they're aliasing to resolve correctly "#{$name}-base"
-            $ret: map-merge($ret, ($name: "#{$name}/base"));
-        } @else {
-            $ret: map-merge($ret, ($name: $value));
-        }
-    }
-
-    @return $ret;
-}
-
 // All we can do is guess. If $name looks like an alias and smells like an
 // alias, it could be an alias.
 // -----------------------------------------------------------------------------
@@ -345,13 +298,6 @@ $__a__map-cache: () !default;
 // -----------------------------------------------------------------------------
 // @return [Literal]
 @function resolve-alias($name) {
-    // Use a cache since we can only resolved against $settings
-    // $map: if(
-    //     cache-status(),
-    //     cache-get("resolve-alias-map") or cache-set("resolve-alias-map", flatten-map($settings)),
-    //     flatten-map($settings)
-    // );
-
     @if type-of($name) == list {
         $ret:();
 
@@ -422,7 +368,7 @@ $__a__map-cache: () !default;
 // -----------------------------------------------------------------------------
 // @return [Literal]
 @function lookup($map, $key, $default:null, $is-key:false) {
-    @if length($map) == 0 {
+    @if type-of($map) != map {
         @return $default;
     }
 
@@ -465,7 +411,7 @@ $__a__map-cache: () !default;
     $ret: $map1;
 
     @each $key, $value in $map2 {
-        @if map-get($ret, $key) != null and type-of($value) == map {
+        @if map-get($ret, $key) != null and type-of($value) == map and type-of(map-get($ret, $key)) == map {
             // Keys that start with `!` override rather than merge
             @if str-index($key, "!") == null {
                 $value: map-merge-recursive(map-get($ret, $key), $value);
