@@ -1,3 +1,16 @@
+<a name="v1.0.0"></a>
+## v1.0.0 (2014-05-21)
+
+
+#### Features
+
+* **flatten-map:** remove flatten-map function ([534f8d48](http://github.com/asimov/asimov-core/commit/534f8d4890f383dcf6225018388c48f334df71b3))
+* **get-map:** remove get-map function ([4559f3fd](http://github.com/asimov/asimov-core/commit/4559f3fd205d2e259b9b4b6248e0457670aec6a8))
+* **refactor:** implement standard component layout 1.0 ([22a1300b](http://github.com/asimov/asimov-core/commit/22a1300b16e7414cacb918a42406bfdc2bd58748))
+* **resolve-alias:** add tests for resovle-alias ([d1828402](http://github.com/asimov/asimov-core/commit/d1828402c822f4b4061a7ea2c487e67ff63f0dad))
+* **resolve-aliases:** add tests for resovle-aliases ([6cb9dd8c](http://github.com/asimov/asimov-core/commit/6cb9dd8cc5cfe9823a5444c66bad2b41ce8a7311))
+* **tests:** replace sasstest with bootcamp ([28cb01e3](http://github.com/asimov/asimov-core/commit/28cb01e34fca971d98e9c92a3492e5b6809065f1))
+
 <a name="v0.0.73"></a>
 ### v0.0.73 (2014-05-02)
 
