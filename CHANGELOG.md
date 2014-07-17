@@ -1,3 +1,11 @@
+<a name="v1.0.1"></a>
+### v1.0.1 (2014-07-17)
+
+
+#### Bug Fixes
+
+* **tests:** bootcamp has been misconfigured since 1.0.0 ([98bc2e89](http://github.com/asimov/asimov-core/commit/98bc2e89c87238e69692b1b875d20e63be983817))
+
 <a name="v1.0.0"></a>
 ## v1.0.0 (2014-05-21)
 
