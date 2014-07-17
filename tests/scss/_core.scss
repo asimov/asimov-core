@@ -20,9 +20,14 @@ $before: ((
         is: (
             new: "you!",
             who: "me?",
+            map: "this/is/a",
             an: (
                 alias: "this/is/an/aliased",
                 aliased: "value",
+            ),
+            a: (
+                foo: "bar",
+                bar: "baz",
             ),
         ),
     ),
@@ -69,6 +74,7 @@ $before: ((
             $settings: set($before) !global;
 
             @include should(expect(get("this/is/an/alias")), to(be("value")));
+            @include should(expect(get("this/is/map")), to(be(get("this/is/a"))));
         }
 
         @include it("should return null if the alias does not exist") {
@@ -229,8 +235,9 @@ $before: ((
                     who: "you?"
                 ),
                 this: ( is: (
-                    new: "you!", who: "me?",
+                    new: "you!", who: "me?", map: "this/is/a",
                     an: ( alias: "this/is/an/aliased", aliased: "value" ),
+                    a: ( foo: "bar", bar: "baz" ),
                 ) ),
             ));
 
