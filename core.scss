@@ -167,23 +167,35 @@ $__a__map-cache: () !default;
 // -----------------------------------------------------------------------------
 // @return [Literal]
 @function get($key, $_root:null) {
+    $is-root: true;
+
     // $_root won't exist the first time around, default it to $settings
     @if $_root == null {
         $_root: $settings;
     }
 
-    @while (str-index($key, "/") or 0) > 0 {
+    $break: false; // Emulate break statements
+    @while (str-index($key, "/") or 0) > 0 and $break == false {
         $child-key: str-slice($key, 1, str-index($key, "/") - 1);
         $key: str-slice($key, str-index($key, "/") + 1);
-        $_root: map-get($_root, $child-key) or ();
+        @if type-of(map-get($_root, $child-key)) == map {
+        $_root: map-get($_root, $child-key);
+        $is-root: false;
+        } @else {
+            $break: true;
+        }
     }
 
-    $value: map-get($_root, $key);
+    $value: if(type-of($_root) == map, map-get($_root, $key), $_root);
 
     @if is-lazy($value) {
         @return exec-lazy($value);
     } @else if type-of($value) == map {
-        @return resolve-aliases($value, $settings);
+        @return resolve-aliases($value, $settings, $is-root);
+    } @else if looks-like-an-alias($value) {
+        @debug("$value looks-like-an-alias");
+        @debug("calling resolve-aliases");
+        @return get($value);
     } @else {
         @return resolve-alias($value);
     };
@@ -307,7 +319,7 @@ $__a__map-cache: () !default;
             $ret: append($ret, resolve-alias($item));
         }
 
-        @return $ret;
+        @return if(length($ret) > 0, $ret, null);
     }
 
     $value: $name;
@@ -340,12 +352,13 @@ $__a__map-cache: () !default;
 // @param $extras [Map] : an external map to resolve aliases against
 // -----------------------------------------------------------------------------
 // @return [Map]
-@function resolve-aliases($map, $extras:()) {
+@function resolve-aliases($map, $extras:(), $is-root:true) {
     $ret: ();
     @each $name, $value in $map {
         // Looks like an alias, try to resolve it, default to $value
         @if type-of($value) == string {
-            $value: lookup($ret, $value, lookup($extras, $value, $value));
+            $default: lookup($extras, $value, $value);
+            $value: if($is-root, lookup($ret, $value, $default), $default);
             $ret: map-merge($ret, ($name: $value));
         } @else
         // Recursion yo!
@@ -366,10 +379,9 @@ $__a__map-cache: () !default;
 // @param $map [Map] : map
 // @param $key [String] : key to lookup in map
 // @param $default [Value] : the default value to return if key is not found
-// @param $is-key [Bool] : if true $default is treated as a key in $map
 // -----------------------------------------------------------------------------
 // @return [Literal]
-@function lookup($map, $key, $default:null, $is-key:false) {
+@function lookup($map, $key, $default:null) {
     @if type-of($map) != map {
         @return $default;
     }
@@ -379,7 +391,7 @@ $__a__map-cache: () !default;
         @return $ret;
     }
 
-    @return if($is-key, lookup($map, $default), $default);
+    @return $default;
 }
 
 
