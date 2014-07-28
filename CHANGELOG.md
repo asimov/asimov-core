@@ -1,3 +1,11 @@
+<a name="v1.1.1"></a>
+### v1.1.1 (2014-07-28)
+
+
+#### Bug Fixes
+
+* **debug:** remove debug statement ([42e72fb7](http://github.com/asimov/asimov-core/commit/42e72fb7a1baa3757a88300432db3ea318d27f20))
+
 <a name="v1.1.0"></a>
 ## v1.1.0 (2014-07-28)
 
