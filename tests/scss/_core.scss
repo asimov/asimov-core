@@ -84,6 +84,41 @@ $before: ((
             @include should(expect(get("this/is/not/an/alias")), to(be-null()));
         }
 
+        @include describe("to a map") {
+
+            @include it("should return the aliased map") {
+                $map: ( foo: "bar", bar: "baz", baz: "baz" );
+                $map1: ( foo: "bar", bar: "baz", baz: "inie/minie" );
+                $map2: ( baz: "foo/bar", foo: "bar", bar: "baz" );
+                $map3: ( foo: "bar", bar: "baz", baz: "foo/bar" );
+
+                $settings: set((
+                    foo: ( bar: "baz" ),
+                    inie: ( minie: "baz" ),
+                    this: ( is: ( an: ( alias: "i/am/a/map" ))),
+                )) !global;
+
+                @include should(expect(get("foo/bar")), to(be("baz")));
+
+                $settings: set((i: (am: ( a: ( map: $map ))))) !global;
+                @include should(expect(get("i/am/a/map")), to(be($map)));
+                @include should(expect(get("this/is/an/alias")), to(be($map)));
+
+                $settings: set((i: (am: ( a: ( map: $map1 ))))) !global;
+                @include should(expect(get("i/am/a/map")), to(be($map)));
+                @include should(expect(get("this/is/an/alias")), to(be($map)));
+
+                $settings: set((i: (am: ( a: ( map: $map2 ))))) !global;
+                @include should(expect(get("i/am/a/map")), to(be($map)));
+                @include should(expect(get("this/is/an/alias")), to(be($map)));
+
+                $settings: set((i: (am: ( a: ( map: $map3 ))))) !global;
+                @include should(expect(get("i/am/a/map")), to(be($map)));
+                @include should(expect(get("this/is/an/alias")), to(be($map)));
+            }
+
+        }
+
     }
 
 }
@@ -333,14 +368,6 @@ $before: ((
             $default: "default";
 
             @include should(expect(lookup($map, baz, $default:$default)), to(be($default)));
-        }
-
-        @include it("should return a custom default lookup") {
-            $map: (foo: bar, bar: baz);
-            $default: "bar";
-            $ret: "baz";
-
-            @include should(expect(lookup($map, baz, $default:$default, $is-key:true)), to(be($ret)));
         }
 
     }
