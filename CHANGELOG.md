@@ -1,3 +1,16 @@
+<a name="v1.1.0"></a>
+## v1.1.0 (2014-07-28)
+
+
+#### Bug Fixes
+
+* **get:** edge case with resolving aliases to maps ([efdd464f](http://github.com/asimov/asimov-core/commit/efdd464f954a1e54c7accc3cf03db078f13e5f48))
+
+
+#### Features
+
+* **lookup:** remove ability for default to optionally be a key ([69f719bf](http://github.com/asimov/asimov-core/commit/69f719bfba98cacdb4ff15c2a0d0b3c113ade6a3))
+
 <a name="v1.0.1"></a>
 ### v1.0.1 (2014-07-17)
 
