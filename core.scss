@@ -193,8 +193,6 @@ $__a__map-cache: () !default;
     } @else if type-of($value) == map {
         @return resolve-aliases($value, $settings, $is-root);
     } @else if looks-like-an-alias($value) {
-        @debug("$value looks-like-an-alias");
-        @debug("calling resolve-aliases");
         @return get($value);
     } @else {
         @return resolve-alias($value);
