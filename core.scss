@@ -379,10 +379,9 @@ $__a__map-cache: () !default;
 // @param $map [Map] : map
 // @param $key [String] : key to lookup in map
 // @param $default [Value] : the default value to return if key is not found
-// @param $is-key [Bool] : if true $default is treated as a key in $map
 // -----------------------------------------------------------------------------
 // @return [Literal]
-@function lookup($map, $key, $default:null, $is-key:false) {
+@function lookup($map, $key, $default:null) {
     @if type-of($map) != map {
         @return $default;
     }
@@ -392,7 +391,7 @@ $__a__map-cache: () !default;
         @return $ret;
     }
 
-    @return if($is-key, lookup($map, $default), $default);
+    @return $default;
 }
 
 
