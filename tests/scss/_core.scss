@@ -119,6 +119,19 @@ $before: ((
 
         }
 
+        @include describe("to a lazy") {
+
+            @include it("should evaluate the lazy") {
+                $settings: set((
+                    foo: ( bar: lazy("foofoofoofoo") ),
+                    this: ( is: ( an: ( alias: "foo/bar" ))),
+                )) !global;
+
+                @include should(expect(get("this/is/an/alias")), to(be("winning bar")));
+            }
+
+        }
+
     }
 
 }
