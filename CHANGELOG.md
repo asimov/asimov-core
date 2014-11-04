@@ -1,3 +1,11 @@
+<a name="v1.1.2"></a>
+### v1.1.2 (2014-11-05)
+
+
+#### Bug Fixes
+
+* **precision:** update function to work properly with 3.3 ([70d3a0c6](http://github.com/asimov/asimov-core/commit/70d3a0c68020e306d4c14258ebcaaf422af5bd6b))
+
 <a name="v1.1.1"></a>
 ### v1.1.1 (2014-07-28)
 
