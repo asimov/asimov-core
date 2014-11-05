@@ -132,6 +132,22 @@ $before: ((
 
         }
 
+        @include describe("to a map with a lazy") {
+
+            @include it("should evaluate the lazy") {
+                $map: ( lazy: "winning bar", not-lazy: "normal value" );
+                $settings: set((
+                    foo: ( bar: ( lazy: lazy("foofoofoofoo"), not-lazy: "normal value" )),
+                    this: ( is: ( an: ( alias: "foo/bar" ))),
+                )) !global;
+
+                @debug(get("this/is/an/alias"));
+
+                @include should(expect(get("this/is/an/alias")), to(be($map)));
+            }
+
+        }
+
     }
 
 }
