@@ -1,3 +1,11 @@
+<a name="v1.2.0"></a>
+## v1.2.0 (2014-11-12)
+
+
+#### Bug Fixes
+
+* **get:** revert edge case with resolving aliases to maps ([4c3cd53b](http://github.com/asimov/asimov-core/commit/4c3cd53b8ab9dcd6770a6d745d3fb815cf865c5b))
+
 <a name="v1.1.2"></a>
 ### v1.1.2 (2014-11-05)
 
