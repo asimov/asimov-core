@@ -86,17 +86,17 @@ $__a__map-cache: () !default;
 // Debug API
 // ==========================================================================
 
-@function timer($label) {
-    @if function-exists("current-time") {
-        $time: current-time("%H:%M:%S.%L");
-        @debug($label);
-        @debug($time);
-        @debug("--------------------");
-        @return $time;
-    }
+// @function timer($label) {
+//     @if function-exists("current-time") {
+//         $time: current-time("%H:%M:%S.%L");
+//         @debug($label);
+//         @debug($time);
+//         @debug("--------------------");
+//         @return $time;
+//     }
 
-    @return 0;
-}
+//     @return 0;
+// }
 
 
 // ==========================================================================
