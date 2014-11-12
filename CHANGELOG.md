@@ -1,3 +1,11 @@
+<a name="v1.2.1"></a>
+### v1.2.1 (2014-11-12)
+
+
+#### Features
+
+* **timer:** remove debug timer function ([b772b686](http://github.com/asimov/asimov-core/commit/b772b686127dd3728f9c4be028ed655c05a4e103))
+
 <a name="v1.2.0"></a>
 ## v1.2.0 (2014-11-12)
 
