@@ -1,3 +1,11 @@
+<a name="v1.3.0"></a>
+## v1.3.0 (2014-11-26)
+
+
+#### Features
+
+* **is-compass:** add a compass feature detect ([11610def](http://github.com/asimov/asimov-core/commit/11610def52affbe96861df3d774920727048aadf))
+
 <a name="v1.2.1"></a>
 ### v1.2.1 (2014-11-12)
 
