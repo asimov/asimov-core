@@ -54,3 +54,8 @@
 @function increment($number) {
     @return $number + 1 / exponent(10, precision($number));
 }
+
+// Detect if we're running with compass
+@function is-compass() {
+    @return function-exists("compass-extenstions");
+}
