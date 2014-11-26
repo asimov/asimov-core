@@ -57,5 +57,5 @@
 
 // Detect if we're running with compass
 @function is-compass() {
-    @return function-exists("compass-extenstions");
+    @return function-exists("compass-extensions") and type-of(nonexistent()) == string;
 }
