@@ -1,3 +1,11 @@
+<a name="v1.3.1"></a>
+### v1.3.1 (2014-11-26)
+
+
+#### Bug Fixes
+
+* **is-compass:** better feature-detection ([c937d968](http://github.com/asimov/asimov-core/commit/c937d9685764ba6d1bda5d4a68d4efe76515c2e0))
+
 <a name="v1.3.0"></a>
 ## v1.3.0 (2014-11-26)
 
