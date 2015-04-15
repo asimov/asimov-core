@@ -1,3 +1,11 @@
+<a name="v1.3.2"></a>
+### v1.3.2 (2015-04-15)
+
+
+#### Bug Fixes
+
+* **core:** remove incorrect usage of !global ([f7de91d7](http://github.com/asimov/asimov-core/commit/f7de91d7f3bc825f5b7cc41437ff9e6982be8978))
+
 <a name="v1.3.1"></a>
 ### v1.3.1 (2014-11-26)
 
