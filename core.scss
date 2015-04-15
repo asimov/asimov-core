@@ -3,8 +3,8 @@
 @import "sass-import-once/sass-import-once";
 @import "compass-breakpoint/stylesheets/breakpoint";
 
-$settings: () !default !global;
-$debug: false !default !global;
+$settings: () !default;
+$debug: false !default;
 
 // Internal caching get sass iteration be slow!
 $__a__cache-enabled: true !default;
@@ -201,10 +201,10 @@ $__a__map-cache: () !default;
 @function set-default($key, $value:null) {
     @if type-of($key) == map {
         // Reverse the merge order so we don't over write anything
-        $settings: _set($settings, null, $key) !global;
+        $settings: _set($settings, null, $key);
         $value: $settings;
     } @else if not get($key) {
-        $settings: _set($key, $value, $settings) !global;
+        $settings: _set($key, $value, $settings);
         $value: get($key);
     } @else {
         // $key exists in $settings, do nothing!
@@ -224,7 +224,7 @@ $__a__map-cache: () !default;
 // -----------------------------------------------------------------------------
 // @return [Literal|Null]
 @function set($key, $value:null) {
-    $settings: _set($key, $value, $settings) !global;
+    $settings: _set($key, $value, $settings);
 
     @if type-of($key) == map or type-of($key) == list {
         @return $settings;
