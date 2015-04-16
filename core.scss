@@ -201,7 +201,7 @@ $__a__map-cache: () !default;
 @function set-default($key, $value:null) {
     @if type-of($key) == map {
         // Reverse the merge order so we don't over write anything
-        $settings: _set($settings, null, $key);
+        $settings: _set($settings, null, $key) !global;
         $value: $settings;
     } @else if not get($key) {
         $settings: _set($key, $value, $settings);
@@ -224,7 +224,7 @@ $__a__map-cache: () !default;
 // -----------------------------------------------------------------------------
 // @return [Literal|Null]
 @function set($key, $value:null) {
-    $settings: _set($key, $value, $settings);
+    $settings: _set($key, $value, $settings) !global;
 
     @if type-of($key) == map or type-of($key) == list {
         @return $settings;
