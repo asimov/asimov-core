@@ -1,3 +1,11 @@
+<a name="v1.3.3"></a>
+### v1.3.3 (2015-04-16)
+
+
+#### Bug Fixes
+
+* **core:** always override settings in the global namespace ([765ff7dd](http://github.com/asimov/asimov-core/commit/765ff7dd48141c66fe88fc814a14cd92e572efae))
+
 <a name="v1.3.2"></a>
 ### v1.3.2 (2015-04-15)
 
