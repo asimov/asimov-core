@@ -1,3 +1,12 @@
+<a name="v1.3.4"></a>
+### v1.3.4 (2015-11-25)
+
+
+#### Bug Fixes
+
+* **get:** should preserve original separator for list values ([a232c5aa](http://github.com/asimov/asimov-core/commit/a232c5aa8b9e4ceb7329bddc35bd039612798c7c))
+* **test:** updates tests to reflect reality ([3e2f6e15](http://github.com/asimov/asimov-core/commit/3e2f6e1500f225ab8a0c0dd5df0ad9494b6c4b2d))
+
 <a name="v1.3.3"></a>
 ### v1.3.3 (2015-04-16)
 
