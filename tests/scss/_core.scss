@@ -9,6 +9,7 @@
 // -----------------------------------------------------------------------------
 
 $before: ((
+    list: (foo, bar, baz),
     foo: (
         bar: (
             bat: "woop",
@@ -64,6 +65,12 @@ $before: ((
             $settings: set($before) !global;
 
             @include should(expect(get("foo/bar/baz")), to(be-null()));
+        }
+
+        @include it("should preserve list separators") {
+            $settings: set($before) !global;
+
+            @include should(expect(list-separator(get("list"))), to(be(comma)));
         }
 
     }
@@ -140,6 +147,7 @@ $before: ((
             $settings: $before !global;
 
             $map: ((
+                list: (foo, bar, baz),
                 hello: "john",
                 my: ( name: ( is: "bob" ) ),
                 this: ( is: "me" ),
@@ -147,6 +155,7 @@ $before: ((
             $settings: set($map) !global;
 
             $ret: ((
+                list: (foo, bar, baz),
                 hello: "john",
                 my: ( name: ( is: "bob" ) ),
                 this: ( is: "me" ),
@@ -221,6 +230,7 @@ $before: ((
             $settings: $before !global;
 
             $map: ((
+                list: (foo, bar, baz),
                 hello: "john",
                 my: ( name: ( is: "bob" ) ),
                 this: ( is: "me" ),
@@ -228,6 +238,7 @@ $before: ((
             $settings: set-default($map) !global;
 
             $ret: ((
+                list: (foo, bar, baz),
                 hello: "john",
                 my: ( name: ( is: "bob" ) ),
                 foo: (
