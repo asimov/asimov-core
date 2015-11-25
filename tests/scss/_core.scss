@@ -335,14 +335,6 @@ $before: ((
             @include should(expect(lookup($map, baz, $default:$default)), to(be($default)));
         }
 
-        @include it("should return a custom default lookup") {
-            $map: (foo: bar, bar: baz);
-            $default: "bar";
-            $ret: "baz";
-
-            @include should(expect(lookup($map, baz, $default:$default, $is-key:true)), to(be($ret)));
-        }
-
     }
 
 }
