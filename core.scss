@@ -304,7 +304,7 @@ $__a__map-cache: () !default;
         $ret:();
 
         @each $item in $name {
-            $ret: append($ret, resolve-alias($item));
+            $ret: append($ret, resolve-alias($item), list-separator($name));
         }
 
         @return $ret;
