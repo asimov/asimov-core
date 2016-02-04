@@ -1,3 +1,11 @@
+<a name="v1.4.0"></a>
+## v1.4.0 (2016-02-04)
+
+
+#### Features
+
+* **responsive-property:** add an `$important` flag ([8fa7892c](http://github.com/asimov/asimov-core/commit/8fa7892cd7d640ab20563af0790262263d31eb70))
+
 <a name="v1.3.4"></a>
 ### v1.3.4 (2015-11-25)
 
