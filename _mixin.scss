@@ -1,18 +1,18 @@
 
-@mixin responsive-property($key, $property) {
+@mixin responsive-property($key, $property, $important: false) {
     $map: get($key);
 
     @if type-of($map) != map {
-        #{$property}: $map;
+        #{$property}: $map #{if($important, "!important", "")};
     } @else {
         @each $bp, $value in $map {
             $value: if(is-lazy($value), exec-lazy($value), $value);
 
             @if $bp == "all" {
-                #{$property}: $value;
+                #{$property}: $value #{if($important, "!important", "")};
             } @else {
                 @include breakpoint(get("breakpoint/#{$bp}")) {
-                    #{$property}: $value;
+                    #{$property}: $value #{if($important, "!important", "")};
                 }
             }
         }
